@@ -14,7 +14,7 @@ Recently this standard has been completely rewritten to align it with modern bes
 for web services.
 The new **[OGC API for Features](http://docs.opengeospatial.org/is/17-069r3/17-069r3.html)** standard 
 now provides a [RESTful API](https://en.wikipedia.org/wiki/Representational_state_transfer) , [JSON](https://www.w3.org/TR/sdw-bp/#bib-RFC7159) and [GeoJSON](https://tools.ietf.org/rfc/rfc7946.txt) as the primary data formats,
-hypermedia-ready [linked data](https://www.w3.org/TR/sdw-bp/#linked-data),
+hypermedia-friendly [linked data](https://www.w3.org/TR/sdw-bp/#linked-data),
 and [OpenAPI](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.0.2.md) support.
 
 We realized that this new specification is a perfect fit for the 
