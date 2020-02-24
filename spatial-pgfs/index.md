@@ -32,7 +32,7 @@ This is the genesis of the `pg_featureserv` microservice for serving feature dat
 * Additional query parameters to expose the power of PostGIS, including `orderBy` and `transform`.
 * Function-based data sources, so you can generate feature collections from spatial functions.
 
-Best of all, `pg_featureserv` is easy to use!  Here's how to try it out. (Most of the steps just involve getting some spatial data in a PostGIS database; if you already have a database, just skip down to step 3 and input your own database connection information).
+Best of all, `pg_featureserv` is easy to use!  Here's how to try it out. (Most of the steps just involve getting some spatial data in a PostGIS database; if you already have a database, just skip to step 3 and input your own database connection information).
 
 1. Make a database, and enable PostGIS.
    
