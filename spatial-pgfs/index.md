@@ -9,8 +9,8 @@ This supports use cases such as:
 * retrieve features for use in a web application (e.g. for tabular or map display)
 * download feature datasets for use in other applications
 
-For the past twenty years this need has been met by the **OCG Web Feature Service (WFS)** specification.
-Recently this standard has been updated to align it with modern [best practices
+For the past twenty years this need has been met by the venerable **OCG Web Feature Service (WFS)** specification.
+Recently this standard has been updated to reflect modern [best practices
 for web data access](https://www.w3.org/TR/dwbp/) and [spatial data on the web](https://www.w3.org/TR/sdw-bp/).
 The new **[OGC API for Features](http://docs.opengeospatial.org/is/17-069r3/17-069r3.html)** standard 
 now provides a [RESTful API](https://en.wikipedia.org/wiki/Representational_state_transfer) , [JSON](https://www.w3.org/TR/sdw-bp/#bib-RFC7159) and [GeoJSON](https://tools.ietf.org/rfc/rfc7946.txt) as the primary data formats,
