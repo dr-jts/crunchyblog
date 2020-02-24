@@ -57,7 +57,7 @@ This is the genesis of the `pg_featureserv` microservice for serving feature dat
     ./pg_featureserv
     ```
 
-5. Point your browser to the service web interface URL.
+5. Point your browser to the service web interface.
 
     * http://localhost:9000
 
