@@ -66,6 +66,45 @@ This is the origin story of `pg_featureserv`.
 
 6. Explore the data!
 
+The service provides a JSON-based API for programatic service discovery and data access
+following the OGC API - Features standard.
+The JSON API landing page is:
+
+    * http://localhost:9000/index.json
+
+The feature collections can be listed using:
+
+    * http://localhost:9000/collections.json
+    
+The metadata for the Natural Earth countries table is at:
+
+    * http://localhost:9000/collections/ne_50m_admin_0_countries.json
+    
+The simplest query for country features is:
+
+   * http://localhost:9000/collections/ne_50m_admin_0_countries/items.json
+   
+Some more realistic queries are:
+
+   * Query the 20 smallest countries: http://localhost:9000/collections/ne_50m_admin_0_countries/items.json
+   * Query the country at a given point: 
+
+A human-viewable web user interface is also provided, allowing easy browsing of feature collections and data. 
+The top-level page is at:
+
+   * http://localhost:9000/index.html
+   
+*image: top-level page?*
+   
+The user interface allows listing the feature collections and functions exposed by the service out of the database.
+The metadata for each collection and function can be displayed.
+A simple web map interface allows you to view the results of queries for features. 
+It provides some simple controls to allow setting query parameters and function arguments.
+
+*image: web map showing NE countries*
+
+
+
 
 
 
