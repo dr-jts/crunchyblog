@@ -10,7 +10,7 @@ This supports use cases such as:
 * downloading features for use in other applications
 
 For the past twenty years this need has been met by the OCG Web Feature Service (WFS) standard.
-Recently this standard has been revamped to align it with modern best practices
+Recently this standard has been completely rewritten to align it with modern best practices
 for web services.
 The [OGC API for Features](http://docs.opengeospatial.org/is/17-069r3/17-069r3.html) standard 
 provides a RESTful API, JSON and GeoJSON as the primary data formats,
