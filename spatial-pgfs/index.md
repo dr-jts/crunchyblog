@@ -4,10 +4,10 @@ In addition to viewing spatial data on a web map using (`pg_tileserv`),
 it's often useful to be able to query [PostGIS](https://postgis.net/) spatial data directly.
 This supports use cases such as:
 
-* displaying feature data under a click point or in an area of interest
-* querying data features or fields using spatial and/or attribute filters
-* retrieving features for use in a web application (e.g. for tabular or map display)
-* downloading feature datasets for use in other applications
+* display feature data under a click point or in an area of interest
+* query data features or fields using spatial and/or attribute filters
+* retrieve features for use in a web application (e.g. for tabular or map display)
+* download feature datasets for use in other applications
 
 For the past twenty years this need has been met by the **OCG Web Feature Service (WFS)** standard.
 Recently this standard has been completely rewritten to align it with modern best practices
