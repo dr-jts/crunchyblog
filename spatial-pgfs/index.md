@@ -24,14 +24,14 @@ This is the origin story of `pg_featureserv`.
 
 `pg_featureserv` has the following features:
 
-* Written in [Go](https://golang.org/) to allow for simple deployment of binaries with no complex dependency chains.  Go also provides a very effective platform for building simple services with a minimum of development effort and software defects.
+* Written in [Go](https://golang.org/) to allow for simple deployment of binaries with no complex dependency chains.  Go provides a very effective platform for building simple services with a minimum of development effort and software defects.
 * Ready-to-run defaults so that basic deployment just requires setting a database configuration string and running the program.
-* Simple web user interface to explore the published feature collections, and view the features on maps.
+* Simple web user interface to explore the published feature collections, and view the feature data on maps.
 * Support for most of the OGC Features API, including `limit` and `offset` paging, `bbox` filtering, and `properties` response shaping
 * Additional query parameters to expose the power of PostGIS, including `orderBy` and `transform`.
 * Function-based data sources, so you can generate feature collections from spatial functions
 
-`pg_featureserv` is easy to try out.  Here's how to run it yourself.  (Most of the steps just involve getting some spatial data in a PostGIS database: if you already have a database, just skip down to step X and input your own database connection information).
+`pg_featureserv` is easy to try out.  Here's how to run it yourself.  (Most of the steps just involve getting some spatial data in a PostGIS database; if you already have a database, just skip down to step 3 and input your own database connection information).
 
 1. Make a database, and enable PostGIS.
    
