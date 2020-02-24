@@ -29,4 +29,43 @@ This is the origin story of `pg_featureserv`.
 * Additional query parameters to expose the power of PostGIS, including `orderBy` and `transform`.
 * Function-based data sources, so you can generate feature collections from spatial functions
 
+`pg_featureserv` is easy to try out.  Here's how to run it yourself.  (Most of the steps just involve getting some spatial data in a PostGIS database: if you already have a database, just skip down to step X and input your own database connection information).
+
+1. Make a database, and enable PostGIS.
+   
+
+    ```sh
+    createdb postgisftw
+    psql -d postgisftw -c 'create extension postgis'
+    ```
+
+2. Download some spatial data, and load it into PostGIS.
+
+    ```sh
+    curl -o https://www.naturalearthdata.com/http//www.naturalearthdata.com/download/50m/cultural/ne_50m_admin_0_countries.zip
+    unzip ne_50m_admin_0_countries.zip
+    shp2pgsql -S 4326 -D -I ne_50m_admin_0_countries | psql -d postgisftw
+    ```
+
+3. Download and unzip the pg_tileserv binary for your platform
+
+    * [Linux](https://postgisftw.s3.amazonaws.com/pg_featureserv_latest_linux.zip)
+    * [Windows](https://postgisftw.s3.amazonaws.com/pg_featureserv_latest_windows.zip)
+    * [MacOS](https://postgisftw.s3.amazonaws.com/pg_featureserv_latest_osx.zip)
+
+4. Set the `DATABASE_URL` environment variable to point to your database, and start the service.
+
+    ```sh
+    export DATABASE_URL=postgresql://postgres@localhost:5432/postgisftw
+    ./pg_featureserv
+    ```
+
+5. Point your browser to the service web interface URL.
+
+    * http://localhost:9000
+
+6. Explore the data!
+
+
+
 
