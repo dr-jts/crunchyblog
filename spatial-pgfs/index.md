@@ -1,13 +1,13 @@
-# Crunchy Spatial: Feature Serving
+# Crunchy Spatial: Querying Spatial Features 
 
-In addition to viewing spatial data from [PostGIS](https://postgis.net/) on a web map using (`pg_tileserv`), 
-it's often useful to be able to access the spatial data directly.
+In addition to viewing spatial data on a web map using (`pg_tileserv`), 
+it's often useful to be able to query [PostGIS](https://postgis.net/) spatial data directly.
 This supports use cases such as:
 
-* showing or using feature data under a user click or in an area of interest
-* querying data features or fields using attribute filters
-* downloading features for use in the web application (e.g. for tabular or map display)
-* downloading features for use in other applications
+* displaying feature data under a click point or in an area of interest
+* querying data features or fields using spatial and/or attribute filters
+* retrieving features for use in a web application (e.g. for tabular or map display)
+* downloading feature datasets for use in other applications
 
 For the past twenty years this need has been met by the **OCG Web Feature Service (WFS)** standard.
 Recently this standard has been completely rewritten to align it with modern best practices
@@ -16,26 +16,25 @@ The new **[OGC API for Features](http://docs.opengeospatial.org/is/17-069r3/17-0
 now provides a RESTful API with HATEOAS links, JSON and GeoJSON as the primary data formats,
 and [OpenAPI](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.0.2.md) support.
 
-We realized that this new specification was a perfect fit for the 
+We realized that this new specification is a perfect fit for the 
 microservice architecture of (Crunchy Spatial).  
 It has the additional benefit
 of being easily extensible, which allows us to expose more of the rich spatial capabilities of PostGIS.
-This is the origin story of `pg_featureserv`.
+This is the genesis of the `pg_featureserv` microservice for serving feature data.
 
 `pg_featureserv` has the following features:
 
-* Written in [Go](https://golang.org/) to allow for simple deployment of binaries with no complex dependency chains.  Go provides a very effective platform for building simple services with a minimum of development effort and software defects.
-* Ready-to-run defaults so that basic deployment just requires setting a database configuration string and running the program.
-* Simple web user interface to explore the published feature collections, and view the feature data on maps.
-* Support for most of the OGC Features API, including `limit` and `offset` paging, `bbox` filtering, and `properties` response shaping
+* Written in [Go](https://golang.org/) to allow simple deployment of binaries with no complex dependency chains.  Also, Go provides a very effective platform for building services with low development effort and risk of defects.
+* Ready-to-run configuration defaults so that basic deployment just requires setting a database configuration string and running the program.
+* A simple web user interface to explore the published feature collections and view feature data on maps.
+* Support for most of the OGC Features API, including `limit` and `offset` paging, `bbox` filtering, and `properties` response shaping.
 * Additional query parameters to expose the power of PostGIS, including `orderBy` and `transform`.
-* Function-based data sources, so you can generate feature collections from spatial functions
+* Function-based data sources, so you can generate feature collections from spatial functions.
 
-`pg_featureserv` is easy to try out.  Here's how to run it yourself.  (Most of the steps just involve getting some spatial data in a PostGIS database; if you already have a database, just skip down to step 3 and input your own database connection information).
+`pg_featureserv` is easy to try out.  Here's how to run it. (Most of the steps just involve getting some spatial data in a PostGIS database; if you already have a database, just skip down to step 3 and input your own database connection information).
 
 1. Make a database, and enable PostGIS.
    
-
     ```sh
     createdb postgisftw
     psql -d postgisftw -c 'create extension postgis'
