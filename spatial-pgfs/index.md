@@ -91,6 +91,11 @@ Some more realistic queries are:
    * Query the 20 smallest countries: http://localhost:9000/collections/ne_50m_admin_0_countries/items.json
    * Query the country at a given point: 
 
+The API endpoints for functions are similar, but use the path `functions`.  
+The `items` query for functions accepts query parameters which specify the function arguments:
+
+* http://localhost:9000/functions/geonames_query_geom/items.json?search_word=canyon
+
 A human-viewable web user interface is also provided, allowing easy browsing of feature collections and data. 
 The top-level page is at:
 
