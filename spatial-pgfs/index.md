@@ -13,10 +13,12 @@ For the past twenty years this need has been met by the OCG Web Feature Service 
 Recently this standard has been completely rewritten to align it with modern best practices
 for web services.
 The [OGC API for Features](http://docs.opengeospatial.org/is/17-069r3/17-069r3.html) standard 
-provides a RESTful API, JSON and GeoJSON as the primary data formats,
+now provides a RESTful API with HATEOAS links, JSON and GeoJSON as the primary data formats,
 and [OpenAPI](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.0.2.md) support.
+
 We realized that this new specification was a perfect fit for the 
-microservice architecture of Crunchy Spatial.  It has the additional benefit
+microservice architecture of Crunchy Spatial.  
+It has the additional benefit
 of being easily extensible, which allows us to expose more of the rich spatial capabilities of PostGIS.
 This is the origin story of `pg_featureserv`.
 
