@@ -72,11 +72,11 @@ The service provides a JSON-based API for programatic service discovery and data
 following the OGC API - Features standard.
 The JSON API landing page is:
 
-    * http://localhost:9000/index.json
+* http://localhost:9000/index.json
 
 The feature collections can be listed using:
 
-    * http://localhost:9000/collections.json
+* http://localhost:9000/collections.json
     
 The metadata for the Natural Earth countries table is at:
 
