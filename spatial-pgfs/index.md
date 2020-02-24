@@ -9,11 +9,12 @@ This supports use cases such as:
 * retrieve features for use in a web application (e.g. for tabular or map display)
 * download feature datasets for use in other applications
 
-For the past twenty years this need has been met by the **OCG Web Feature Service (WFS)** standard.
+For the past twenty years this need has been met by the **OCG Web Feature Service (WFS)** specification.
 Recently this standard has been completely rewritten to align it with modern best practices
 for web services.
 The new **[OGC API for Features](http://docs.opengeospatial.org/is/17-069r3/17-069r3.html)** standard 
-now provides a RESTful API with HATEOAS links, JSON and GeoJSON as the primary data formats,
+now provides a RESTful API , [JSON](https://www.w3.org/TR/sdw-bp/#bib-RFC7159) and [GeoJSON](https://tools.ietf.org/rfc/rfc7946.txt) as the primary data formats,
+[linked data](https://www.w3.org/TR/sdw-bp/#linked-data),
 and [OpenAPI](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.0.2.md) support.
 
 We realized that this new specification is a perfect fit for the 
