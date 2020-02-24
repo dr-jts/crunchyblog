@@ -80,11 +80,11 @@ The feature collections can be listed using:
     
 The metadata for the Natural Earth countries table is at:
 
-    * http://localhost:9000/collections/ne_50m_admin_0_countries.json
+* http://localhost:9000/collections/ne_50m_admin_0_countries.json
     
 The simplest query for country features is:
 
-   * http://localhost:9000/collections/ne_50m_admin_0_countries/items.json
+* http://localhost:9000/collections/ne_50m_admin_0_countries/items.json
    
 Some more realistic queries are:
 
