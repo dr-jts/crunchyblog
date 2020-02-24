@@ -78,14 +78,13 @@ The metadata for the Natural Earth countries table is at:
 
 * http://localhost:9000/collections/ne_50m_admin_0_countries.json
     
-The simplest query for country features is:
+The basic query for country features is:
 
 * http://localhost:9000/collections/ne_50m_admin_0_countries/items.json
    
-Some more realistic queries are:
+A more realistic query example is to retrieve the names of the 20 most populous countries:
 
-   * Query the 20 smallest countries: http://localhost:9000/collections/ne_50m_admin_0_countries/items.json
-   * Query the country at a given point: 
+* http://localhost:9000/collections/ne.admin_0_countries/items.json?orderby=pop_est:D&properties=name,pop_est&limit=20
 
 The API endpoints for functions are similar, but use the path `functions`.  
 The `items` query for functions accepts query parameters which specify the function arguments:
