@@ -21,7 +21,7 @@ We realized that this new specification is a perfect fit for the
 microservice architecture of (Crunchy Spatial).  
 It has the benefit
 of being easily extensible, which allows us to expose more of the rich spatial capabilities of PostGIS.
-This is the genesis of the `pg_featureserv` service for serving feature data.
+This is the genesis of the `pg_featureserv` service for serving PostGIS spatial data.
 
 `pg_featureserv` has the following features:
 
