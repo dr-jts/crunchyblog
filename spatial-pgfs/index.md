@@ -100,6 +100,9 @@ The top-level page is at:
    
 The user interface allows listing the feature collections and functions exposed by the service out of the database.
 The metadata for each collection and function can be displayed.
+
+![collection metadata](pg_featureserv_coll_meta.png)
+
 A web map interface allows you to view the results of queries for features. 
 It provides some simple controls to allow setting query parameters and function arguments.
 
