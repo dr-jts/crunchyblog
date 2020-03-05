@@ -100,7 +100,7 @@ The top-level page is at:
    
 The user interface allows listing the feature collections and functions exposed by the service out of the database.
 The metadata for each collection and function can be displayed.
-A simple web map interface allows you to view the results of queries for features. 
+A web map interface allows you to view the results of queries for features. 
 It provides some simple controls to allow setting query parameters and function arguments.
 
 ![countries](pg_featureserv_europe.png)
