@@ -108,7 +108,7 @@ It provides some simple controls to allow setting query parameters and function 
 
 ![countries](pg_featureserv_europe.png)
 
-The `pg_featureserv`service provides an easy-to-use, easy-to-deploy web API for accessing spatial data from PostGIS.
+The `pg_featureserv` service provides an easy-to-use, easy-to-deploy web API for accessing spatial data from PostGIS.
 It's highly functional as it stands, and in the future we hope to enhance it to provide broader access to the
 rich spatial functionality provided by PostGIS.
 
