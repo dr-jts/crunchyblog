@@ -86,7 +86,7 @@ A more realistic query example is to retrieve the names of the 20 most populous 
 
 * http://localhost:9000/collections/ne.admin_0_countries/items.json?orderby=pop_est:D&properties=name,pop_est&limit=20
 
-The API endpoints for functions are similar, but use the path `functions`.  
+The API for functions is similar, but uses the path `functions`.  
 The `items` query for functions accepts query parameters which specify the function arguments:
 
 * http://localhost:9000/functions/geonames_query_geom/items.json?search_word=canyon
