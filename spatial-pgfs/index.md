@@ -78,7 +78,7 @@ The metadata for the Natural Earth countries table is at:
 
 * http://localhost:9000/collections/ne_50m_admin_0_countries.json
     
-The basic query for country features is:
+A basic query for country features is:
 
 * http://localhost:9000/collections/ne_50m_admin_0_countries/items.json
    
