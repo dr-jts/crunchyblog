@@ -27,10 +27,11 @@ This is the genesis of the `pg_featureserv` service for serving PostGIS spatial 
 
 * Written in [Go](https://golang.org/) to allow simple deployment of binaries, with no complex dependency chains.  Also, Go provides a very effective platform for building services with low development effort and risk of defects.
 * Ready-to-run configuration defaults, so that basic deployment just requires setting a database configuration string and running the program.
-* A simple web user interface to explore published feature collections and view feature data on maps.
+* Automatic publishing of database spatial tables, views and functions, using the database catalog to provide metadata.
+* A web user interface to explore published feature collections and view feature data on maps.
 * Support for most of the OGC Features API, including `limit` and `offset` paging, `bbox` filtering, and `properties` response shaping.
 * Additional query parameters to expose the power of PostGIS, including `orderBy` and `transform`.
-* Function-based data sources, so you can generate feature collections from spatial functions.
+* Function-based data sources allow generating feature collections using complex query logic.
 
 Best of all, `pg_featureserv` is easy to use!  Here's how to try it out. (Most of the steps just involve getting some spatial data in a PostGIS database. If you already have a database, just skip to step 3 and input your own database connection information).
 
@@ -98,7 +99,7 @@ The top-level page is at:
    
 *image: top-level page?*
    
-The user interface allows listing the feature collections and functions exposed by the service out of the database.
+The user interface allows listing the feature collections and functions published by the service.
 The metadata for each collection and function can be displayed.
 
 ![collection metadata](pg_featureserv_coll_meta.png)
@@ -108,9 +109,9 @@ It provides some simple controls to allow setting query parameters and function 
 
 ![countries](pg_featureserv_europe.png)
 
-The `pg_featureserv` service provides an easy-to-use, easy-to-deploy web API for accessing spatial data from PostGIS.
-It's highly functional as it stands, and in the future we hope to enhance it to provide broader access to the
-rich spatial functionality provided by PostGIS.
+The `pg_featureserv` service provides an easy-to-use, easy-to-deploy web API for publishing spatial data from PostGIS.
+It's highly functional as it stands, and in the future we hope to enhance it to provide even more access to the
+rich spatial functionality of PostGIS.
 
 
 
