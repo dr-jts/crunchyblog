@@ -1,6 +1,6 @@
 # Crunchy Spatial: Querying Spatial Features 
 
-In addition to viewing spatial data on a web map using (`pg_tileserv`), 
+In addition to viewing spatial data as vector tiles using (`pg_tileserv`), 
 it is often useful to be able to access [PostGIS](https://postgis.net/) spatial data directly.
 This supports use cases such as:
 
