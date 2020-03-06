@@ -1,7 +1,7 @@
 # Crunchy Spatial: Querying Spatial Features 
 
 In addition to viewing [PostGIS](https://postgis.net/) spatial data as vector tiles using [`pg_tileserv`](https://info.crunchydata.com/blog/crunchy-spatial-tile-serving), 
-it is often useful to be able to access data features directly.
+it is often necessary to access data features directly.
 This supports use cases such as:
 
 * display features at a point or in an area of interest
