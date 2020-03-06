@@ -37,7 +37,8 @@ This is the genesis of the [`pg_featureserv` service](https://github.com/Crunchy
 * Additional parameters to expose the power of PostGIS, including `orderBy` and `transform`.
 * Function-based data sources allow generating feature datasets using complex query logic.
 
-Best of all, `pg_featureserv` is easy to use!  Here's how to try it out. (Most of the steps just involve getting some spatial data in a PostGIS database. If you already have a database, just skip to step 3 and input your own database connection information).
+Best of all, `pg_featureserv` is easy to use!  Here's how to try it out. 
+*(Most of the steps just involve getting some spatial data in a PostGIS database. If you already have a database, just skip to step 3 and input your own database connection information).*
 
 1. Make a database, and enable PostGIS.
    
