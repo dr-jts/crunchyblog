@@ -21,7 +21,7 @@ This new specification is a perfect fit for the
 microservice architecture of [Crunchy Spatial](https://www.crunchydata.com/products/crunchy-spatial/).  
 It has the benefit
 of being easily extensible, which allows us to expose more of the rich spatial capabilities of PostGIS.
-This is the genesis of the [`pg_featureserv` service](https://github.com/CrunchyData/pg_featureserv) for publishing PostGIS data on the web.
+This is the genesis of the [`pg_featureserv`](https://github.com/CrunchyData/pg_featureserv) service for publishing PostGIS data on the web.
 
 ![Deployment Diagram](pg_featureserv_diagram.png)
 
