@@ -32,10 +32,10 @@ This is the genesis of the [`pg_featureserv`](https://github.com/CrunchyData/pg_
 * Written in [Go](https://golang.org/) to allow simple deployment of binaries, with no complex dependency chains.  Also, Go provides a very effective platform for building services with low development effort and risk of defects.
 * Ready-to-run configuration defaults, so that basic deployment just requires setting a database configuration string and running the program.
 * Automatic publishing of database spatial tables, views and functions, using the database catalog to provide metadata.
-* A web user interface to explore published feature collections and view feature data on maps.
 * Support for most of the OGC Features API, including `limit` and `offset` paging, `bbox` filtering, and `properties` response shaping.
 * Additional parameters to expose the power of PostGIS, including `orderBy` and `transform`.
 * Function-based data sources allow generating feature datasets using complex query logic.
+* A web user interface to explore published feature collections and view feature data on maps.
 
 Best of all, `pg_featureserv` is easy to use!  Here's how to try it out. 
 *(Most of the steps just involve getting some spatial data in a PostGIS database. If you already have a database, just skip to step 3 and input your own database connection information).*
