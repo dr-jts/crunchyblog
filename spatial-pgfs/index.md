@@ -34,8 +34,8 @@ This is the genesis of the [`pg_featureserv` service](https://github.com/Crunchy
 * Automatic publishing of database spatial tables, views and functions, using the database catalog to provide metadata.
 * A web user interface to explore published feature collections and view feature data on maps.
 * Support for most of the OGC Features API, including `limit` and `offset` paging, `bbox` filtering, and `properties` response shaping.
-* Additional query parameters to expose the power of PostGIS, including `orderBy` and `transform`.
-* Function-based data sources allow generating feature collections using complex query logic.
+* Additional parameters to expose the power of PostGIS, including `orderBy` and `transform`.
+* Function-based data sources allow generating feature datasets using complex query logic.
 
 Best of all, `pg_featureserv` is easy to use!  Here's how to try it out. (Most of the steps just involve getting some spatial data in a PostGIS database. If you already have a database, just skip to step 3 and input your own database connection information).
 
