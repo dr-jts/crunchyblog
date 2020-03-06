@@ -18,7 +18,7 @@ hypermedia-friendly [linked data](https://www.w3.org/TR/sdw-bp/#linked-data),
 and [OpenAPI](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.0.2.md) support.
 
 We realized that this new specification is a perfect fit for the 
-microservice architecture of (Crunchy Spatial).  
+microservice architecture of [Crunchy Spatial](https://www.crunchydata.com/products/crunchy-spatial/).  
 It has the benefit
 of being easily extensible, which allows us to expose more of the rich spatial capabilities of PostGIS.
 This is the genesis of the `pg_featureserv` service for serving PostGIS spatial data.
@@ -115,7 +115,7 @@ It provides some simple controls to allow setting query parameters and function 
 
 The `pg_featureserv` service provides an easy-to-use, easy-to-deploy web API for publishing spatial data from PostGIS.
 It's highly functional as it stands, and in the future we hope to enhance it to provide even more access to the
-rich spatial functionality of PostGIS.
+rich spatial functionality of PostGIS.  Try it out and let us know what you think!
 
 
 
