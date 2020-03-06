@@ -17,7 +17,7 @@ now provides a [RESTful API](https://en.wikipedia.org/wiki/Representational_stat
 hypermedia-friendly [linked data](https://www.w3.org/TR/sdw-bp/#linked-data),
 and [OpenAPI](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.0.2.md) support.
 
-We realized that this new specification is a perfect fit for the 
+This new specification is a perfect fit for the 
 microservice architecture of [Crunchy Spatial](https://www.crunchydata.com/products/crunchy-spatial/).  
 It has the benefit
 of being easily extensible, which allows us to expose more of the rich spatial capabilities of PostGIS.
