@@ -1,6 +1,6 @@
 # Crunchy Spatial: Querying Spatial Features 
 
-In addition to viewing spatial data as vector tiles using (`pg_tileserv`), 
+In addition to viewing spatial data as vector tiles using [`pg_tileserv`](https://info.crunchydata.com/blog/crunchy-spatial-tile-serving), 
 it is often useful to be able to access [PostGIS](https://postgis.net/) spatial data directly.
 This supports use cases such as:
 
@@ -21,7 +21,7 @@ We realized that this new specification is a perfect fit for the
 microservice architecture of [Crunchy Spatial](https://www.crunchydata.com/products/crunchy-spatial/).  
 It has the benefit
 of being easily extensible, which allows us to expose more of the rich spatial capabilities of PostGIS.
-This is the genesis of the `pg_featureserv` service for serving PostGIS spatial data.
+This is the genesis of the [`pg_featureserv` service](https://github.com/CrunchyData/pg_featureserv) for serving PostGIS spatial data.
 
 ![Deployment Diagram](pg_featureserv_diagram.png)
 
