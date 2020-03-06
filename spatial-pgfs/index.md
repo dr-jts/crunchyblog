@@ -23,6 +23,10 @@ It has the benefit
 of being easily extensible, which allows us to expose more of the rich spatial capabilities of PostGIS.
 This is the genesis of the `pg_featureserv` service for serving PostGIS spatial data.
 
+![Context Diagram](pg_featureserv_diagram.png)
+
+*Context diagram for pg_featureserv*
+
 `pg_featureserv` has the following features:
 
 * Written in [Go](https://golang.org/) to allow simple deployment of binaries, with no complex dependency chains.  Also, Go provides a very effective platform for building services with low development effort and risk of defects.
