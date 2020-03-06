@@ -55,7 +55,7 @@ Best of all, `pg_featureserv` is easy to use!  Here's how to try it out.
     shp2pgsql -S 4326 -D -I ne_50m_admin_0_countries | psql -d postgisftw
     ```
 
-3. Download and unzip the pg_tileserv binary for your platform. ([Linux](https://postgisftw.s3.amazonaws.com/pg_featureserv_latest_linux.zip), [Windows](https://postgisftw.s3.amazonaws.com/pg_featureserv_latest_windows.zip), [MacOS](https://postgisftw.s3.amazonaws.com/pg_featureserv_latest_osx.zip) )
+3. Download and unzip the `pg_featureserv` binary for your platform. ([Linux](https://postgisftw.s3.amazonaws.com/pg_featureserv_latest_linux.zip), [Windows](https://postgisftw.s3.amazonaws.com/pg_featureserv_latest_windows.zip), [MacOS](https://postgisftw.s3.amazonaws.com/pg_featureserv_latest_osx.zip) )
 
 4. Set the `DATABASE_URL` environment variable to point to your database, and start the service.
 
