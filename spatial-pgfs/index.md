@@ -23,9 +23,9 @@ It has the benefit
 of being easily extensible, which allows us to expose more of the rich spatial capabilities of PostGIS.
 This is the genesis of the `pg_featureserv` service for serving PostGIS spatial data.
 
-![Context Diagram](pg_featureserv_diagram.png)
+![Deployment Diagram](pg_featureserv_diagram.png)
 
-*Context diagram for pg_featureserv*
+*pg_featureserv minimal deployment*
 
 `pg_featureserv` has the following features:
 
