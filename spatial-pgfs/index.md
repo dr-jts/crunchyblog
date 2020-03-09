@@ -25,8 +25,6 @@ This is the genesis of the [`pg_featureserv`](https://github.com/CrunchyData/pg_
 
 ![Deployment Diagram](pg_featureserv_diagram.png)
 
-*pg_featureserv minimal deployment*
-
 `pg_featureserv` has the following features:
 
 * Written in [Go](https://golang.org/) to allow simple deployment of binaries, with no complex dependency chains.  Also, Go provides a very effective platform for building services with low development effort and risk of defects.
