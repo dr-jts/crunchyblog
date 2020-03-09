@@ -102,7 +102,7 @@ The top-level page is at:
 
    * http://localhost:9000/index.html
    
-*image: top-level page?*
+![home page](pg_featureserv_home.png)
    
 The user interface allows listing the feature collections and functions published by the service.
 The metadata for each collection and function can be displayed.
