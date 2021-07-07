@@ -7,7 +7,7 @@ My colleague Kat Batuigas recently wrote a blog post about how to use QGIS with 
 
 QGIS supports using the *OGC API for Features* protocol (previously known as WFS3) as a vector data source.  So it should be able to source data from `pg_featureserv`.
 
-As it happens, there was a recent issue logged in the pg_featureserv GitHub repo concerning this requirement.  The submitter was having trouble getting the QGIS to connect to PostGIS via pg_featureserv.  After a bit of sleuthing we determined that the problem lay with a couple of places where pg_featureserv was not quite meeting the letter of the OGC API for Features specification.  After fixing those we were happy to find that QGIS was able to display pg_featureserv datasets perfectly.
+As it happens, there was a recent [issue](https://github.com/CrunchyData/pg_featureserv/issues/63) logged in the `pg_featureserv` GitHub repo concerning this requirement.  The submitter was having trouble getting QGIS to connect to PostGIS via `pg_featureserv`.  After a bit of sleuthing we determined that the problem lay with a couple of places where `pg_featureserv` was not quite meeting the letter of the OGC API for Features specification.  After fixing those we were happy to find that QGIS was able to display `pg_featureserv` datasets perfectly.
 
 Here's how it works:  
 
