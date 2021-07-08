@@ -11,3 +11,7 @@ As it happens, there was a recent [issue](https://github.com/CrunchyData/pg_feat
 
 Here's how it works:  
 
+- for demo purposes, we are using a Crunchy Bridge Postgres/PostGIS instance with XXX data loaded.  We're running pg_featureserv in a separate environment, pointing to the Postgres instance.  
+- QGIS makes it simple to add the ArcGIS service as a layer. In QGIS, you should see "ArcGIS Feature Service" in the Browser panel. 
+- Right-click that and we see the option to add a new connection. That opens up to the following dialog:   
+
