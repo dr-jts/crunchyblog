@@ -9,6 +9,8 @@ QGIS supports using the *OGC API for Features* protocol (previously known as WFS
 
 Lets's see how it works. 
 
+## Serve PostGIS data with pg_featureserv
+
 For demo purposes, we are using a Crunchy Bridge Postgres/PostGIS instance, loaded with a dataset of British Columbia wildfire extent polygons (available here).  We're running `pg_featureserv` in a separate environment, pointing to the Bridge Postgres instance.
 
 In the `pg_featureserv` Admin UI we can see the dataset published as a collection:
@@ -18,8 +20,14 @@ We can also access the the collection metadata via the OGC API for Features `col
 
 And we can verify that a data query works:
 
+We can also see the data on a map in the Admin UI:
 
-Now in QGIS we can add the 
+
+## Load pg_featureserv collections in QGIS
+
+In QGIS we can create a connection to the `pg_featureserv` instance.  This is done in the **Data Source Manager** (available from the **Layer** menu).  The **WFS/OGC API-Features** tab displays the following dialog:
+
+
 
 
  
