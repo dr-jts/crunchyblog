@@ -11,7 +11,7 @@ Lets's see how it works.
 
 ## Serve PostGIS data with pg_featureserv
 
-For demo purposes, we are using a Crunchy Bridge Postgres/PostGIS instance, loaded with a dataset of British Columbia wildfire extent polygons (available here).  We're running `pg_featureserv` in a separate environment, pointing to the Bridge Postgres instance.
+For demo purposes, we are using a [Crunchy Bridge](https://www.crunchydata.com/products/crunchy-bridge/) Postgres/PostGIS instance, loaded with a dataset of British Columbia wildfire extent polygons (available here).  We're running `pg_featureserv` in a separate environment, pointing to the Bridge Postgres instance.
 
 In the `pg_featureserv` Admin UI we can see the dataset published as a collection:
 
