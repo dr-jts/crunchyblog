@@ -1,24 +1,24 @@
 ## Using PostGIS and pg_featureserv with QGIS
 
-My colleague Kat Batuigas recently wrote a [blog post](https://blog.crunchydata.com/blog/arcgis-feature-service-to-postgis-the-qgis-way) about using the powerful open-source [QGIS](https://www.qgis.org/en/site/) desktop GIS to import data into [PostGIS](https://postgis.net/) from an ArcGIS Feature Service.  This is a great first step towards moving your geospatial stack onto the performant, open source platform provided by PostGIS.  But there's no need to stop there!  Crunchy Data provides a suite of services that work natively with PostGIS to expose your spatial data to the web, using industry-standard protocols.  These include:
+My colleague Kat Batuigas recently [wrote about](https://blog.crunchydata.com/blog/arcgis-feature-service-to-postgis-the-qgis-way) using the powerful open-source [QGIS](https://www.qgis.org/en/site/) desktop GIS to import data into [PostGIS](https://postgis.net/) from an ArcGIS Feature Service.  This is a great first step towards moving your geospatial stack onto the performant, open source platform provided by PostGIS.  But there's no need to stop there!  Crunchy Data has developed a suite of spatial web services that work natively with PostGIS to expose your data to the web, using industry-standard protocols.  These include:
 
-* [**pg_tileserv**](https://github.com/CrunchyData/pg_tileserv) - a web service to allow visualizing spatial data using the [MVT](https://github.com/mapbox/vector-tile-spec) vector tile format
-* [**pg_featureserv**](https://github.com/CrunchyData/pg_featureserv) - a web service to provide access to spatial data using the [*OGC API for Features*](http://docs.opengeospatial.org/is/17-069r3/17-069r3.html) protocol
+* [**pg_tileserv**](https://github.com/CrunchyData/pg_tileserv) - allows mapping spatial data using the [MVT](https://github.com/mapbox/vector-tile-spec) vector tile format
+* [**pg_featureserv**](https://github.com/CrunchyData/pg_featureserv) - publishes spatial data using the [*OGC API for Features*](http://docs.opengeospatial.org/is/17-069r3/17-069r3.html) protocol
 
-Recent versions of QGIS support using the *OGC API for Features* (previously known as WFS3) as a vector data source.  So it should be able to source data from `pg_featureserv`.  As it happens, there was a recent `pg_featureserv` [issue](https://github.com/CrunchyData/pg_featureserv/issues/63) concerning this requirement.  The submitter was having trouble getting QGIS to connect to PostGIS via `pg_featureserv`.  After a bit of sleuthing we determined that the problem lay with a couple of places where `pg_featureserv` was not quite meeting the `OGC API for Features` specification.  After fixing those we were happy to find that QGIS was able to load `pg_featureserv` datasets perfectly!
+Recent versions of QGIS support using the *OGC API for Features* (previously known as WFS3) as a vector data source.  So it should be able to source data from `pg_featureserv`.  As it happens, there was a recent `pg_featureserv` [issue](https://github.com/CrunchyData/pg_featureserv/issues/63) about this.  The submitter was having trouble getting QGIS to connect to PostGIS via `pg_featureserv`.  After a bit of sleuthing we determined that the problem lay with a couple of spots where `pg_featureserv` was not quite meeting the `OGC API for Features` specification.  After fixing those we were happy to find that QGIS was able to load `pg_featureserv` datasets perfectly!
 
 Let's see how it works. 
 
 ## Load data into PostGIS
 
-To keep things simple we are using a [Crunchy Bridge](https://www.crunchydata.com/products/crunchy-bridge/) cloud-hosted  Postgres/PostGIS instance. For demo purposes we'll load a dataset of British Columbia wildfire perimeter polygons (available for download [here](https://catalogue.data.gov.bc.ca/dataset/fire-perimeters-current)).  The data is provided as a shapefile, so we can use the PostGIS [`shp2pgsql`](https://postgis.net/docs/manual-3.1/postgis_usage.html#shp2pgsql_usage) utility to load it into a table.  The data is in the BC-Albers coordinate system, which has SRID = 3005.  We use the `-c` option so that the loader creates a table appropriate for the dataset, and the -I` option to specify the table should have a spatial index created for it (always a good idea!).  Here we do the load in two steps using an intermediate SQL file, or it can be done in a single command by piping the `shp2pgsql` output to `psql`.
+To keep things simple we are using a [Crunchy Bridge](https://www.crunchydata.com/products/crunchy-bridge/) cloud-hosted  Postgres/PostGIS instance. For demo purposes we'll load a dataset of British Columbia wildfire perimeter polygons (available for download [here](https://catalogue.data.gov.bc.ca/dataset/fire-perimeters-current)).  The data is provided as a shapefile, so we can use the PostGIS [`shp2pgsql`](https://postgis.net/docs/manual-3.1/postgis_usage.html#shp2pgsql_usage) utility to load it into a table.  The data is in the BC-Albers coordinate system, which has SRID = 3005.  We use the `-c` option so that the loader creates a table appropriate for the dataset, and the -I` option to specify the table should have a spatial index created for it (always a good idea).  Here we do the load in two steps using an intermediate SQL file, or it can be done in a single command by piping the `shp2pgsql` output to `psql`.
 
 ```
 shp2pgsql -c -D -s 3005 -i -I prot_current_fire_polys.shp bc.wildfire_poly > bc_wf.sql
 psql -h p.asdfghjklqwertyuiop12345.db.postgresbridge.com -U postgres < bc_wf.sql
 ```
 
-Using `psql` we can connect to the database and verify that the table has been created:
+Using `psql` we can connect to the database and verify that the table has been created and loaded:
 ```
 postgres=# \d bc.wildfire_poly
                                             Table "bc.wildfire_poly"
@@ -42,6 +42,11 @@ postgres=# \d bc.wildfire_poly
 Indexes:
     "wildfire_poly_pkey" PRIMARY KEY, btree (gid)
     "wildfire_poly_geom_idx" gist (geom)
+    
+ postgres=# select count(*) from bc.wildfire_poly;
+ count 
+-------
+   133
  ```
 
 ## Serve PostGIS data with pg_featureserv
