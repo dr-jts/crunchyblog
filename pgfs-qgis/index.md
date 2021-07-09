@@ -57,6 +57,8 @@ We're running `pg_featureserv` in a local environment.  To connect it to the Bri
 DbConnection = "postgres://postgres:password@p.asdfghjklqwertyuiop12345.db.postgresbridge.com:5432/postgres"
 ```
 
+`pg_featureserv` supports both the OGC API for Features (which is a RESTful HTTP protocol returning JSON) and for ease of use, a web Admin GUI as well.
+
 In the `pg_featureserv` Admin UI (`http://localhost:9000/collections.html`) we can see the data table published as a collection:
 
 ![PG_FS Collections](pgfs-home.png)
@@ -69,7 +71,7 @@ And we can verify that the data query `http://localhost:9000/collections/bc.wild
 
 ![PG_FS query](pgfs_query.png)
 
-The Admin UI also lets us see the data on a map:
+The Admin UI also lets us see the data on a map (`http://localhost:9000/collections/bc.wildfire_poly/items.html?limit=200`):
 
 ![BC Wildfire polygons map view](pgfs_wildfire_map.png)
 
