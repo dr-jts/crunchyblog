@@ -1,6 +1,6 @@
 ## Using PostGIS and pg_featureserv with QGIS
 
-My colleague Kat Batuigas recently wrote a [blog post](https://blog.crunchydata.com/blog/arcgis-feature-service-to-postgis-the-qgis-way) about using the powerful open-source [QGIS](https://www.qgis.org/en/site/) desktop GIS to import data into [PostGIS](https://postgis.net/) from an ArcGIS Feature Service.  This is a great first step towards moving your geospatial stack onto the performant, open source platform provided by PostGIS.  But there's no need to stop there!  Crunchy Data provides a suite of tools that work natively with PostGIS to expose your spatial data to the web, using industry-standard protocols.  These include:
+My colleague Kat Batuigas recently wrote a [blog post](https://blog.crunchydata.com/blog/arcgis-feature-service-to-postgis-the-qgis-way) about using the powerful open-source [QGIS](https://www.qgis.org/en/site/) desktop GIS to import data into [PostGIS](https://postgis.net/) from an ArcGIS Feature Service.  This is a great first step towards moving your geospatial stack onto the performant, open source platform provided by PostGIS.  But there's no need to stop there!  Crunchy Data provides a suite of services that work natively with PostGIS to expose your spatial data to the web, using industry-standard protocols.  These include:
 
 * [**pg_tileserv**](https://github.com/CrunchyData/pg_tileserv) - a web service to allow visualizing spatial data using the [MVT](https://github.com/mapbox/vector-tile-spec) vector tile format
 * [**pg_featureserv**](https://github.com/CrunchyData/pg_featureserv) - a web service to provide access to spatial data using the [*OGC API for Features*](http://docs.opengeospatial.org/is/17-069r3/17-069r3.html) protocol
@@ -11,7 +11,7 @@ Let's see how it works.
 
 ## Load data into PostGIS
 
-We are using a [Crunchy Bridge](https://www.crunchydata.com/products/crunchy-bridge/) Postgres/PostGIS instance. For demo purposes we'll load a dataset of British Columbia wildfire perimeter polygons (available for download [here](https://catalogue.data.gov.bc.ca/dataset/fire-perimeters-current)).  The data is provided as a shapefile, so we can use the PostGIS [`shp2pgsql`](https://postgis.net/docs/manual-3.1/postgis_usage.html#shp2pgsql_usage) utility to load it into a table.  The data is in the BC-Albers coordinate system, which has SRID = 3005.  We use the `-c` option so that the loader creates a table appropriate for the dataset, and the -I` option to specify the table should have a spatial index created for it (always a good idea!).  Here we do the load in two steps using an intermediate SQL file, or it can be done in a single command by piping the `shp2pgsql` output to `psql`.
+To keep things simple we are using a [Crunchy Bridge](https://www.crunchydata.com/products/crunchy-bridge/) cloud-hosted  Postgres/PostGIS instance. For demo purposes we'll load a dataset of British Columbia wildfire perimeter polygons (available for download [here](https://catalogue.data.gov.bc.ca/dataset/fire-perimeters-current)).  The data is provided as a shapefile, so we can use the PostGIS [`shp2pgsql`](https://postgis.net/docs/manual-3.1/postgis_usage.html#shp2pgsql_usage) utility to load it into a table.  The data is in the BC-Albers coordinate system, which has SRID = 3005.  We use the `-c` option so that the loader creates a table appropriate for the dataset, and the -I` option to specify the table should have a spatial index created for it (always a good idea!).  Here we do the load in two steps using an intermediate SQL file, or it can be done in a single command by piping the `shp2pgsql` output to `psql`.
 
 ```
 shp2pgsql -c -D -s 3005 -i -I prot_current_fire_polys.shp bc.wildfire_poly > bc_wf.sql
@@ -57,17 +57,21 @@ We're running `pg_featureserv` in a local environment.  To connect it to the Bri
 DbConnection = "postgres://postgres:password@p.asdfghjklqwertyuiop12345.db.postgresbridge.com:5432/postgres"
 ```
 
-In the `pg_featureserv` Admin UI we can see the data table published as a collection:
+In the `pg_featureserv` Admin UI (`http://localhost:9000/collections.html`) we can see the data table published as a collection:
 
 ![PG_FS Collections](pgfs-home.png)
 
-We can access the the collection metadata via the OGC API for Features `collection` endpoint:
+We can display the the collection metadata via the query `http://localhost:9000/collections/bc.wildfire_poly.html`:
 
-And we can verify that a data query works:
+![PG_FS Collection metadata](pgfs_collection_meta.png)
+
+And we can verify that the data query `http://localhost:9000/collections/bc.wildfire_poly/items.json` works (shown here using the handy JSON display in the Firefox browser):
+
+![PG_FS query](pgfs_query.png)
 
 The Admin UI also lets us see the data on a map:
 
-![BC Wildfire polygons Map](pgfs_wildfire_map.png)
+![BC Wildfire polygons map view](pgfs_wildfire_map.png)
 
 
 ## Display pg_featureserv collection as a QGIS layer
