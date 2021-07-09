@@ -9,11 +9,46 @@ QGIS supports using the *OGC API for Features* protocol (previously known as WFS
 
 Lets's see how it works. 
 
+## Load data into PostGIS
+
+We are using a [Crunchy Bridge](https://www.crunchydata.com/products/crunchy-bridge/) Postgres/PostGIS instance. For demo purposes we'll load a dataset of British Columbia wildfire perimeter polygons (available for download [here](https://catalogue.data.gov.bc.ca/dataset/fire-perimeters-current)).  The data is provided as a shapefile, so we can use the PostGIS `shp2pgsql` utility to load it into a table.  I like do this in two steps using an intermediate SQL file, or it can be done in a single command by piping the `shp2pgsql` output to `psql`.  The data is in the BC-Albers coordinate system, which has SRID = 3005.
+
+```
+shp2pgsql -c -D -s 3005 -i -I prot_current_fire_polys.shp bc.wildfire_poly > bc_wf.sql
+psql -h <db url> -U postgres < bc_wf.sql
+```
+
+Using `psql` we can connect to the database and verify that the table has been created:
+```
+postgres=# \d bc.wildfire_poly
+                                            Table "bc.wildfire_poly"
+   Column   |            Type             | Collation | Nullable |                    Default                    
+------------+-----------------------------+-----------+----------+-----------------------------------------------
+ gid        | integer                     |           | not null | nextval('bc.wildfire_poly_gid_seq'::regclass)
+ objectid   | double precision            |           |          | 
+ fire_year  | integer                     |           |          | 
+ fire_numbe | character varying(6)        |           |          | 
+ version_nu | double precision            |           |          | 
+ fire_size_ | numeric                     |           |          | 
+ source     | character varying(50)       |           |          | 
+ track_date | date                        |           |          | 
+ load_date  | date                        |           |          | 
+ feature_co | character varying(10)       |           |          | 
+ fire_stat  | character varying(30)       |           |          | 
+ fire_nt_id | integer                     |           |          | 
+ fire_nt_nm | character varying(50)       |           |          | 
+ fire_nt_lk | character varying(254)      |           |          | 
+ geom       | geometry(MultiPolygon,3005) |           |          | 
+Indexes:
+    "wildfire_poly_pkey" PRIMARY KEY, btree (gid)
+    "wildfire_poly_geom_idx" gist (geom)
+ ```
+
 ## Serve PostGIS data with pg_featureserv
 
-For demo purposes, we are using a [Crunchy Bridge](https://www.crunchydata.com/products/crunchy-bridge/) Postgres/PostGIS instance, loaded with a dataset of British Columbia wildfire extent polygons (available here).  We're running `pg_featureserv` in a separate environment, pointing to the Bridge Postgres instance.
+We're running `pg_featureserv` in a separate environment, pointing to the Bridge Postgres instance.
 
-In the `pg_featureserv` Admin UI we can see the dataset published as a collection:
+In the `pg_featureserv` Admin UI we can see the data table published as a collection:
 
 
 We can also access the the collection metadata via the OGC API for Features `collection` endpoint:
