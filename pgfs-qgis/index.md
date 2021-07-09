@@ -63,29 +63,23 @@ The Admin UI also lets us see the data on a map:
 
 ## Load pg_featureserv collections in QGIS
 
-In QGIS we can create a connection to the `pg_featureserv` instance.  This is done in the **Data Source Manager** (found under the **Layer** menu).  The **WFS/OGC API-Features** tab displays the following dialog:
+In QGIS we can create a connection to the `pg_featureserv` instance.  This is done in the **Data Source Manager** (found under the **Layer** menu).  The **WFS/OGC API-Features** tab lets us specify the details for connecting to our `pg_featureserv` service:
+
+* We use `pg_fs` as the name of the connection
+* The connection URL is the URL of the service home page
+* The **WFS Version** is *OGC API - Features*
+* We'll specify the **Max. number of features** as 200, since we know that will let us load the entire dataset  
 
 ![QGIS Data Source Manager/Connection](qgis_dataman_connect.png)
-
-We fill in the following fields:
 
 When we click **Connect** we see the collections published by the service (in this case there is only one):
 
 ![QGIS Data Source Manager/OAPIF/Collections](qgis_ds_list.png)
 
-Now we can select the bc.wildfire_poly collection, and click **Add** to add it as a layer to the QGIS map layout:
+Now we can select the `bc.wildfire_poly` collection, and click **Add** to add it as a layer to the QGIS map layout:
 
 ![QGIS Map](qgis_map.png)
 
 This is a live connection; the data is requeried as the map extent is changed by zooming or panning.
 
-
-
-
-
- 
-
--   
-- QGIS makes it simple to add the ArcGIS service as a layer. In QGIS, you should see "ArcGIS Feature Service" in the Browser panel. 
-- Right-click that and we see the option to add a new connection. That opens up to the following dialog:   
 
