@@ -25,7 +25,7 @@ We can also see the data on a map in the Admin UI:
 
 ## Load pg_featureserv collections in QGIS
 
-In QGIS we can create a connection to the `pg_featureserv` instance.  This is done in the **Data Source Manager** (available from the **Layer** menu).  The **WFS/OGC API-Features** tab displays the following dialog:
+In QGIS we can create a connection to the `pg_featureserv` instance.  This is done in the **Data Source Manager** (found under the **Layer** menu).  The **WFS/OGC API-Features** tab displays the following dialog:
 
 ![QGIS Data Source Manager/Connection](qgis_dataman_connect.png)
 
