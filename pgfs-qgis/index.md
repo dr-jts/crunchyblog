@@ -27,6 +27,21 @@ We can also see the data on a map in the Admin UI:
 
 In QGIS we can create a connection to the `pg_featureserv` instance.  This is done in the **Data Source Manager** (available from the **Layer** menu).  The **WFS/OGC API-Features** tab displays the following dialog:
 
+![QGIS Data Source Manager/Connection](qgis_dataman_connect.png)
+
+We fill in the following fields:
+
+When we click **Connect** we see the collections published by the service (in this case there is only one):
+
+![QGIS Data Source Manager/OAPIF/Collections](qgis_ds_list.png)
+
+Now we can select the bc.wildfire_poly collection, and click **Add** to add it as a layer to the QGIS map layout:
+
+![QGIS Map](qgis_map.png)
+
+This is a live connection; the data is requeried as the map extent is changed by zooming or panning.
+
+
 
 
 
