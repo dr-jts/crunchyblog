@@ -63,15 +63,21 @@ DbConnection = "postgres://postgres:password@p.asdfghjklqwertyuiop12345.db.postg
 
 ![PG_FS Collections](pgfs-home.png)
 
-We can display the the collection metadata via the query `http://localhost:9000/collections/bc.wildfire_poly.html`:
+We can display the the collection metadata:
+
+`http://localhost:9000/collections/bc.wildfire_poly.html`
 
 ![PG_FS Collection metadata](pgfs_collection_meta.png)
 
-And we can verify that the data query `http://localhost:9000/collections/bc.wildfire_poly/items.json` works (shown here using the handy JSON display in the Firefox browser):
+And we can verify that a data query works (shown here using the handy JSON display in the Firefox browser):
+
+`http://localhost:9000/collections/bc.wildfire_poly/items.json`
 
 ![PG_FS query](pgfs_query.png)
 
-The Admin UI also lets us see the data on a map (`http://localhost:9000/collections/bc.wildfire_poly/items.html?limit=200`):
+The Admin UI also lets us see the data on a map:
+
+`http://localhost:9000/collections/bc.wildfire_poly/items.html?limit=200`
 
 ![BC Wildfire polygons map view](pgfs_wildfire_map.png)
 
