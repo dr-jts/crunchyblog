@@ -1,11 +1,11 @@
 ## Using PostGIS and pg_featureserv with QGIS
 
-My colleague Kat Batuigas recently wrote a [blog post](https://blog.crunchydata.com/blog/arcgis-feature-service-to-postgis-the-qgis-way) about how to use the powerful open-source QGIS geospatial GUI to import data into [PostGIS](https://postgis.net/) from an ArcGIS Feature Service.  This is a great first step towards moving your geospatial stack onto the performant, open source platform provided by PostGIS.  But there's no need to stop there!  Crunchy Data provides a suite of tools that work natively with PostGIS to expose your spatial data to the web, using industry-standard protocols.  These include:
+My colleague Kat Batuigas recently wrote a [blog post](https://blog.crunchydata.com/blog/arcgis-feature-service-to-postgis-the-qgis-way) about using the powerful open-source [QGIS](https://www.qgis.org/en/site/) desktop GIS to import data into [PostGIS](https://postgis.net/) from an ArcGIS Feature Service.  This is a great first step towards moving your geospatial stack onto the performant, open source platform provided by PostGIS.  But there's no need to stop there!  Crunchy Data provides a suite of tools that work natively with PostGIS to expose your spatial data to the web, using industry-standard protocols.  These include:
 
 * [**pg_tileserv**](https://github.com/CrunchyData/pg_tileserv) - a web service to allow visualizing spatial data using the [MVT](https://github.com/mapbox/vector-tile-spec) vector tile format
 * [**pg_featureserv**](https://github.com/CrunchyData/pg_featureserv) - a web service to provide access to spatial data using the [*OGC API for Features*](http://docs.opengeospatial.org/is/17-069r3/17-069r3.html) 
 
-QGIS supports using the *OGC API for Features* protocol (previously known as WFS3) as a vector data source.  So it should be able to source data from `pg_featureserv`.  As it happens, there was a recent [issue](https://github.com/CrunchyData/pg_featureserv/issues/63) logged in the `pg_featureserv` GitHub repo concerning this requirement.  The submitter was having trouble getting QGIS to connect to PostGIS via `pg_featureserv`.  After a bit of sleuthing we determined that the problem lay with a couple of places where `pg_featureserv` was not quite meeting the `OGC API for Features` specification.  After fixing those we were happy to find that QGIS was able to load `pg_featureserv` datasets perfectly!
+Recent versions of QGIS support using the *OGC API for Features* protocol (previously known as WFS3) as a vector data source.  So it should be able to source data from `pg_featureserv`.  As it happens, there was a recent [issue](https://github.com/CrunchyData/pg_featureserv/issues/63) logged in the `pg_featureserv` GitHub repo concerning this requirement.  The submitter was having trouble getting QGIS to connect to PostGIS via `pg_featureserv`.  After a bit of sleuthing we determined that the problem lay with a couple of places where `pg_featureserv` was not quite meeting the `OGC API for Features` specification.  After fixing those we were happy to find that QGIS was able to load `pg_featureserv` datasets perfectly!
 
 Lets's see how it works. 
 
@@ -61,9 +61,11 @@ The Admin UI also lets us see the data on a map:
 ![BC Wildfire polygons Map](pgfs_wildfire_map.png)
 
 
-## Load pg_featureserv collections in QGIS
+## Display pg_featureserv collection as a QGIS layer
 
-In QGIS we can create a connection to the `pg_featureserv` instance.  This is done in the **Data Source Manager** (found under the **Layer** menu).  The **WFS/OGC API-Features** tab lets us specify the details for connecting to our `pg_featureserv` service:
+In QGIS we can create a layer that displays the data coming from the `pg_featureserv` instance.  This is a live connection - the layer data is requeried each time the view extent changes via zooming or panning. 
+
+To do this, under the **Layer** menu choose **Add Layer > Add WFS Layer...**.  This displays the **Data Source Manager** window at the **WFS/OGC API-Features** tab.  First, we click **New** to define the connection to the `pg_featureserv` service.  The **Connection Details** dialog let's us enter the following information:
 
 * We use `pg_fs` as the name of the connection
 * The connection URL is the URL of the service home page
@@ -72,7 +74,7 @@ In QGIS we can create a connection to the `pg_featureserv` instance.  This is do
 
 ![QGIS Data Source Manager/Connection](qgis_dataman_connect.png)
 
-When we click **Connect** we see the collections published by the service (in this case there is only one):
+When we click **Connect** we see the collections published by the service (in this demo there is only one):
 
 ![QGIS Data Source Manager/OAPIF/Collections](qgis_ds_list.png)
 
@@ -80,6 +82,6 @@ Now we can select the `bc.wildfire_poly` collection, and click **Add** to add it
 
 ![QGIS Map](qgis_map.png)
 
-This is a live connection; the data is requeried as the map extent is changed by zooming or panning.
+
 
 
