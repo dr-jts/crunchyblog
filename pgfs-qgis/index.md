@@ -50,12 +50,15 @@ We're running `pg_featureserv` in a separate environment, pointing to the Bridge
 
 In the `pg_featureserv` Admin UI we can see the data table published as a collection:
 
+[PG_FS Collections](pgfs-home.png)
 
-We can also access the the collection metadata via the OGC API for Features `collection` endpoint:
+We can access the the collection metadata via the OGC API for Features `collection` endpoint:
 
 And we can verify that a data query works:
 
-We can also see the data on a map in the Admin UI:
+The Admin UI also lets us see the data on a map:
+
+[BC Wildfire polygons Map](pgfs_wildfire_map.png)
 
 
 ## Load pg_featureserv collections in QGIS
