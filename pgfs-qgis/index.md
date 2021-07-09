@@ -59,7 +59,9 @@ DbConnection = "postgres://postgres:password@p.asdfghjklqwertyuiop12345.db.postg
 
 `pg_featureserv` supports both the OGC API for Features (which is a RESTful HTTP protocol returning JSON), and for ease of use a web-browser Admin UI as well.  In the Admin UI we can see the data table published as a collection:
 
-`http://localhost:9000/collections.html`
+```
+http://localhost:9000/collections.html
+```
 ![PG_FS Collections](pgfs-home.png)
 
 We can display the the collection metadata via the query `http://localhost:9000/collections/bc.wildfire_poly.html`:
