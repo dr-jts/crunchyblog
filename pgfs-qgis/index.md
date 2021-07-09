@@ -84,14 +84,14 @@ The Admin UI also lets us see the data on a map:
 
 ## Display pg_featureserv collection as a QGIS layer
 
-In QGIS we can create a layer that displays the data coming from the `pg_featureserv` instance.  This is a live connection - the layer data is requeried each time the view extent changes via zooming or panning. 
+In QGIS we can create a layer that displays the data coming from the `pg_featureserv` instance.  
 
-To do this, under the **Layer** menu choose **Add Layer > Add WFS Layer...**.  This displays the **Data Source Manager** window at the **WFS/OGC API-Features** tab.  First, we click **New** to define the connection to the `pg_featureserv` service.  The **Connection Details** dialog let's us enter the following information:
+To do this, under the **Layer** menu choose **Add Layer > Add WFS Layer...**.  This displays the **Data Source Manager** window at the **WFS/OGC API-Features** tab.  We click **New** to define the connection to the `pg_featureserv` service.  The **Connection Details** dialog lets us enter the following information:
 
 * We use `pg_fs` as the name of the connection
-* The connection URL is the URL of the service home page
+* The connection URL is the service home endpoint ``http://localhost:9000/`
 * The **WFS Version** is *OGC API - Features*
-* We'll specify the **Max. number of features** as 200, since we know that will let us load the entire dataset  
+* We'll specify the **Max. number of features** as 200, since that will allow loading the entire dataset without paging
 
 ![QGIS Data Source Manager/Connection](qgis_dataman_connect.png)
 
