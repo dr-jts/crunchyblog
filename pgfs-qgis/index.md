@@ -13,7 +13,7 @@ Let's see how it works.
 
 To keep things simple we are using a [Crunchy Bridge](https://www.crunchydata.com/products/crunchy-bridge/) cloud-hosted  Postgres/PostGIS instance. For demo purposes we'll load a dataset of British Columbia wildfire perimeter polygons (available for download [here](https://catalogue.data.gov.bc.ca/dataset/fire-perimeters-current)).  The data is provided as a shapefile, so we can use the PostGIS [`shp2pgsql`](https://postgis.net/docs/manual-3.1/postgis_usage.html#shp2pgsql_usage) utility to load it into a table.  (If the data was in another format then we could use [ogr2ogr](https://gdal.org/programs/ogr2ogr.html), or use QGIS itself as Kat described).
 
-The data is in the BC-Albers coordinate system, which we specify by `-s 3005`.  We use the `-c` option so that the loader creates a table appropriate for the dataset, and the `-I` option to specify the table should have a spatial index created for it (always a good idea).  Here we do the load in two steps using an intermediate SQL file, or it can be done in a single command by piping the `shp2pgsql` output to `psql`.
+The data is in the BC-Albers coordinate system, which we specify by `-s 3005`.  We use the `-c` option to have the loader creates a table appropriate for the dataset, and the `-I` option to create a spatial index on it (always a good idea).  Here we do the load in two steps using an intermediate SQL file, or it can be done in a single command by piping the `shp2pgsql` output to `psql`.
 
 ```
 shp2pgsql -c -D -s 3005 -i -I prot_current_fire_polys.shp bc.wildfire_poly > bc_wf.sql
