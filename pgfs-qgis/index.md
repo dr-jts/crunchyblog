@@ -1,19 +1,17 @@
 ## Using PostGIS and pg_featureserv with QGIS
 
-My colleague Kat Batuigas recently [wrote about](https://blog.crunchydata.com/blog/arcgis-feature-service-to-postgis-the-qgis-way) using the powerful open-source [QGIS](https://www.qgis.org/en/site/) desktop GIS to import data into [PostGIS](https://postgis.net/) from an ArcGIS Feature Service.  This is a great first step towards moving your geospatial stack onto the performant, open source platform provided by PostGIS.  But there's no need to stop there!  Crunchy Data has developed a suite of spatial web services that work natively with PostGIS to expose your data to the web, using industry-standard protocols.  These include:
+My colleague Kat Batuigas recently [wrote about](https://blog.crunchydata.com/blog/arcgis-feature-service-to-postgis-the-qgis-way) using the powerful open-source [QGIS](https://www.qgis.org/en/site/) desktop GIS to import data into [PostGIS](https://postgis.net/) from an ArcGIS Feature Service.  This is a great first step towards moving your geospatial stack onto the performant, open source platform provided by PostGIS.  And there's no need to stop there!  Crunchy Data has developed a suite of spatial web services that work natively with PostGIS to expose your data to the web, using industry-standard protocols.  These include:
 
 * [**pg_tileserv**](https://github.com/CrunchyData/pg_tileserv) - allows mapping spatial data using the [MVT](https://github.com/mapbox/vector-tile-spec) vector tile format
 * [**pg_featureserv**](https://github.com/CrunchyData/pg_featureserv) - publishes spatial data using the [*OGC API for Features*](http://docs.opengeospatial.org/is/17-069r3/17-069r3.html) protocol
 
-Recent versions of QGIS support using the *OGC API for Features* (previously known as WFS3) as a vector data source.  So it should be able to source data from `pg_featureserv`.  As it happens, there was a recent `pg_featureserv` [issue](https://github.com/CrunchyData/pg_featureserv/issues/63) about this.  The submitter was having trouble getting QGIS to connect to PostGIS via `pg_featureserv`.  After a bit of sleuthing we determined that the problem lay with a couple of spots where `pg_featureserv` was not quite meeting the `OGC API for Features` specification.  After fixing those we were happy to find that QGIS was able to load `pg_featureserv` datasets perfectly!
-
-Let's see how it works. 
+Recent versions of QGIS support using the *OGC API for Features* (previously known as WFS3) as a vector data source.  So it should be able to source data from `pg_featureserv`.  Let's see how it works. 
 
 ## Load data into PostGIS
 
-To keep things simple we are using a [Crunchy Bridge](https://www.crunchydata.com/products/crunchy-bridge/) cloud-hosted  Postgres/PostGIS instance. For demo purposes we'll load a dataset of British Columbia wildfire perimeter polygons (available for download [here](https://catalogue.data.gov.bc.ca/dataset/fire-perimeters-current)).  The data is provided as a shapefile, so we can use the PostGIS [`shp2pgsql`](https://postgis.net/docs/manual-3.1/postgis_usage.html#shp2pgsql_usage) utility to load it into a table.  (If the data was in another format then we could use [ogr2ogr](https://gdal.org/programs/ogr2ogr.html), or use QGIS itself as Kat described).
+To keep things simple we are using a [Crunchy Bridge](https://www.crunchydata.com/products/crunchy-bridge/) cloud-hosted  Postgres/PostGIS instance. For demo purposes we'll load a dataset of British Columbia wildfire perimeter polygons (available for download [here](https://catalogue.data.gov.bc.ca/dataset/fire-perimeters-current)).  The data is provided as a shapefile, so we can use the PostGIS [`shp2pgsql`](https://postgis.net/docs/manual-3.1/postgis_usage.html#shp2pgsql_usage) utility to load it into a table.  (If the data was in another format we could load it using [ogr2ogr](https://gdal.org/programs/ogr2ogr.html), or use QGIS itself as Kat described).
 
-The data is in the BC-Albers coordinate system, which we specify by `-s 3005`.  We use the `-c` option to have the loader create a table appropriate for the dataset, and the `-I` option to create a spatial index on it (always a good idea).  Here we do the load in two steps using an intermediate SQL file, or it can be done in a single command by piping the `shp2pgsql` output to `psql`.
+We use the `-c` option to have the loader create a table appropriate for the dataset, and the `-I` option to create a spatial index on it (always a good idea).  The data is in the BC-Albers coordinate system, so we specify the SRID using as `-s 3005`.  Here we are doing the load in two steps using an intermediate SQL file, or it can be done in a single command by piping the `shp2pgsql` output to `psql`.
 
 ```
 shp2pgsql -c -D -s 3005 -i -I prot_current_fire_polys.shp bc.wildfire_poly > bc_wf.sql
@@ -64,7 +62,7 @@ We're running `pg_featureserv` in a local environment.  To connect it to the Bri
 DbConnection = "postgres://postgres:password@p.asdfghjklqwertyuiop12345.db.postgresbridge.com:5432/postgres"
 ```
 
-`pg_featureserv` supports both the OGC API for Features (which is a RESTful HTTP protocol returning JSON), and for ease of use a web-browser Admin UI as well.  In the Admin UI we can see the data table published as a collection:
+For ease-of-use `pg_featureserv`  provides a browser-based Admin UI.  Using this we can see the data table published as a collection:
 
 `http://localhost:9000/collections.html`
 
@@ -76,27 +74,29 @@ We can display the the collection metadata:
 
 ![PG_FS Collection metadata](pgfs_collection_meta.png)
 
-And we can verify that a data query works (shown here using the handy JSON display in the Firefox browser):
-
-`http://localhost:9000/collections/bc.wildfire_poly/items.json`
-
-![PG_FS query](pgfs_query.png)
-
 The Admin UI also lets us see the data on a map:
 
 `http://localhost:9000/collections/bc.wildfire_poly/items.html?limit=200`
 
 ![BC Wildfire polygons map view](pgfs_wildfire_map.png)
 
+The main use of `pg_featureserv` is to serve feature data via the OGC API for Features (OAPIF), which is a RESTful HTTP protocol returning GeoJSON.
+We can verify that a OAPIF data query works by issuing the following request URL.
+The response is a GeoJSON document (shown here using the handy JSON display in the Firefox browser):
+
+`http://localhost:9000/collections/bc.wildfire_poly/items.json`
+
+![PG_FS query](pgfs_query.png)
+
 
 ## Display pg_featureserv collection as a QGIS layer
 
 In QGIS we can create a layer that displays the data coming from the `pg_featureserv` instance.  
 
-To do this, under the **Layer** menu choose **Add Layer > Add WFS Layer...**.  This displays the **Data Source Manager** window at the **WFS/OGC API-Features** tab.  We click **New** to define the connection to the `pg_featureserv` service.  The **Connection Details** dialog lets us enter the following information:
+To do this, under the **Layer** menu choose **Add Layer > Add WFS Layer...**.  This displays the **Data Source Manager** window at the **WFS/OGC API-Features** tab.  Click **New** to define the connection to the `pg_featureserv` service.  The **Connection Details** dialog lets us enter the following information:
 
-* We use `pg_fs` as the name of the connection
-* The connection URL is the service home endpoint ``http://localhost:9000/`
+* We'll use `pg_fs` as the name of the connection
+* The connection URL is the service home endpoint `http://localhost:9000/`
 * The **WFS Version** is *OGC API - Features*
 * We'll specify the **Max. number of features** as 200, since that will allow loading the entire dataset without paging
 
