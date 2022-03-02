@@ -19,10 +19,10 @@ Here we'll describe the powerful new capability it provides.
 
 ## Overview of CQL
 
-CQL is a language which describes boolean expressions which determine which features are included in the result of a query.
+CQL is a simple language to describe **logical expressions**. 
 It is *very* similar to SQL.
-A CQL expression can include feature property values, and constants including numbers, booleans and text values.
-Conditions can be expressed using comparisons (`<`,`>`,`<=`,`>=`,`=`,`<>`) and predicates:
+A CQL expression applies to values given by feature properties, and constants including numbers, booleans and text values.
+Conditions on the values are expressed using simple comparisons (`<`,`>`,`<=`,`>=`,`=`,`<>`) and more complex predicates:
 ```
 prop IN (val1, val2, ...)
 prop BETWEEN val1 AND val2
