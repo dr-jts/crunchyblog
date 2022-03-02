@@ -6,8 +6,7 @@ To do this it uses the emerging [*OGC API for Features*](https://ogcapi.ogc.org/
 (OAPIF) REST protocol, which is a natural fit for systems which need to query and communicate spatial data.
 The [core OAPIF](http://docs.opengeospatial.org/is/17-069r3/17-069r3.html) specification
 provides a basic framework for querying spatial datasets, but it has only limited capability 
-to express filtering subsets of spatial tables.  In particular,  
-it only allows filtering on single attribute values,
+to express filtering subsets of spatial tables.  In particular, it only allows filtering on single attribute values,
 and it only supports spatial filtering via the `bbox` parameter (in PostGIS terms, this is equivalent to using the `&&` operator on a `box2d`).
 
 Of course, PostGIS and PostgresQL provide much more powerful filtering capabilities. 
