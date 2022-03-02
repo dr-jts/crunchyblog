@@ -7,7 +7,7 @@ To do this it uses the emerging [*OGC API for Features*](https://ogcapi.ogc.org/
 The [core OAPIF](http://docs.opengeospatial.org/is/17-069r3/17-069r3.html) specification
 provides a basic framework for querying spatial datasets, but it has only limited capability 
 to express filtering subsets of spatial tables.  In particular, it only allows filtering on single attribute values,
-and it only supports spatial filtering via the `bbox` parameter (in PostGIS terms, this is equivalent to using the `&&` operator on a `box2d`).
+and it only supports spatial filtering via the `bbox` query parameter (in PostGIS terms, this is equivalent to using the `&&` operator with a `box2d`).
 
 Of course, PostGIS and PostgresQL provide much more powerful filtering capabilities. 
 It would be very nice to be able to access them via `pg_featureserv`.
@@ -30,6 +30,22 @@ prop LIKE | ILIKE pattern
 ```
 Conditions can be combined with the boolean operators `AND`,`OR` and `NOT`.
 
+## Filtering with CQL
 
- 
-)
+A CQL expression can be used in a `pg_featureserv` request in the `filter` parameter.  
+This is converted to SQL and included in the `WHERE` clause of the underlying database query.
+(Of course, this allows the database to use its query planner and any defined indexes to execute the query very efficiently.)
+Here's an example:
+
+* query world continent='Europe' AND pop_est BETWEEN 1000000 AND 9000000
+
+* example of ILIKE to replace function in previous blog post
+
+
+
+## Stay tuned
+
+As promised above, we'll be publising a follow-up post on the spatial filtering capabilities of CQL soon.
+And there's also some other interesting capabilites in `pg_featureserv` which we'll discuss in a further post.
+
+
