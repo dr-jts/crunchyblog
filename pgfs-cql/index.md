@@ -1,4 +1,4 @@
-# Filtering pg_featureserv results with CQL
+# Filtering results with CQL in pg_featureserv
 
 The goal of [`pg_featureserv`](https://github.com/CrunchyData/pg_featureserv)
 is to provide easy and efficient access to [PostGIS](https://postgis.net/) data from web clients.  
@@ -48,7 +48,7 @@ Here's an example:
 
 ## Stay tuned
 
-As promised above, we'll be publising a follow-up post on the spatial filtering capabilities of CQL soon.
+As promised above, we'll be publishing a follow-up post on the spatial filtering capabilities of CQL soon.
 And there's also some other interesting capabilites in `pg_featureserv` which we'll discuss in a further post.
 
 
