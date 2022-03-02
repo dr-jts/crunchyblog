@@ -46,10 +46,15 @@ Here's an example:
 * example of `ILIKE` to replace function in previous blog post
 
 
+## More to come
 
-## Stay tuned
+As promised above, we'll publish a blog post on the spatial filtering capabilities of CQL soon.
+And there's some other interesting spatial capabilites in `pg_featureserv` which we'll discuss in a further post.
 
-As promised above, we'll be publishing a follow-up post on the spatial filtering capabilities of CQL soon.
-And there's some other interesting capabilites in `pg_featureserv` which we'll discuss in a further post.
+PostgreSQL still provides more powerful expression capabilities than are available in CQL.
+There's things like string concatenation and functions, the `CASE` construct for "computed if", and others.
+What kinds of things would you like to see `pg_featureserv` support?
+And what use cases do you have for CQL filtering?
+Let us know!
 
 
