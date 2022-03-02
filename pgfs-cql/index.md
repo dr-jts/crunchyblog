@@ -20,7 +20,7 @@ Here we'll describe the powerful new capability it provides.
 ## Overview of CQL
 
 CQL is a simple language to describe **logical expressions**. 
-You will notice that it is *very* similar to SQL (not by coincidence!)
+You will notice that it is very similar to SQL (not by coincidence!)
 A CQL expression applies to values provided by feature properties and constants including numbers, booleans and text values.
 Conditions on values are expressed using simple comparisons (`<`,`>`,`<=`,`>=`,`=`,`<>`) and more complex predicates:
 ```
