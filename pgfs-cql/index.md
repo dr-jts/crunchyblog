@@ -1,19 +1,23 @@
 # Filtering pg_featureserv results with CQL
 
-The goal of pg_featureserv is to provide easy and efficient access to PostGIS data from Web clients.  
-To do this it adopts the emerging OGC API for Features (OAPIF) REST protocol, which is a natural fit for systems which need to query and communicate spatial data.
-The core OAPIF standard provides the basic framework for querying spatial datasets, but it is provides only limited capability 
+The goal of [`pg_featureserv`](https://github.com/CrunchyData/pg_featureserv)
+is to provide easy and efficient access to [PostGIS](https://postgis.net/) data from web clients.  
+To do this it uses the emerging [*OGC API for Features*](https://ogcapi.ogc.org/features/)
+(OAPIF) REST protocol, which is a natural fit for systems which need to query and communicate spatial data.
+The [core OAPIF](http://docs.opengeospatial.org/is/17-069r3/17-069r3.html) specification
+provides a basic framework for querying spatial datasets, but it has only limited capability 
 to express filtering subsets of spatial tables.  In particular,  
-it only allows filtering single attribute values,
+it only allows filtering on single attribute values,
 and it only supports spatial filtering via the `bbox` parameter (in PostGIS terms, this is equivalent to using the `&&` operator on a `box2d`).
+
 Of course, PostGIS and PostgresQL provide much more powerful filtering capabilities, 
-and it would be very nice to be able to access them via `pg_featureserv`.
+so it would be very nice to be able to access them via `pg_featureserv`.
 Luckily, the OGC has defined the Common Query Language (CQL) which (as the name suggests) is a close match to SQL filtering capabilities.
 This is being issued under the OGC API umbrella as CQL2 (currently in draft).
 Recently we added support for most of CQL2 to pg_featureserv.
 This blog post will describe the power it now provides.
 
-Overview of CQL
+## Overview of CQL
 
 CQL is a language which describes boolean expressions which determine which features are included in the result of a query.
 It is *very* similar to SQL.
@@ -28,3 +32,4 @@ Conditions can be combined with the boolean operators `AND`,`OR` and `NOT`.
 
 
  
+)
