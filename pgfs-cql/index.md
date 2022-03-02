@@ -40,9 +40,9 @@ This is converted to SQL and included in the `WHERE` clause of the underlying da
 (Of course, this allows the database to use its query planner and any defined indexes to execute the query efficiently.)
 Here's an example:
 
-* query world continent IN ('Europe','Asia') AND pop_est BETWEEN 1000000 AND 9000000
+* query world `continent IN ('Europe','Asia') AND pop_est BETWEEN 1000000 AND 9000000`
 
-* example of ILIKE to replace function in previous blog post
+* example of `ILIKE` to replace function in previous blog post
 
 
 
