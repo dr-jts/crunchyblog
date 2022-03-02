@@ -37,7 +37,7 @@ CQL also defines syntax for spatial and temporal filters. We'll discuss those in
 
 A CQL expression can be used in a `pg_featureserv` request in the `filter` parameter.  
 This is converted to SQL and included in the `WHERE` clause of the underlying database query.
-(Of course, this allows the database to use its query planner and any defined indexes to execute the query very efficiently.)
+(Of course, this allows the database to use its query planner and any defined indexes to execute the query efficiently.)
 Here's an example:
 
 * query world continent IN ('Europe','Asia') AND pop_est BETWEEN 1000000 AND 9000000
