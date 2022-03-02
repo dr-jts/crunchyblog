@@ -13,8 +13,9 @@ Of course, PostGIS and PostgresQL provide much more powerful filtering capabilit
 It would be very nice to be able to access them via `pg_featureserv`.
 Luckily, the OGC has defined the Common Query Language (CQL) which (as the name suggests) is a close match to SQL filtering capabilities.
 This is being issued under the OGC API umbrella as CQL2 (currently in draft).
-Recently we added support for most of CQL2 to pg_featureserv.
-This blog post will describe the power it now provides.
+
+Recently we added `pg_featureserv` support for most of CQL2.
+Here we'll describe the powerful new capability it provides.
 
 ## Overview of CQL
 
@@ -30,6 +31,8 @@ prop LIKE | ILIKE pattern
 ```
 Conditions can be combined with the boolean operators `AND`,`OR` and `NOT`.
 
+CQL also defines syntax for spatial and temporal filters. We'll discuss those in a future blog post.
+
 ## Filtering with CQL
 
 A CQL expression can be used in a `pg_featureserv` request in the `filter` parameter.  
@@ -37,7 +40,7 @@ This is converted to SQL and included in the `WHERE` clause of the underlying da
 (Of course, this allows the database to use its query planner and any defined indexes to execute the query very efficiently.)
 Here's an example:
 
-* query world continent='Europe' AND pop_est BETWEEN 1000000 AND 9000000
+* query world continent IN ('Europe','Asia') AND pop_est BETWEEN 1000000 AND 9000000
 
 * example of ILIKE to replace function in previous blog post
 
