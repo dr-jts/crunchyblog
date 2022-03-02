@@ -10,7 +10,7 @@ to express filtering subsets of spatial tables.  In particular, it only allows f
 and it only supports spatial filtering via the `bbox` query parameter (in PostGIS terms, this is equivalent to using the `&&` operator with a `box2d`).
 
 Of course, PostGIS and PostgresQL provide much more powerful filtering capabilities. 
-It would be very nice to be able to access them via `pg_featureserv`.
+It would be very nice to be able to use these via `pg_featureserv`.
 Luckily, the OGC has defined the Common Query Language (CQL) which (as the name suggests) is a close match to SQL filtering capabilities.
 This is being issued under the OGC API umbrella as CQL2 (currently in draft).
 
