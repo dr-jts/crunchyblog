@@ -3,7 +3,7 @@
 The goal of [`pg_featureserv`](https://github.com/CrunchyData/pg_featureserv)
 is to provide easy and efficient access to [PostGIS](https://postgis.net/) data from web clients.  
 To do this it uses the emerging [*OGC API for Features*](https://ogcapi.ogc.org/features/)
-(OAPIF) REST protocol, which is a natural fit for systems which need to query and communicate spatial data.
+(OAPIF) RESTful protocol, which is a natural fit for systems which need to query and communicate spatial data.
 The [core OAPIF](http://docs.opengeospatial.org/is/17-069r3/17-069r3.html) specification
 provides a basic framework for querying spatial datasets, but it has only limited capability 
 to express filtering subsets of spatial tables.  In particular, it only allows filtering on single attribute values,
