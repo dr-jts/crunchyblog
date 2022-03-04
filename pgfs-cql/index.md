@@ -52,6 +52,8 @@ Here's the query to get this result set (note that for safety we have URL-encode
 ```
 http://localhost:9000/collections/ne.countries/items.html?properties=name,pop_est&filter=continent%20=%20%27Europe%27%20AND%20pop_est%20%3C=%205000000&limit=100
 ```
+![](pgfs-cql-europe-small-json.png)
+
 We can use the `pg_featureserv` UI to visualize the results of the query.
 
 * query world `continent = 'Europe' AND pop_est < 1000000`
