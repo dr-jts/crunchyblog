@@ -50,13 +50,16 @@ The CQL expression for this is `continent = 'Europe' AND pop_est <= 5000000`.
 
 Here's the query to get this result set (note that for safety we have URL-encoded spaces and special characters):
 ```
-http://localhost:9000/collections/ne.countries/items.html?properties=name,pop_est&filter=continent%20=%20%27Europe%27%20AND%20pop_est%20%3C=%205000000&limit=100
+http://localhost:9000/collections/ne.countries/items.json?properties=name,pop_est&filter=continent%20=%20%27Europe%27%20AND%20pop_est%20%3C=%205000000&limit=100
 ```
+This returns a GeoJSON response with 25 features:
+
 ![](pgfs-cql-europe-small-json.png)
 
-We can use the `pg_featureserv` UI to visualize the results of the query.
+By using the extension `html' instead of `json` in the request we can visualize the result in the `pg_featureserv` UI:
 
-* query world `continent = 'Europe' AND pop_est < 1000000`
+![](pgfs-cql-europe-small.png)
+
 
 * example of `ILIKE` to replace function in previous blog post
 
