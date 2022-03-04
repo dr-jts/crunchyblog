@@ -54,10 +54,12 @@ for details on how to do this.)
 We're going to retrieve information about European countries where the population is 5,000,000 or less.
 The CQL expression for this is `continent = 'Europe' AND pop_est <= 5000000`.
 
-Here's the query to get this result set (note that it's sometimes necessary to URL-encode spaces and special characters):
+Here's the query to get this result:
 ```
 http://localhost:9000/collections/ne.countries/items.json?properties=name,pop_est&filter=continent%20=%20%27Europe%27%20AND%20pop_est%20%3C=%205000000&limit=100
 ```
+*Note: it's a good idea to to URL-encode spaces and special characters.*
+
 This returns a GeoJSON response with 25 features:
 
 ![](pgfs-cql-europe-small-json.png)
@@ -66,13 +68,16 @@ By using the extension `html` instead of `json` in the request we can visualize 
 
 ![](pgfs-cql-europe-small.png)
 
-## More power = fewer functions
+## More power, fewer functions
 
-One of the cool things about `pg_featureserv` (and its companion `pg_tileserv`) is the ability to serve data provided by PostgreSQL functions.
-In a previous post we showed [how to use a function to find countries where the name matches a search string](https://blog.crunchydata.com/blog/using-postgis-functions-in-pg_featureserv) .  Now we can do this more easily and flexibly by using a CQL filter (note that the `ILIKE` wildcard must be URL-encoded as `%25`):
+One of the cool things about `pg_featureserv` and its companion [`pg_tileserv`](https://github.com/CrunchyData/pg_tileserv) 
+is the ability to serve data provided by PostgreSQL functions.
+In a previous post we showed [how to use a function to find countries where the name matches a search string](https://blog.crunchydata.com/blog/using-postgis-functions-in-pg_featureserv) .  Now we can do this more easily and flexibly by using a CQL filter:
 ```
 http://localhost:9000/collections/ne.countries/items.html?properties=name,pop_est&filter=name%20ILIKE%20%27Mo%25%27
 ```
+*Note that the `ILIKE` wildcard must be URL-encoded as `%25`.*
+ 
 ![](pgfs-cql-ilike-mo.png)
 
 And of course the filter can be made as complex as needed if more conditions are required, which is harder to do with a function.
