@@ -69,28 +69,23 @@ http://localhost:9000/collections/ne.countries/items.html?properties=name,pop_es
 ```
 ![](pgfs-cql-ilike-mo.png)
 
-And of course the filter can be made as complex as needed if more conditions are required, which is much harder to do with a function.
+And of course the filter can be made as complex as needed if more conditions are required, which is harder to do with a function.
+But function serving is still very powerful for things like [generating spatial data](https://blog.crunchydata.com/blog/tile-serving-with-dynamic-geometry) and [routing](https://blog.crunchydata.com/blog/routing-with-postgresql-and-crunchy-spatial)).
 
-Function serving is still very powerful for things like [generating spatial data](https://blog.crunchydata.com/blog/tile-serving-with-dynamic-geometry) and [routing](https://blog.crunchydata.com/blog/routing-with-postgresql-and-crunchy-spatial)).
-
-
-## More to come!
+## More to come...
 
 As promised above, we'll publish a blog post on the spatial filtering capabilities of CQL soon.
 And there's other interesting spatial capabilites in `pg_featureserv` which we'll discuss in a further post.
 
-CQL support will be rolled out in [`pg_tileserv`](https://github.com/CrunchyData/pg_tileserv) soon. 
+CQL support will be rolled out in [`pg_tileserv`](https://github.com/CrunchyData/pg_tileserv) soon as well. 
 This brings some exciting possibilites for large-scale data visualization!
 
+PostgreSQL provides even more powerful expression capabilities than are available in CQL.
+There's things like string concatenation and functions, the `CASE` construct for "computed if", and others.
+What kinds of things would you like to see `pg_featureserv` support?
 
 ## Try it!
 
-
-
-PostgreSQL still provides more powerful expression capabilities than are available in CQL.
-There's things like string concatenation and functions, the `CASE` construct for "computed if", and others.
-What kinds of things would you like to see `pg_featureserv` support?
-And what use cases do you have for CQL filtering?
-Let us know!
-
-
+CQL filtering will be included in the forthcoming pg_featureserv Version 1.3.  
+But you can try it out now by simply [downloading](https://github.com/CrunchyData/pg_featureserv#download) the latest build.
+Let us know what use cases you find for CQL filtering!
