@@ -88,7 +88,8 @@ But function serving is still very powerful for things like [generating spatial 
 As promised above, we'll publish a blog post on the spatial filtering capabilities of CQL soon.
 And there's other interesting spatial capabilites in `pg_featureserv` which we'll discuss in a further post.
 
-CQL support will be rolled out in [`pg_tileserv`](https://github.com/CrunchyData/pg_tileserv) soon as well. 
+CQL support will be [rolled out](https://github.com/CrunchyData/pg_tileserv/pull/130)
+in [`pg_tileserv`](https://github.com/CrunchyData/pg_tileserv) soon as well. 
 This brings some exciting possibilites for large-scale data visualization!
 
 PostgreSQL provides even more powerful expression capabilities than are available in CQL.
