@@ -17,10 +17,9 @@ This is being issued under the OGC API umbrella as CQL2 (currently in draft).
 Recently we added `pg_featureserv` support for most of CQL2.
 Here we'll describe the powerful new capability it provides.
 
-## Overview of CQL
+## CQL Overview
 
 CQL is a simple language to describe **logical expressions**. 
-You will notice that it is very similar to SQL (not by coincidence!)
 A CQL expression applies to values provided by feature properties and constants including numbers, booleans and text values.
 Values can be combined using the arithmetic operators `+`,`-`,`*`, `/` and `%` (modulo).
 Conditions on values are expressed using simple comparisons (`<`,`>`,`<=`,`>=`,`=`,`<>`) and more complex predicates:
@@ -32,6 +31,9 @@ prop LIKE | ILIKE pattern
 ```
 Conditions can be combined with the boolean operators `AND`,`OR` and `NOT`.
 
+You will notice that it is very similar to SQL (probably not a coincidence!). That makes it straightforward to implement,
+and more importantly **easy to use** for us database people.
+
 CQL also defines syntax for spatial and temporal filters. We'll discuss those in a future blog post.
 
 ## Filtering with CQL
@@ -39,9 +41,20 @@ CQL also defines syntax for spatial and temporal filters. We'll discuss those in
 A CQL expression can be used in a `pg_featureserv` request in the `filter` parameter.  
 This is converted to SQL and included in the `WHERE` clause of the underlying database query.
 (Of course, this allows the database to use its query planner and any defined indexes to execute the query efficiently.)
-Here's an example:
 
-* query world `continent IN ('Europe','Asia') AND pop_est BETWEEN 1000000 AND 9000000`
+Here's an example.  We'll query the Natural Earth admin boundaries dataset, which we've loaded into PostGIS as a spatial table.
+(See [this post](https://blog.crunchydata.com/blog/crunchy-spatial-querying-spatial-features-with-pg_featureserv) 
+for details on how to do this.)
+We're going to retrieve information about European countries where the population is 5,000,000 or less.
+The CQL expression for this is `continent = 'Europe' AND pop_est <= 5000000`.
+
+Here's the query to get this result set (note that for safety we have URL-encoded spaces and special characters):
+```
+http://localhost:9000/collections/ne.countries/items.html?properties=name,pop_est&filter=continent%20=%20%27Europe%27%20AND%20pop_est%20%3C=%205000000&limit=100
+```
+We can use the `pg_featureserv` UI to visualize the results of the query.
+
+* query world `continent = 'Europe' AND pop_est < 1000000`
 
 * example of `ILIKE` to replace function in previous blog post
 
@@ -49,7 +62,10 @@ Here's an example:
 ## More to come
 
 As promised above, we'll publish a blog post on the spatial filtering capabilities of CQL soon.
-And there's some other interesting spatial capabilites in `pg_featureserv` which we'll discuss in a further post.
+And there's other interesting spatial capabilites in `pg_featureserv` which we'll discuss in a further post.
+
+CQL support will be rolled out in [`pg_tileserv`](https://github.com/CrunchyData/pg_tileserv) soon. 
+This brings some exciting possibilites for large-scale data visualization!
 
 PostgreSQL still provides more powerful expression capabilities than are available in CQL.
 There's things like string concatenation and functions, the `CASE` construct for "computed if", and others.
