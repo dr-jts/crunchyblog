@@ -45,9 +45,10 @@ CQL also defines syntax for **spatial** and **temporal** filters. We'll discuss 
 
 A CQL expression can be used in a `pg_featureserv` request in the `filter` parameter.  
 This is converted to SQL and included in the `WHERE` clause of the underlying database query.
-(Of course, this allows the database to use its query planner and any defined indexes to execute the query efficiently.)
+This allows the database to use its query planner and any defined indexes to execute the query efficiently.
 
-Here's an example.  We'll query the Natural Earth admin boundaries dataset, which we've loaded into PostGIS as a spatial table.
+Here's an example.  We'll query the [Natural Earth admin boundaries](https://www.naturalearthdata.com/downloads/10m-cultural-vectors/10m-admin-0-boundary-lines/)
+dataset, which we've loaded into PostGIS as a spatial table.
 (See [this post](https://blog.crunchydata.com/blog/crunchy-spatial-querying-spatial-features-with-pg_featureserv) 
 for details on how to do this.)
 We're going to retrieve information about European countries where the population is 5,000,000 or less.
