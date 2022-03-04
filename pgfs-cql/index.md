@@ -25,7 +25,8 @@ Here we'll describe the powerful new capability it provides.
 CQL is a simple language to describe **logical expressions**. 
 A CQL expression applies to values provided by feature properties and constants including numbers, booleans and text values.
 Values can be combined using the arithmetic operators `+`,`-`,`*`, `/` and `%` (modulo).
-Conditions on values are expressed using simple comparisons (`<`,`>`,`<=`,`>=`,`=`,`<>`) and more complex predicates:
+Conditions on values are expressed using simple comparisons (`<`,`>`,`<=`,`>=`,`=`,`<>`). 
+Other predicates include:
 ```
 prop IN (val1, val2, ...)
 prop BETWEEN val1 AND val2
@@ -34,10 +35,11 @@ prop LIKE | ILIKE pattern
 ```
 Conditions can be combined with the boolean operators `AND`,`OR` and `NOT`.
 
-You will notice that it is very similar to SQL (probably not a coincidence!). That makes it straightforward to implement,
+You will notice that this is very similar to SQL (probably not a coincidence!). 
+That makes it straightforward to implement,
 and more importantly **easy to use** for us database people.
 
-CQL also defines syntax for spatial and temporal filters. We'll discuss those in a future blog post.
+CQL also defines syntax for **spatial** and **temporal** filters. We'll discuss those in a future blog post.
 
 ## Filtering with CQL
 
