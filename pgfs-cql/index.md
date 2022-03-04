@@ -56,7 +56,7 @@ This returns a GeoJSON response with 25 features:
 
 ![](pgfs-cql-europe-small-json.png)
 
-By using the extension `html' instead of `json` in the request we can visualize the result in the `pg_featureserv` UI:
+By using the extension `html` instead of `json` in the request we can visualize the result in the `pg_featureserv` UI:
 
 ![](pgfs-cql-europe-small.png)
 
