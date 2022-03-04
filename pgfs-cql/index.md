@@ -54,7 +54,7 @@ for details on how to do this.)
 We're going to retrieve information about European countries where the population is 5,000,000 or less.
 The CQL expression for this is `continent = 'Europe' AND pop_est <= 5000000`.
 
-Here's the query to get this result set (note that for safety we have URL-encoded spaces and special characters):
+Here's the query to get this result set (note that it's sometimes necessary to URL-encode spaces and special characters):
 ```
 http://localhost:9000/collections/ne.countries/items.json?properties=name,pop_est&filter=continent%20=%20%27Europe%27%20AND%20pop_est%20%3C=%205000000&limit=100
 ```
