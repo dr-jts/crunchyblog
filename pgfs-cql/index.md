@@ -67,6 +67,8 @@ In a previous post we showed [how to use a function to find countries where the 
 ```
 http://localhost:9000/collections/ne.countries/items.html?properties=name,pop_est&filter=name%20ILIKE%20%27Mo%25%27
 ```
+![](pgfs-cql-ilike-mo.png)
+
 And of course the filter can be made as complex as needed if more conditions are required, which is much harder to do with a function.
 
 Function serving is still very powerful for things like [generating spatial data](https://blog.crunchydata.com/blog/tile-serving-with-dynamic-geometry) and [routing](https://blog.crunchydata.com/blog/routing-with-postgresql-and-crunchy-spatial)).
