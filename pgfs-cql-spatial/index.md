@@ -22,6 +22,9 @@ things intersected by a road?  or in a polygon?
 
 Lakes geonames within 100 km of New York ?
 
+fiiter-crs example
+
+try out geography table and DWITHIN
 
 
 ## Try it out!
