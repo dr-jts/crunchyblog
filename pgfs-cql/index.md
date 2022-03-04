@@ -13,8 +13,9 @@ and it only supports limited spatial filtering via the `bbox` query parameter (i
 
 Of course, PostGIS and PostgresQL provide much more powerful capabilities to filter data using SQL `WHERE` clauses. 
 It would be very nice to be able to use these via `pg_featureserv`.
-Luckily, the OGC has defined the Common Query Language (CQL) which (as the name suggests) is a close match to SQL filtering capabilities.
-This is being issued under the OGC API umbrella as CQL2 (currently in draft).
+Luckily, the OGC is defining [a way to allow filtering](http://docs.ogc.org/DRAFTS/19-079r1.html) 
+via the **Common Query Language** (CQL) which (as the name suggests) is a close match to SQL filtering capabilities.
+This is being issued under the OGC API suite as **CQL2** (currently in [draft](https://docs.ogc.org/DRAFTS/21-065.html)).
 
 Recently we added `pg_featureserv` support for (most of) CQL2.
 Here we'll describe the powerful new capability it provides.
