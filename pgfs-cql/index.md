@@ -60,17 +60,30 @@ By using the extension `html` instead of `json` in the request we can visualize 
 
 ![](pgfs-cql-europe-small.png)
 
+## More power = fewer functions
 
-* example of `ILIKE` to replace function in previous blog post
+One of the cool things about `pg_featureserv` (and its companion `pg_tileserv`) is the ability to serve data provided by PostgreSQL functions.
+In a previous post we showed [how to use a function to find countries where the name matches a search string](https://blog.crunchydata.com/blog/using-postgis-functions-in-pg_featureserv) .  Now we can do this more easily and flexibly by using a CQL filter (note that the `ILIKE` wildcard must be URL-encoded as `%25`):
+```
+http://localhost:9000/collections/ne.countries/items.html?properties=name,pop_est&filter=name%20ILIKE%20%27Mo%25%27
+```
+And of course the filter can be made as complex as needed if more conditions are required, which is much harder to do with a function.
+
+Function serving is still very powerful for things like [generating spatial data](https://blog.crunchydata.com/blog/tile-serving-with-dynamic-geometry) and [routing](https://blog.crunchydata.com/blog/routing-with-postgresql-and-crunchy-spatial)).
 
 
-## More to come
+## More to come!
 
 As promised above, we'll publish a blog post on the spatial filtering capabilities of CQL soon.
 And there's other interesting spatial capabilites in `pg_featureserv` which we'll discuss in a further post.
 
 CQL support will be rolled out in [`pg_tileserv`](https://github.com/CrunchyData/pg_tileserv) soon. 
 This brings some exciting possibilites for large-scale data visualization!
+
+
+## Try it!
+
+
 
 PostgreSQL still provides more powerful expression capabilities than are available in CQL.
 There's things like string concatenation and functions, the `CASE` construct for "computed if", and others.
