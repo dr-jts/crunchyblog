@@ -11,12 +11,41 @@ the spatial capabilities of PostGIS.
 
 ## CQL Spatial Filters
 
+Spatial filtering in CQL consists of using spatial predicates to test a condition on the geometry property of features.
+Spatial predicates include the familiar OGC Simple Features predicates for spatial relationships:
 
-geometry WKT literals
+* `INTERSECTS` - tests whether two geometries intersect
+* `DISJOINT` - tests whether two geometries have no points in common
+* `CONTAINS` - tests whether a geometry contains another
+* `WITHIN` - tests whether a geometry is within another
+* `EQUALS` - tests whether two geometries are topologically equal
+* `CROSSES` - tests whether the geometries cross
+* `OVERLAPS` - tests whether the geometries overlap
+* `TOUCHES` - tests whether the geometries touch
 
-spatial predicates
+pg_featureserv also provides the distance-based predicate `DWITHIN`.
 
-distance predicates
+The conditions are typically used to compare the feature geometry property against a geometry value, 
+which is expressed in Well-Known Text (WKT):
+
+```
+POINT (1 2)
+LINESTRING (0 0, 1 1)
+POLYGON ((0 0, 0 9, 9 0, 0 0))
+POLYGON ((0 0, 0 9, 9 0, 0 0),(1 1, 1 8, 8 1, 1 1))
+MULTIPOINT ((0 0), (0 9))
+MULTILINESTRING ((0 0, 1 1),(1 1, 2 2))
+MULTIPOLYGON (((1 4, 4 1, 1 1, 1 4)), ((1 9, 4 9, 1 6, 1 9)))
+GEOMETRYCOLLECTION(POLYGON ((1 4, 4 1, 1 1, 1 4)), LINESTRING (3 3, 5 5), POINT (1 5))
+ENVELOPE (1, 2, 3, 4)
+```
+
+For example, these are spatial conditions:
+```
+INTERSECTS(geom, ENVELOPE(-100, 49, -90, 50) )
+CONTAINS(geom, POINT(-100 49) )
+DWITHIN(geom, POINT(-100 49), 0.1)
+```
 
 ## Examples
 
