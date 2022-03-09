@@ -50,10 +50,13 @@ DWITHIN(geom, POINT(-100 49), 0.1)
 ## Examples
 
 things intersected by a road?  or in a polygon?
+```
+http://localhost:9000/collections/public.geonames/items.html?filter=type%20IN%20(%27LK%27,%27RSV%27)%20AND%20INTERSECTS(geom,%20POLYGON%20((-122.722%2048.7054,%20-122.715%2048.6347,%20-122.7641%2048.6046,%20-122.7027%2048.3885,%20-123.213%2048.4536,%20-123.2638%2048.6949,%20-123.0061%2048.7666,%20-122.722%2048.7054))%20)&limit=10000
+```
 
 Lakes geonames within 100 km of New York ?
 
-fiiter-crs example
+filter-crs example
 
 try out geography table and DWITHIN
 
