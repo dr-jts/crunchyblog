@@ -51,11 +51,15 @@ DWITHIN(geom, POINT(-100 49), 0.1)
 
 things intersected by a road?  or in a polygon?
 ```
-http://localhost:9000/collections/public.geonames/items.html?filter=type% IN% ('LK','RSV') AND INTERSECTS(geom,POLYGON ((-122.722 48.7054, -122.715 48.6347, -122.7641 48.6046, -122.7027 48.3885, -123.213 48.4536, -123.2638 48.6949, -123.0061 48.7666, -122.722 48.7054)))
+http://localhost:9000/collections/public.geonames/items.html?filter=type IN ('LK','RSV') AND INTERSECTS(geom,POLYGON ((-122.722 48.7054, -122.715 48.6347, -122.7641 48.6046, -122.7027 48.3885, -123.213 48.4536, -123.2638 48.6949, -123.0061 48.7666, -122.722 48.7054)))
 ```
 ![](pgfs-cql-spatial-sanjuan-lkrsv.png)
 
-Lakes geonames within 100 km of New York ?
+Lakes geonames within 100 km of Seattle
+```
+http://localhost:9000/collections/us.geonames_geo/items.html?filter=type IN ('LK','RSV') AND DWITHIN(geom,Point(-122.34 47.6),100000)&limit=10000
+```
+![](pgfs-cql-spatial-dwithin-lkrsv.png)
 
 filter-crs example
 
