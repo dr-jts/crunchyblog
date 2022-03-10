@@ -26,7 +26,7 @@ Spatial predicates include the familiar OGC Simple Features predicates for spati
 pg_featureserv also provides the distance-based predicate `DWITHIN`.
 
 The conditions are typically used to compare the feature geometry property against a geometry value. 
-Geometry values are expressed in Well-Known Text (WKT):
+Geometry values are expressed in [Well-Known Text](https://en.wikipedia.org/wiki/Well-known_text_representation_of_geometry) (WKT):
 
 ```
 POINT (1 2)
@@ -57,14 +57,15 @@ It contains more than 2 million named points for geographical features.
 We've loaded this data into a spatial table called `public.geonames`.
 We can now query this with pg_featureserv, and view query results on the include UI.
 
-For this example we'll query water features on the San Juan islands.
-Because there is no attribute providing that location information, we have to use a spatial query.
-We used QGIS to create a polygon enclosing the San Juan islands.
+For this example we'll query water features on the [San Juan islands](https://en.wikipedia.org/wiki/San_Juan_Islands)
+in the state of Washington, USA.
+Because there is no GNIS attribute providing region information, we have to use a spatial query.
+We used [QGIS](https://www.qgis.org) to create a polygon enclosing the San Juan islands.
 
 ![](pgfs-cql-spatial-sanjuan-polygon.png)
 
-We can convert the polygon to Well-Known Text (WKT) and use it in an INTERSECTS spatial predicate.
-To retrieve only water features (Lakes and Reservoirs) we add a condition `type IN ('LK','RSV')`.
+We can convert the polygon to WKT and use it in an `INTERSECTS` spatial predicate.
+To retrieve only water features (Lakes and Reservoirs) we add the condition `type IN ('LK','RSV')`.
 The query URL is:
 ```
 http://localhost:9000/collections/public.geonames/items.html?filter=type IN ('LK','RSV') AND INTERSECTS(geom,POLYGON ((-122.722 48.7054, -122.715 48.6347, -122.7641 48.6046, -122.7027 48.3885, -123.213 48.4536, -123.2638 48.6949, -123.0061 48.7666, -122.722 48.7054)))
