@@ -54,7 +54,7 @@ DWITHIN(geom, POINT(-100 49), 0.1)
 ```
 Of course, these can be combined with attribute conditions as well.
 
-## Example of a filter using INTERSECTS
+## Example of a spatial filter using INTERSECTS
 
 For these examples we'll use the U.S. [Geographic Names Information System](https://en.wikipedia.org/wiki/Geographic_Names_Information_System) (GNIS) dataset.
 It contains more than 2 million named points for geographical features.
@@ -69,7 +69,8 @@ We used [QGIS](https://www.qgis.org) to create a polygon enclosing the islands.
 
 ![](pgfs-cql-spatial-sanjuan-polygon.png)
 
-We can convert the polygon to WKT and use it in an `INTERSECTS` spatial predicate.
+We can convert the polygon to WKT and use it in an `INTERSECTS` spatial predicate
+(since we are querying points, we could use `WITHIN` instead - it will produce the same result).
 To retrieve only water features (Lakes and Reservoirs) we add the condition `type IN ('LK','RSV')`.
 The query URL is:
 ```
@@ -79,7 +80,7 @@ The result of the query is a dataset containing 33 GNIS points:
 
 ![](pgfs-cql-spatial-sanjuan-lkrsv.png)
 
-## Example of a filter using DWITHIN
+## Example of a spatial filter using DWITHIN
 
 - create geography table, load GNIS (CREATE TABLE, INSERT, CREATE INDEX)
 - discuss why geography better for DWITHIN
