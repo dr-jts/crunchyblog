@@ -58,8 +58,10 @@ Of course, these can be combined with attribute conditions as well.
 
 For these examples we'll use the U.S. [Geographic Names Information System](https://en.wikipedia.org/wiki/Geographic_Names_Information_System) (GNIS) dataset.
 It contains more than 2 million points for named geographical features.
-We've loaded this data into a spatial table called `us.geonames` with a geometry column called `geom`.
-We can now query this with pg_featureserv, and view query results on the include UI.
+We've loaded this data into a spatial table called `us.geonames` with a column called `geom` of type
+[`geography`](https://postgis.net/docs/using_postgis_dbmanagement.html#PostGIS_Geography).
+(we'll explain why it is better to use `geography` rather than `geometry` below).
+We can now query this with `pg_featureserv`, and view query results on the include UI.
 
 For this example we'll query water features on the [San Juan Islands](https://en.wikipedia.org/wiki/San_Juan_Islands)
 in the state of Washington, USA.
@@ -70,7 +72,7 @@ We used [QGIS](https://www.qgis.org) to create a polygon enclosing the islands.
 ![](pgfs-cql-spatial-sanjuan-polygon.png)
 
 We can convert the polygon to WKT and use it in an `INTERSECTS` spatial predicate
-(since we are querying points, we could use `WITHIN` instead - it will produce the same result).
+(since we are querying points, `WITHIN` could be used as well - it produces the same result).
 To retrieve only water features (Lakes and Reservoirs) we add the condition `type IN ('LK','RSV')`.
 The query URL is:
 ```
