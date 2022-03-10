@@ -98,7 +98,8 @@ The query URL is:
 ```
 http://localhost:9000/collections/us.geonames_geo/items.html?filter=type = 'MT' AND DWITHIN(geom,Point(-122.34 47.6),100000)&limit=1000
 ```
-This gives a result showing 695 mountains near Seattle - it's a hilly place!
+This gives a result showing 695 mountains near Seattle. It's a hilly place!
+
 ![](pgfs-cql-spatial-dwithin-mt.png)
 
 filter-crs example?
