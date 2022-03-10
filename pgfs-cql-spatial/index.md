@@ -9,6 +9,9 @@ Naturally, CQL provides the ability to filter geospatial data via spatial filter
 Of course, we implemented this to ensure that `pg_featureserv` is able to take full advantage of 
 the spatial capabilities of PostGIS.
 
+The companion project [`pg_tileserv`](https://github.com/CrunchyData/pg_tileserv) also supports CQL, 
+and spatial filtering works there as well.
+
 ## CQL Spatial Filters
 
 Spatial filtering in CQL involves using **spatial predicates** to test a condition on the geometry property of features.
@@ -92,6 +95,7 @@ filter-crs example?
 
 ## Try it out!
 
-
-CQL is also supported by `pg_tileserv`, and spatial filtering works there as well.
+CQL filtering will be included in the forthcoming `pg_featureserv` Version 1.3.
+But you can try it out now by simply downloading the latest build. 
+Let us know what use cases you find for CQL spatial filtering!
 
