@@ -59,13 +59,13 @@ Of course, these can be combined with attribute conditions as well.
 For these examples we'll use the U.S. [Geographic Names Information System](https://en.wikipedia.org/wiki/Geographic_Names_Information_System) (GNIS) dataset.
 It contains more than 2 million points for named geographical features.
 We've loaded this data into a spatial table called `us.geonames` with a column called `geom` of type
-[`geography`](https://postgis.net/docs/using_postgis_dbmanagement.html#PostGIS_Geography).
+[`geography`](https://blog.crunchydata.com/blog/postgis-and-the-geography-type).
 (we'll explain why it is better to use `geography` rather than `geometry` below).
 We can now query this with `pg_featureserv`, and view query results on the include UI.
 
 For this example we'll query water features on the [San Juan Islands](https://en.wikipedia.org/wiki/San_Juan_Islands)
 in the state of Washington, USA.
-Because there is no GNIS attribute providing region information, we have to use a spatial query
+Because there is no GNIS attribute providing region information, we have to use a **spatial filter**
 to specify the area we want to query.
 We used [QGIS](https://www.qgis.org) to create a polygon enclosing the islands.
 
@@ -84,14 +84,19 @@ The result of the query is a dataset containing 33 GNIS points:
 
 ## Example of a spatial filter using DWITHIN
 
-- create geography table, load GNIS (CREATE TABLE, INSERT, CREATE INDEX)
-- discuss why geography better for DWITHIN
-- [geography type](https://blog.crunchydata.com/blog/postgis-and-the-geography-type)
-- 
-Mountains within 100 km of Seattle
+Now we'll show an example of using a distance-based spatial filter, using the `DWITHIN` predicate.
+This is the reason we loaded the GNIS data as `geography`.  
+`DWITHIN` tests whether a feature geometry is within a given distance of a geometry value.
+By using the `geography` type, we can specify the distance in metres, which are the units of measure of the geodetic 4326 coordinate system.
+If we had loaded the dataset using the `geometry` type, the units would have been degrees, which is awkward to use.
+Also, `geography` comnputes the distance correctly on the surface of the earth (using a great-circle distance).
+
+Let's query for mountains (`type = 'MT'`) within 100 kilometres of Seatle (lat/long of about 47.6,-122.34 - note that WKT requires this as long-lat).
+The query URL is:
 ```
 http://localhost:9000/collections/us.geonames_geo/items.html?filter=type = 'MT' AND DWITHIN(geom,Point(-122.34 47.6),100000)&limit=1000
 ```
+This gives a result showing 695 mountains near Seattle - it's a hilly place!
 ![](pgfs-cql-spatial-dwithin-mt.png)
 
 filter-crs example?
