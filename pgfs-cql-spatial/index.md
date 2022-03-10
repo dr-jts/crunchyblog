@@ -25,8 +25,8 @@ Spatial predicates include the familiar OGC Simple Features predicates for spati
 
 pg_featureserv also provides the distance-based predicate `DWITHIN`.
 
-The conditions are typically used to compare the feature geometry property against a geometry value, 
-which is expressed in Well-Known Text (WKT):
+The conditions are typically used to compare the feature geometry property against a geometry value. 
+Geometry values are expressed in Well-Known Text (WKT):
 
 ```
 POINT (1 2)
@@ -39,13 +39,16 @@ MULTIPOLYGON (((1 4, 4 1, 1 1, 1 4)), ((1 9, 4 9, 1 6, 1 9)))
 GEOMETRYCOLLECTION(POLYGON ((1 4, 4 1, 1 1, 1 4)), LINESTRING (3 3, 5 5), POINT (1 5))
 ENVELOPE (1, 2, 3, 4)
 ```
+By default, the CRS of geometry values is geodetic (lon/lat).  
+This can be changed by using the `filter-crs` parameter with the SRID of the CRS in use.
 
-For example, these are spatial conditions:
+Here are some examples of spatial filter conditions:
 ```
 INTERSECTS(geom, ENVELOPE(-100, 49, -90, 50) )
 CONTAINS(geom, POINT(-100 49) )
 DWITHIN(geom, POINT(-100 49), 0.1)
 ```
+Of course, these can be combined with attribute conditions as well.
 
 ## Examples
 
@@ -61,9 +64,7 @@ http://localhost:9000/collections/us.geonames_geo/items.html?filter=type IN ('LK
 ```
 ![](pgfs-cql-spatial-dwithin-lkrsv.png)
 
-filter-crs example
-
-try out geography table and DWITHIN
+filter-crs example?
 
 
 ## Try it out!
