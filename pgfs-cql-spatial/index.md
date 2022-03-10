@@ -89,9 +89,9 @@ The result of the query is a dataset containing 33 GNIS points:
 Now we'll show an example of using a distance-based spatial filter, using the `DWITHIN` predicate.
 This is the reason we loaded the GNIS data as `geography`.  
 `DWITHIN` tests whether a feature geometry is within a given distance of a geometry value.
-By using the `geography` type, we can specify the distance in metres, which are the units of measure of the geodetic 4326 coordinate system.
+By using the `geography` type, we can specify the distance in metres, which are the units of measure of the geodetic EPSG:4326 coordinate system.
 If we had loaded the dataset using the `geometry` type, the units would have been degrees, which is awkward to use.
-Also, `geography` comnputes the distance correctly on the surface of the earth (using a great-circle distance).
+Also, `geography` computes the distance correctly on the surface of the earth (using a great-circle distance).
 
 Let's query for mountains (`type = 'MT'`) within 100 kilometres of Seatle (lat/long of about 47.6,-122.34 - note that WKT requires this as long-lat).
 The query URL is:
