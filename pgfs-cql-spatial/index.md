@@ -5,13 +5,13 @@ we announced support for **CQL filters** in [`pg_featureserv`](https://github.co
 This capability provides better access to the power of PostgreSQL.
 CQL (Common Query Language) is part of the Open Geospatial Consortium's (OGC)
 [OGC API](https://ogcapi.ogc.org/#standards) suite of standards.
-Naturally, CQL provides the ability to filter geospatial data via spatial filters as well.
+Naturally, CQL provides the ability to filter geospatial data via spatial filters.
 Of course, we implemented this to ensure that `pg_featureserv` is able to take full advantage of 
 the spatial capabilities of PostGIS.
 
 ## CQL Spatial Filters
 
-Spatial filtering in CQL involves using spatial predicates to test a condition on the geometry property of features.
+Spatial filtering in CQL involves using **spatial predicates** to test a condition on the geometry property of features.
 Spatial predicates include the familiar OGC Simple Features predicates for spatial relationships:
 
 * `INTERSECTS` - tests whether two geometries intersect
@@ -23,7 +23,7 @@ Spatial predicates include the familiar OGC Simple Features predicates for spati
 * `OVERLAPS` - tests whether the geometries overlap
 * `TOUCHES` - tests whether the geometries touch
 
-pg_featureserv also provides the distance-based predicate `DWITHIN`.
+`pg_featureserv` also implements the **distance predicate** `DWITHIN`.
 
 The conditions are typically used to compare the feature geometry property against a geometry value. 
 Geometry values are expressed in [Well-Known Text](https://en.wikipedia.org/wiki/Well-known_text_representation_of_geometry) (WKT):
@@ -39,8 +39,9 @@ MULTIPOLYGON (((1 4, 4 1, 1 1, 1 4)), ((1 9, 4 9, 1 6, 1 9)))
 GEOMETRYCOLLECTION(POLYGON ((1 4, 4 1, 1 1, 1 4)), LINESTRING (3 3, 5 5), POINT (1 5))
 ENVELOPE (1, 2, 3, 4)
 ```
-By default, the CRS of geometry values is geodetic (lon/lat).  
-This can be changed by using the `filter-crs` parameter with the SRID of the CRS in use.
+By default, the coordinate reference system (CRS) of geometry values is geodetic (lon/lat).  
+This can be changed by using the `filter-crs` parameter with the SRID of the CRS being used.
+(PostGIS supports a large number of standard SRIDs.)
 
 Here are some examples of spatial filter conditions:
 ```
@@ -54,7 +55,7 @@ Of course, these can be combined with attribute conditions as well.
 
 For these examples we'll use the U.S. [Geographic Names Information System](https://en.wikipedia.org/wiki/Geographic_Names_Information_System) (GNIS) dataset.
 It contains more than 2 million named points for geographical features.
-We've loaded this data into a spatial table called `public.geonames`.
+We've loaded this data into a spatial table called `public.geonames` with a geometry column called `geom`.
 We can now query this with pg_featureserv, and view query results on the include UI.
 
 For this example we'll query water features on the [San Juan islands](https://en.wikipedia.org/wiki/San_Juan_Islands)
