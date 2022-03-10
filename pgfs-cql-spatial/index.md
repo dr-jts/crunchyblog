@@ -57,8 +57,8 @@ Of course, these can be combined with attribute conditions as well.
 ## Example of a spatial filter using INTERSECTS
 
 For these examples we'll use the U.S. [Geographic Names Information System](https://en.wikipedia.org/wiki/Geographic_Names_Information_System) (GNIS) dataset.
-It contains more than 2 million named points for geographical features.
-We've loaded this data into a spatial table called `public.geonames` with a geometry column called `geom`.
+It contains more than 2 million points for named geographical features.
+We've loaded this data into a spatial table called `us.geonames` with a geometry column called `geom`.
 We can now query this with pg_featureserv, and view query results on the include UI.
 
 For this example we'll query water features on the [San Juan Islands](https://en.wikipedia.org/wiki/San_Juan_Islands)
