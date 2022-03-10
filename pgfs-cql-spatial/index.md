@@ -1,7 +1,7 @@
 # Spatial filters with CQL in pg_featureserv
 
 In a [previous post](https://blog.crunchydata.com/blog/cql-filtering-in-pg_featureserv) 
-we announced support for **CQL filtering** in [`pg_featureserv`](https://github.com/CrunchyData/pg_featureserv).
+we announced support for **CQL filters** in [`pg_featureserv`](https://github.com/CrunchyData/pg_featureserv).
 This capability provides better access to the power of PostgreSQL.
 CQL (Common Query Language) is part of the Open Geospatial Consortium's (OGC)
 [OGC API](https://ogcapi.ogc.org/#standards) suite of standards.
