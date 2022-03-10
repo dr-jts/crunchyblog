@@ -98,6 +98,6 @@ filter-crs example?
 ## Try it out!
 
 CQL filtering will be included in the forthcoming `pg_featureserv` Version 1.3.
-But you can try it out now by simply downloading the latest build. 
+But you can try it out now by [downloading](https://github.com/CrunchyData/pg_featureserv#download) the latest build. 
 Let us know what use cases you find for CQL spatial filtering!
 
