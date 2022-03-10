@@ -44,9 +44,9 @@ MULTIPOLYGON (((1 4, 4 1, 1 1, 1 4)), ((1 9, 4 9, 1 6, 1 9)))
 GEOMETRYCOLLECTION(POLYGON ((1 4, 4 1, 1 1, 1 4)), LINESTRING (3 3, 5 5), POINT (1 5))
 ENVELOPE (1, 2, 3, 4)
 ```
-By default, the coordinate reference system (CRS) of geometry values is geodetic (lon/lat).  
-This can be changed by using the `filter-crs` parameter with the SRID of the CRS being used.
-(PostGIS supports a large number of standard SRIDs.)
+By default, the coordinate reference system (CRS) of geometry values is [**geodetic**](https://en.wikipedia.org/wiki/Geodetic_datum) (longitude and latitude).  
+If needed a different CRS can be specified by using the `filter-crs` parameter.
+(PostGIS supports a large number of standard coordinate reference systems.)
 
 Here are some examples of spatial filter conditions:
 ```
@@ -54,7 +54,7 @@ INTERSECTS(geom, ENVELOPE(-100, 49, -90, 50) )
 CONTAINS(geom, POINT(-100 49) )
 DWITHIN(geom, POINT(-100 49), 0.1)
 ```
-Of course, these can be combined with attribute conditions as well.
+Of course, these can be combined with attribute conditions to express real-world queries.
 
 ## Example of a spatial filter using INTERSECTS
 
