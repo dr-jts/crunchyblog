@@ -1,4 +1,4 @@
-# Spatial filtering with CQL in pg_featureserv
+# Spatial filtering in pg_featureserv with CQL 
 
 In a [previous post](https://blog.crunchydata.com/blog/cql-filtering-in-pg_featureserv) 
 we announced support for **CQL filters** in [`pg_featureserv`](https://github.com/CrunchyData/pg_featureserv).
