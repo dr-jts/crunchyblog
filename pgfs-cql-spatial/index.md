@@ -50,7 +50,9 @@ DWITHIN(geom, POINT(-100 49), 0.1)
 ```
 Of course, these can be combined with attribute conditions as well.
 
-## Examples
+## Example of a filter using INTERSECTS
+
+- US GNIS data
 
 things intersected by a road?  or in a polygon?
 ```
@@ -58,11 +60,16 @@ http://localhost:9000/collections/public.geonames/items.html?filter=type IN ('LK
 ```
 ![](pgfs-cql-spatial-sanjuan-lkrsv.png)
 
-Lakes geonames within 100 km of Seattle
+## Example of a filter using DWITHIN
+
+- create geography table, load GNIS (CREATE TABLE, INSERT, CREATE INDEX)
+- discuss why geography better for DWITHIN
+- 
+Mountains within 100 km of Seattle
 ```
-http://localhost:9000/collections/us.geonames_geo/items.html?filter=type IN ('LK','RSV') AND DWITHIN(geom,Point(-122.34 47.6),100000)&limit=10000
+http://localhost:9000/collections/us.geonames_geo/items.html?filter=type = 'MT' AND DWITHIN(geom,Point(-122.34 47.6),100000)&limit=1000
 ```
-![](pgfs-cql-spatial-dwithin-lkrsv.png)
+![](pgfs-cql-spatial-dwithin-mt.png)
 
 filter-crs example?
 
