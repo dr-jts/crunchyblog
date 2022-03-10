@@ -30,7 +30,7 @@ Spatial predicates include the familiar OGC Simple Features predicates for spati
 
 `pg_featureserv` also implements the **distance predicate** `DWITHIN`.
 
-The conditions are typically used to compare the feature geometry property against a geometry value. 
+Spatial predicates are typically used to compare the feature geometry property against a geometry value. 
 Geometry values are expressed in [Well-Known Text](https://en.wikipedia.org/wiki/Well-known_text_representation_of_geometry) (WKT):
 
 ```
