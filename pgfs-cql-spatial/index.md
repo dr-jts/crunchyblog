@@ -60,6 +60,9 @@ We can now query this with pg_featureserv, and view query results on the include
 For this example we'll query water features on the San Juan islands.
 Because there is no attribute providing that location information, we have to use a spatial query.
 We used QGIS to create a polygon enclosing the San Juan islands.
+
+![](pgfs-cql-spatial-sanjuan-polygon.png)
+
 We can convert the polygon to Well-Known Text (WKT) and use it in an INTERSECTS spatial predicate.
 To retrieve only water features (Lakes and Reservoirs) we add a condition `type IN ('LK','RSV')`.
 The query URL is:
