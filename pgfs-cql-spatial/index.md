@@ -95,7 +95,7 @@ http://localhost:9000/collections/us.geonames_geo/items.html?filter=type = 'MT' 
 filter-crs example?
 
 
-## Try it out!
+## Try it yourself!
 
 CQL filtering will be included in the forthcoming `pg_featureserv` Version 1.3.
 But you can try it out now by [downloading](https://github.com/CrunchyData/pg_featureserv#download) the latest build. 
