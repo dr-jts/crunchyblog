@@ -61,10 +61,11 @@ It contains more than 2 million named points for geographical features.
 We've loaded this data into a spatial table called `public.geonames` with a geometry column called `geom`.
 We can now query this with pg_featureserv, and view query results on the include UI.
 
-For this example we'll query water features on the [San Juan islands](https://en.wikipedia.org/wiki/San_Juan_Islands)
+For this example we'll query water features on the [San Juan Islands](https://en.wikipedia.org/wiki/San_Juan_Islands)
 in the state of Washington, USA.
-Because there is no GNIS attribute providing region information, we have to use a spatial query.
-We used [QGIS](https://www.qgis.org) to create a polygon enclosing the San Juan islands.
+Because there is no GNIS attribute providing region information, we have to use a spatial query
+to specify the area we want to query.
+We used [QGIS](https://www.qgis.org) to create a polygon enclosing the islands.
 
 ![](pgfs-cql-spatial-sanjuan-polygon.png)
 
