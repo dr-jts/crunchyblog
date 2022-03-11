@@ -89,7 +89,7 @@ CREATE INDEX us_geonames_gix ON us.geonames USING GIST ( geom );
 We can now publish the dataset with `pg_featureserv`, and view query results on the web UI.
 
 The service `collections` page shows the published tables and views 
-(here we have used the configuration `Database.TableIncludes` setting to limit to just the `us` schema):
+(here we have used the configuration `Database.TableIncludes` setting to publish just the `us` schema):
 ```
 http://localhost:9000/collections.html
 ```
