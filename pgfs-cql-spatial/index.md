@@ -149,7 +149,7 @@ CQL filtering will be included in the forthcoming `pg_featureserv` Version 1.3.
 But you can try it out now by [downloading](https://github.com/CrunchyData/pg_featureserv#download) the latest build. 
 Let us know what use cases you find for CQL spatial filtering!
 
-## More to come!
+## More to come...
 
 `pg_featureserv` with CQL attribute and spatial filtering provides a highly effective platform 
 for accessing data over the web.
