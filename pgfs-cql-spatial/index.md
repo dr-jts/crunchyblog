@@ -60,7 +60,7 @@ DWITHIN(geom, POINT(-100 49), 0.1)
 ```
 Of course, these can be combined with attribute conditions to express real-world queries.
 
-## Example of a spatial filter using INTERSECTS
+## Working with U.S. Geonames
 
 For these examples we'll use the U.S. [Geographic Names Information System](https://en.wikipedia.org/wiki/Geographic_Names_Information_System) (GNIS) dataset.
 It contains more than 2 million points for named geographical features.
@@ -76,6 +76,8 @@ We can now query this dataset with `pg_featureserv`, and view query results on t
 
 ![](pgfs_cql-spatial-usgeonames.png)
 *The `collection\us.geonames` page shows the collection metadata*
+
+## Querying with the `INTERSECTS` spatial filter
 
 For this example we'll query water features on the [San Juan Islands](https://en.wikipedia.org/wiki/San_Juan_Islands)
 in the state of Washington, USA.
@@ -96,7 +98,7 @@ The result of the query is a dataset containing 33 GNIS points:
 
 ![](pgfs-cql-spatial-sanjuan-lkrsv.png)
 
-## Example of a spatial filter using DWITHIN
+## Querying with the `DWITHIN` distanceß filter
 
 Now we'll show an example of using a distance-based spatial filter, using the `DWITHIN` predicate.
 This is the reason we loaded the GNIS data as `geography`.  
