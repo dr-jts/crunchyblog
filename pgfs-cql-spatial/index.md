@@ -12,7 +12,7 @@ to the powerful spatial database capabilities of [PostGIS](https://postgis.net/)
 OAPIF and CQL are a perfect fit for this.
 In particular, CQL provides all the expressiveness of SQL `WHERE` clauses, 
 with the addition of spatial filtering capabilities.
-This allows us to take advantage of PostGIS's ability to query spatial data veery efficiently.
+This allows us to take advantage of PostGIS's ability to query spatial data very efficiently.
 In this post we'll show some examples of spatial filtering using CQL.
 
 The companion vector tile service [`pg_tileserv`](https://github.com/CrunchyData/pg_tileserv) also supports CQL, 
