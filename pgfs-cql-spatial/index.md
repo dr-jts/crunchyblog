@@ -69,21 +69,20 @@ The point values are stored in a column called `geom` of type
 [`geography`](https://blog.crunchydata.com/blog/postgis-and-the-geography-type).
 (PostGIS allows storing spatial data as either `geometry` or `geography`.  We'll explain later why for this case it is better to use `geography`).
 
-We can now query this dataset with `pg_featureserv`, and view query results on the web UI.
+We can now publish the dataset with `pg_featureserv`, and view query results on the web UI.
 
-The service `collections` page showing the `us.geonames` dataset:
+The service `collections` page shows the published tables and views 
+(here we have used the configuration `Database.TableIncludes` setting to limit to just the `us` schema):
 ```
 http://localhost:9000/collections.html
 ```
 ![](pgfs-cql-spatial-collections.png)
-
 
 The `collections\us.geonames` page shows the collection metadata:
 ```
 http://localhost:9000/collections/us.geonames.html
 ```
 ![](pgfs_cql-spatial-usgeonames.png)
-
 
 ## Querying with `INTERSECTS`
 
