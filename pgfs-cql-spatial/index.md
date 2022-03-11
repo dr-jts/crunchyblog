@@ -8,11 +8,11 @@ is part of the *Open Geospatial Consortium* (OGC)
 `pg_featureserv` implements the [OGC API for Features](https://ogcapi.ogc.org/features/) (OAPIF) RESTful protocol.
 
 The goal of `pg-featureserv` is to provide a lightweight web service giving access
-to the powerful spatial database capabilities of PostGIS and PostgreSQL.
+to the powerful spatial database capabilities of [PostGIS](https://postgis.net/) and [PostgreSQL](https://www.postgresql.org/).
 OAPIF and CQL are a perfect fit for this.
 In particular, CQL provides all the expressiveness of SQL `WHERE` clauses, 
 with the addition of spatial filtering capabilities.
-This allows us to easily take advantage of PostGIS's ability to efficiently query spatial data.
+This allows us to take advantage of PostGIS's ability to query spatial data veery efficiently.
 In this post we'll show some examples of spatial filtering using CQL.
 
 The companion vector tile service [`pg_tileserv`](https://github.com/CrunchyData/pg_tileserv) also supports CQL, 
