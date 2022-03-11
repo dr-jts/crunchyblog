@@ -1,6 +1,6 @@
 # Spatial Filters in pg_featureserv with CQL 
 
-The goal of [`pg_featureserv`](https://github.com/CrunchyData/pg_featureserv) is to provide access
+[`pg_featureserv`](https://github.com/CrunchyData/pg_featureserv) provides access
 to the powerful spatial database capabilities of [PostGIS](https://postgis.net/) and [PostgreSQL](https://www.postgresql.org/)
 via a lightweight **web service**.
 To do this it implements the [OGC API for Features](https://ogcapi.ogc.org/features/) (OAPIF) RESTful protocol.
