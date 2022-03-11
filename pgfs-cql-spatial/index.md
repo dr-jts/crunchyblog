@@ -11,7 +11,7 @@ is part of the *Open Geospatial Consortium* (OGC)
 
 CQL provides all the expressiveness of SQL `WHERE` clauses, 
 with the addition of **spatial filtering** capability.
-This allows us to take advantage of PostGIS's ability to query spatial data very efficiently.
+This allows taking advantage of PostGIS's ability to query spatial data very efficiently.
 In this post we'll show some examples of spatial filtering using CQL with `pg_featureserv`.
 
 The companion vector tile service [`pg_tileserv`](https://github.com/CrunchyData/pg_tileserv) also supports CQL, 
