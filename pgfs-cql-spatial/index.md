@@ -8,7 +8,7 @@ OAPIF is part of the *Open Geospatial Consortium* (OGC)
 [OGC API](https://ogcapi.ogc.org/#standards) suite of standards.
 
 In a [previous post](https://blog.crunchydata.com/blog/cql-filtering-in-pg_featureserv) 
-we announced an exciting new capability for `pg_featureserv`: support for **CQL filters**.
+we announced an exciting new capability for `pg_featureserv` - support for **CQL filters**.
 CQL ([Common Query Language](https://docs.ogc.org/DRAFTS/21-065.html)) is another OGC standard
 that provides the equivalent of SQL `WHERE` clauses. 
 Given the OGC focus on promoting ease-of-access to spatial information,
