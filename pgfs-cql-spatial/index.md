@@ -9,7 +9,6 @@ is part of the *Open Geospatial Consortium* (OGC)
 [OGC API](https://ogcapi.ogc.org/#standards) suite of standards.
 `pg_featureserv` implements the [OGC API for Features](https://ogcapi.ogc.org/features/) (OAPIF) RESTful protocol.
 
-OAPIF and CQL are a perfect fit for this.
 CQL provides all the expressiveness of SQL `WHERE` clauses, 
 with the addition of **spatial filtering** capability.
 This allows us to take advantage of PostGIS's ability to query spatial data very efficiently.
