@@ -60,7 +60,7 @@ DWITHIN(geom, POINT(-100 49), 0.1)
 ```
 Of course, these can be combined with attribute conditions to express real-world queries.
 
-## U.S. Geonames
+## Publishing Geographic Names
 
 For these examples we'll use the U.S. [Geographic Names Information System](https://en.wikipedia.org/wiki/Geographic_Names_Information_System) (GNIS) dataset.
 It contains more than 2 million points for named geographical features.
