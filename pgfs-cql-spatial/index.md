@@ -64,8 +64,11 @@ Of course, these can be combined with attribute conditions to express real-world
 
 For these examples we'll use the U.S. [Geographic Names Information System](https://en.wikipedia.org/wiki/Geographic_Names_Information_System) (GNIS) dataset.
 It contains more than 2 million points for named geographical features.
-We load this data into a spatial table called `us.geonames`, 
-creating a spatial index to allow fast spatial querying:
+We load this data into a spatial table called `us.geonames`.
+The point location values are stored in a column called `geom` of type
+[`geography`](https://blog.crunchydata.com/blog/postgis-and-the-geography-type).
+(PostGIS allows storing spatial data as either `geometry` or `geography`.  We'll explain later why for this case it is better to use `geography`).
+We create a spatial index on this column to provide fast spatial querying.
 
 ```sql
 CREATE TABLE us.geonames (
@@ -81,9 +84,7 @@ CREATE TABLE us.geonames (
 
 CREATE INDEX us_geonames_gix ON us.geonames USING GIST ( geom );
 ```
-The point location values are stored in a column called `geom` of type
-[`geography`](https://blog.crunchydata.com/blog/postgis-and-the-geography-type).
-(PostGIS allows storing spatial data as either `geometry` or `geography`.  We'll explain later why for this case it is better to use `geography`).
+
 
 We can now publish the dataset with `pg_featureserv`, and view query results on the web UI.
 
