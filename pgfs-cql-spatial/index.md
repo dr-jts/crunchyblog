@@ -64,7 +64,20 @@ Of course, these can be combined with attribute conditions to express real-world
 
 For these examples we'll use the U.S. [Geographic Names Information System](https://en.wikipedia.org/wiki/Geographic_Names_Information_System) (GNIS) dataset.
 It contains more than 2 million points for named geographical features.
-We've loaded this data into a spatial table called `us.geonames`.
+We've loaded this data into a spatial table called `us.geonames`:
+
+```sql
+CREATE TABLE us.geonames (
+    id integer NOT NULL,
+    name text,
+    lat double precision,
+    lon double precision,
+    type text,
+    state text,
+    geom geography(Point),
+    ts tsvector
+);
+```
 The point values are stored in a column called `geom` of type
 [`geography`](https://blog.crunchydata.com/blog/postgis-and-the-geography-type).
 (PostGIS allows storing spatial data as either `geometry` or `geography`.  We'll explain later why for this case it is better to use `geography`).
