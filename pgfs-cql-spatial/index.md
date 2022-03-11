@@ -10,9 +10,10 @@ OAPIF is part of the *Open Geospatial Consortium* (OGC)
 In a [previous post](https://blog.crunchydata.com/blog/cql-filtering-in-pg_featureserv) 
 we announced an exciting new capability for `pg_featureserv` - support for **CQL filters**.
 CQL ([Common Query Language](https://docs.ogc.org/DRAFTS/21-065.html)) is another OGC standard
-that provides the equivalent of SQL `WHERE` clauses. 
-Given the OGC focus on promoting ease-of-access to spatial information,
-as you would expect CQl also supports **spatial filtering**.
+that provides the equivalent of SQL `WHERE` clauses for web queries. 
+
+As you would expect given the OGC focus on promoting ease-of-access to spatial information,
+CQl also supports **spatial filtering**.
 This allows taking advantage of PostGIS's ability to query spatial data very efficiently.
 In this post we'll show some examples of spatial filtering using CQL with `pg_featureserv`.
 
