@@ -16,7 +16,7 @@ Naturally, CQL provides the ability to filter geospatial data via spatial filter
 Of course, we implemented this to ensure that `pg_featureserv` is able to take full advantage of 
 the spatial capabilities of PostGIS.
 
-The companion project [`pg_tileserv`](https://github.com/CrunchyData/pg_tileserv) also supports CQL, 
+The companion vector tile service [`pg_tileserv`](https://github.com/CrunchyData/pg_tileserv) also supports CQL, 
 and spatial filtering works there as well.
 
 ## CQL Spatial Filters
