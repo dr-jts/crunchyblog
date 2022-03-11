@@ -106,8 +106,6 @@ This gives a result showing 695 mountains near Seattle. It's a hilly place!
 
 ![](pgfs-cql-spatial-dwithin-mt.png)
 
-filter-crs example?
-
 
 ## Try it yourself!
 
