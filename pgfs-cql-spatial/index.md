@@ -21,7 +21,7 @@ and spatial filtering works there as well.
 ## CQL Spatial Filters
 
 Spatial filtering in CQL involves using **spatial predicates** to test a condition on the geometry property of features.
-Spatial predicates include the familiar OGC Simple Features predicates for spatial relationships:
+Spatial predicates include the standard [*OGC Simple Features*](https://www.ogc.org/standards/sfs) predicates for spatial relationships:
 
 * `INTERSECTS` - tests whether two geometries intersect
 * `DISJOINT` - tests whether two geometries have no points in common
