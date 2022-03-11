@@ -69,8 +69,14 @@ The point values are stored in a column called `geom` of type
 [`geography`](https://blog.crunchydata.com/blog/postgis-and-the-geography-type).
 (PostGIS allows storing spatial data as either `geometry` or `geography`.  We'll explain later why for this case it is better to use `geography`).
 
-We can now query this dataset with `pg_featureserv`, and view query results on the include UI.
+We can now query this dataset with `pg_featureserv`, and view query results on the web UI.
 
+![](pgfs-cql-spatial-collections.png)
+* The `collections` page showing the `us.geonames` dataset*
+
+![](pgfs_cql-spatial-usgeonames.png)
+* The `collection\us.geonames` page shows the collection metadata*
+* 
 For this example we'll query water features on the [San Juan Islands](https://en.wikipedia.org/wiki/San_Juan_Islands)
 in the state of Washington, USA.
 Because there is no GNIS attribute providing region information, we have to use a **spatial filter**
