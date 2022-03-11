@@ -64,10 +64,12 @@ Of course, these can be combined with attribute conditions to express real-world
 
 For these examples we'll use the U.S. [Geographic Names Information System](https://en.wikipedia.org/wiki/Geographic_Names_Information_System) (GNIS) dataset.
 It contains more than 2 million points for named geographical features.
-We've loaded this data into a spatial table called `us.geonames` with a column called `geom` of type
+We've loaded this data into a spatial table called `us.geonames`.
+The point values are stored in a column called `geom` of type
 [`geography`](https://blog.crunchydata.com/blog/postgis-and-the-geography-type).
-(we'll explain why it is better to use `geography` rather than `geometry` below).
-We can now query this with `pg_featureserv`, and view query results on the include UI.
+(PostGIS allows storing spatial data as either `geometry` or `geography`.  We'll explain later why for this case it is better to use `geography`).
+
+We can now query this dataset with `pg_featureserv`, and view query results on the include UI.
 
 For this example we'll query water features on the [San Juan Islands](https://en.wikipedia.org/wiki/San_Juan_Islands)
 in the state of Washington, USA.
