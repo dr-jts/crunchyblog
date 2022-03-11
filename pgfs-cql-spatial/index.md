@@ -1,19 +1,19 @@
 # Spatial Filters in pg_featureserv with CQL 
 
+The goal of [`pg_featureserv`](https://github.com/CrunchyData/pg_featureserv) is to provide a lightweight web service giving access
+to the powerful spatial database capabilities of [PostGIS](https://postgis.net/) and [PostgreSQL](https://www.postgresql.org/).
 In a [previous post](https://blog.crunchydata.com/blog/cql-filtering-in-pg_featureserv) 
-we announced support for **CQL filters** in [`pg_featureserv`](https://github.com/CrunchyData/pg_featureserv).
+we announced an exciting new capability for `pg_featureserv`: support for **CQL filters**.
 CQL ([Common Query Language](https://docs.ogc.org/DRAFTS/21-065.html)) 
 is part of the *Open Geospatial Consortium* (OGC)
 [OGC API](https://ogcapi.ogc.org/#standards) suite of standards.
 `pg_featureserv` implements the [OGC API for Features](https://ogcapi.ogc.org/features/) (OAPIF) RESTful protocol.
 
-The goal of `pg-featureserv` is to provide a lightweight web service giving access
-to the powerful spatial database capabilities of [PostGIS](https://postgis.net/) and [PostgreSQL](https://www.postgresql.org/).
 OAPIF and CQL are a perfect fit for this.
-In particular, CQL provides all the expressiveness of SQL `WHERE` clauses, 
-with the addition of spatial filtering capabilities.
+CQL provides all the expressiveness of SQL `WHERE` clauses, 
+with the addition of **spatial filtering** capability.
 This allows us to take advantage of PostGIS's ability to query spatial data very efficiently.
-In this post we'll show some examples of spatial filtering using CQL.
+In this post we'll show some examples of spatial filtering using CQL with `pg_featureserv`.
 
 The companion vector tile service [`pg_tileserv`](https://github.com/CrunchyData/pg_tileserv) also supports CQL, 
 and spatial filtering works there as well.
