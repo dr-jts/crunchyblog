@@ -3,13 +3,14 @@
 In a [previous post](https://blog.crunchydata.com/blog/cql-filtering-in-pg_featureserv) 
 we announced support for **CQL filters** in [`pg_featureserv`](https://github.com/CrunchyData/pg_featureserv).
 CQL ([Common Query Language](https://docs.ogc.org/DRAFTS/21-065.html)) 
-is part of the *Open Geospatial Consortium's* (OGC)
+is part of the *Open Geospatial Consortium* (OGC)
 [OGC API](https://ogcapi.ogc.org/#standards) suite of standards.
+`pg_featureserv` implements the [OGC API for Features](https://ogcapi.ogc.org/features/) (OAPIF) RESTful protocol.
 
-PostgreSQL and PostGIS are a perfect match for OAPIF and CQL, because they make it very easy to perform feature queries,
+The goal of `pg-featureserv` is to provide a lightweight microservice allowing as much access as possible
+to the powerful spatial database capabilities of PostGIS and PostgreSQL.
+OAPIF and CQL are an excellent way to provide this, because they make it very easy to perform feature queries,
 and can execute them very efficiently due to the power of database indexing and query evaluation.
-
-This capability provides better access to the power of PostgreSQL.
 
 Naturally, CQL provides the ability to filter geospatial data via spatial filters.
 Of course, we implemented this to ensure that `pg_featureserv` is able to take full advantage of 
