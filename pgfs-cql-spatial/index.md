@@ -14,7 +14,7 @@ that provides the equivalent of SQL `WHERE` clauses for web queries.
 
 As you would expect given the OGC focus on promoting ease-of-access to spatial information,
 CQl also supports **spatial filtering**.
-This allows taking advantage of PostGIS's ability to query spatial data very efficiently.
+This lets us take advantage of PostGIS's ability to query spatial data very efficiently.
 In this post we'll show some examples of spatial filtering using CQL with `pg_featureserv`.
 
 The companion vector tile service [`pg_tileserv`](https://github.com/CrunchyData/pg_tileserv) also supports CQL, 
