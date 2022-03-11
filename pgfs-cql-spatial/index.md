@@ -9,7 +9,7 @@ is part of the *Open Geospatial Consortium* (OGC)
 [OGC API](https://ogcapi.ogc.org/#standards) suite of standards.
 `pg_featureserv` implements the [OGC API for Features](https://ogcapi.ogc.org/features/) (OAPIF) RESTful protocol.
 
-CQL provides all the expressiveness of SQL `WHERE` clauses, 
+CQL provides the equivalent of SQL `WHERE` clauses, 
 with the addition of **spatial filtering** capability.
 This allows taking advantage of PostGIS's ability to query spatial data very efficiently.
 In this post we'll show some examples of spatial filtering using CQL with `pg_featureserv`.
@@ -63,7 +63,7 @@ Of course, these can be combined with attribute conditions to express real-world
 
 For these examples we'll use the U.S. [Geographic Names Information System](https://en.wikipedia.org/wiki/Geographic_Names_Information_System) (GNIS) dataset.
 It contains more than 2 million points for named geographical features.
-We load this data into a spatial table called `us.geonames`.
+We load this data into a PostGIS spatial table called `us.geonames`.
 The point location values are stored in a column called `geom` of type
 [`geography`](https://blog.crunchydata.com/blog/postgis-and-the-geography-type).
 (PostGIS allows storing spatial data as either `geometry` or `geography`.  We'll explain later why for this case it is better to use `geography`).
