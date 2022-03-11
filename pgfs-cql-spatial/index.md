@@ -1,16 +1,18 @@
 # Spatial Filters in pg_featureserv with CQL 
 
-The goal of [`pg_featureserv`](https://github.com/CrunchyData/pg_featureserv) is to provide a lightweight web service giving access
-to the powerful spatial database capabilities of [PostGIS](https://postgis.net/) and [PostgreSQL](https://www.postgresql.org/).
+The goal of [`pg_featureserv`](https://github.com/CrunchyData/pg_featureserv) is to provide access
+to the powerful spatial database capabilities of [PostGIS](https://postgis.net/) and [PostgreSQL](https://www.postgresql.org/)
+via a lightweight **web service**.
+To do this it implements the [OGC API for Features](https://ogcapi.ogc.org/features/) (OAPIF) RESTful protocol.
+OAPIF is part of the *Open Geospatial Consortium* (OGC)
+[OGC API](https://ogcapi.ogc.org/#standards) suite of standards.
+
 In a [previous post](https://blog.crunchydata.com/blog/cql-filtering-in-pg_featureserv) 
 we announced an exciting new capability for `pg_featureserv`: support for **CQL filters**.
-CQL ([Common Query Language](https://docs.ogc.org/DRAFTS/21-065.html)) 
-is part of the *Open Geospatial Consortium* (OGC)
-[OGC API](https://ogcapi.ogc.org/#standards) suite of standards.
-`pg_featureserv` implements the [OGC API for Features](https://ogcapi.ogc.org/features/) (OAPIF) RESTful protocol.
-
-CQL provides the equivalent of SQL `WHERE` clauses, 
-with the addition of **spatial filtering** capability.
+CQL ([Common Query Language](https://docs.ogc.org/DRAFTS/21-065.html)) is another OGC standard
+that provides the equivalent of SQL `WHERE` clauses. 
+Given the OGC focus on fostering the availability of spatial information,
+as you would expect CQl also supports **spatial filtering**.
 This allows taking advantage of PostGIS's ability to query spatial data very efficiently.
 In this post we'll show some examples of spatial filtering using CQL with `pg_featureserv`.
 
