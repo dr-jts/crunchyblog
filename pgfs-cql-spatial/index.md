@@ -153,6 +153,6 @@ Let us know what use cases you find for CQL spatial filtering!
 
 `pg_featureserv` with CQL attribute and spatial filtering provides a highly effective platform 
 for accessing data over the web.
-And we're going to continue enhancing it with new capabilites to unlock even more of the power of PostGIS and PostgreSQL.
+And we're continuing to enhance it with new capabilites to unlock even more of the power of PostGIS and PostgreSQL.
 Stay tuned for posts on advanced query functionality 
 including **temporal filtering**, **geometry transformations**, and **aggregation**. 
