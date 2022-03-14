@@ -1,14 +1,53 @@
 # Temporal filtering in pg_featureserv with CQL
 
+In previous posts we explored the new CQL filtering capability in `pg_featureserv`.
+It exposes the powerful query functionality available in for scalar attributes in PostgreSQL, and for spatial data in PostGIS.
+
+The other datatype which is often used in queries is temporal - dates and timestamps.
+PostgreSQL has extensive capabilities for including time-based attributes in queries.
+CQL provides a small but functional subset of these.
+
+## CQL Temporal filters
+
+Temporal filtering in CQL is enabled via temporal literal values, and temporal conditions.
+
+Temporal literal values may be dates or full timestamps:
+```
+date
+timestamp
+```
+
+Temporal conditions allow time-valued properties and literals to be compared via the boolean ordering operators
+`<`,`>`,`<=`,`>=`,`=`,`<>`, as well as the `BETWEEN operator:
+```
+TBD
+```
+
+Publishing Tropical Storm tracks
+
+We'll demonstrate temporal filters using a dataset with a strong time linkage: tracks of tropical storms (or hurricanes).
+This dataset is available from...
+
+- Preparation
+- 
 
 ## Querying by Time
 
 ```
-http://localhost:9000/collections/public.trop_storm/items.html?filter=time_start%20between%202005-01-01%20and%20NOW()&limit=100
+http://localhost:9000/collections/public.trop_storm/items.html?filter=time_start between 2005-01-01 and NOW()&limit=100
 ```
+
+- image
 
 ## Querying by Time and Area
 
+Temporal conditions can be combined with other kinds of filters. For instance, we can execute a spatio-temporal query
+by using a temporal condition along with a spatial condition.
+In this example, we'll query the tropical storms which occurred in the 1990s, and whose track took them over the Florida mainland.
+
+
 ```
-http://localhost:9000/collections/public.trop_storm/items.html?filter=time_start%20between%202005-01-01%20and%20NOW() AND intersects(geom, POLYGON ((-81.4067 30.8422, -79.6862 25.3781, -81.1609 24.7731, -83.9591 30.0292, -85.2258 29.6511, -87.5892 29.9914, -87.5514 31.0123, -81.4067 30.8422)) )&limit=100
+http://localhost:9000/collections/public.trop_storm/items.html?filter=time_start between 2005-01-01 and NOW() AND intersects(geom, POLYGON ((-81.4067 30.8422, -79.6862 25.3781, -81.1609 24.7731, -83.9591 30.0292, -85.2258 29.6511, -87.5892 29.9914, -87.5514 31.0123, -81.4067 30.8422)) )&limit=100
 ```
+
+- image
