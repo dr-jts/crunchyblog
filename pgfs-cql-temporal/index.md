@@ -1,23 +1,24 @@
 # Temporal filtering in pg_featureserv with CQL
 
-In previous posts we explored the new CQL filtering capability in `pg_featureserv`.
-It exposes the powerful query functionality available in for scalar attributes in PostgreSQL, and for spatial data in PostGIS.
+In previous posts we presented the new **CQL filtering** capability in `pg_featureserv`.
+It provides powerful functionality for attribute and spatial querying against data in PostgreSQL and PostGIS.
 
-The other datatype which is often used in queries is temporal - dates and timestamps.
+The other datatype which is often used in queries is **temporal** - dates and timestamps.
 PostgreSQL has extensive capabilities for including time-based attributes in queries.
 CQL provides a small but functional subset of these.
+This final post in the series will show some examples of temporal filtering in pg_featueserv using CQL.
 
 ## CQL Temporal filters
 
-Temporal filtering in CQL is enabled via temporal literal values, and temporal conditions.
+Temporal filtering in CQL is enabled via temporal literals and conditions.
 
-Temporal literal values may be dates or full timestamps:
+**Temporal literal** values may be dates or full timestamps:
 ```
 date
 timestamp
 ```
 
-Temporal conditions allow time-valued properties and literals to be compared via the boolean ordering operators
+**Temporal conditions** allow time-valued properties and literals to be compared via the boolean ordering operators
 `<`,`>`,`<=`,`>=`,`=`,`<>`, as well as the `BETWEEN operator:
 ```
 TBD
