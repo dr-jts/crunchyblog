@@ -5,7 +5,7 @@ It provides powerful functionality for attribute and [spatial}(https://blog.crun
 
 Another important datatype which is often present in datasets is **temporal** - dates and timestamps.
 PostgreSQL has extensive capabilities for specifying queries against time-based attributes.
-CQL provides a small but functional subset of these.
+CQL provides a small but useful subset of these.
 This final post in the series will show some examples of temporal filtering in pg_featueserv using CQL.
 
 ## CQL Temporal filters
