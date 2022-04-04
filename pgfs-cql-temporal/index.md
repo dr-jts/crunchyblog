@@ -12,19 +12,20 @@ This final post in the series will show some examples of temporal filtering in p
 
 Temporal filtering in CQL is enabled via temporal literals and conditions.
 
-**Temporal literal** values may be dates or full timestamps:
+**Temporal literal** values may be dates or timestamps:
 ```
-date
-timestamp
+2001-01-01
+2010-04-23T01:23:45
 ```
 
 **Temporal conditions** allow time-valued properties and literals to be compared via the boolean ordering operators
-`<`,`>`,`<=`,`>=`,`=`,`<>`, as well as the `BETWEEN operator:
+`<`,`>`,`<=`,`>=`,`=`,`<>`, and the `BETWEEN` operator:
 ```
-TBD
+start_date >= 2001-01-01
+event_time BETWEEN 2010-04-22T06:00 AND 2010-04-23T12:00
 ```
 
-Publishing Tropical Storm tracks
+## Publishing Tropical Storm tracks
 
 We'll demonstrate temporal filters using a dataset with a strong time linkage: tracks of tropical storms (or hurricanes).
 This dataset is available from [here](https://hifld-geoplatform.opendata.arcgis.com/datasets/geoplatform::historical-tropical-storm-tracks)...
@@ -44,8 +45,9 @@ http://localhost:9000/collections/public.trop_storm/items.html?filter=time_start
 
 Temporal conditions can be combined with other kinds of filters. For instance, we can execute a spatio-temporal query
 by using a temporal condition along with a spatial condition.
-In this example, we'll query the tropical storms which occurred in the 1990s, and whose track took them over the Florida mainland.
-
+In this example, we query the storms which occurred in Florida in the 1990s.
+The temporal condition is expressed as , and whose track took them over the Florida mainland.
+The query 
 
 ```
 http://localhost:9000/collections/public.trop_storm/items.html?filter=time_start between 2005-01-01 and NOW() AND intersects(geom, POLYGON ((-81.4067 30.8422, -79.6862 25.3781, -81.1609 24.7731, -83.9591 30.0292, -85.2258 29.6511, -87.5892 29.9914, -87.5514 31.0123, -81.4067 30.8422)) )&limit=100
