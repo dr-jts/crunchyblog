@@ -1,7 +1,7 @@
 # Temporal filtering in pg_featureserv with CQL
 
-In a [previous post](https://blog.crunchydata.com/blog/cql-filtering-in-pg_featureserv) we presented the new **CQL filtering** capability in `pg_featureserv`.
-It provides powerful functionality for attribute and [spatial}(https://blog.crunchydata.com/blog/spatial-filters-in-pg_featureserv-with-cql) querying of data in PostgreSQL and PostGIS.
+In a [previous post](https://blog.crunchydata.com/blog/cql-filtering-in-pg_featureserv) we announced the new **CQL filtering** capability in [`pg_featureserv`](https://github.com/CrunchyData/pg_featureserv).
+It provides powerful functionality for attribute and [spatial](https://blog.crunchydata.com/blog/spatial-filters-in-pg_featureserv-with-cql) querying of data in PostgreSQL and PostGIS.
 
 Another important datatype which is often present in datasets is **temporal** - dates and timestamps.
 PostgreSQL has extensive capabilities for specifying queries against time-based attributes.
