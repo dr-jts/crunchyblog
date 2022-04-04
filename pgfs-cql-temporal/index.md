@@ -10,7 +10,7 @@ This final post in the series will show some examples of temporal filtering in p
 
 ## CQL Temporal filters
 
-Temporal filtering in CQL is enabled via temporal literals and conditions.
+Temporal filtering in CQL is provided using temporal literals and conditions.
 
 **Temporal literal** values may be dates or timestamps:
 ```
