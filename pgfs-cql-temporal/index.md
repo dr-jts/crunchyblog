@@ -49,8 +49,11 @@ In this example, we query the storms which occurred in Florida in the 1990s.
 The temporal condition is expressed as `time_start BETWEEN 1990-01-01 AND 1999-12-31`.
 The spatial condition uses the `INTERSECTS` predicate to test whether the line geometry of a track intersects a polygon representing the (simplified) coastline of Florida.
 
+- image of FLA polygon
+
+The `pg_featureserv` request to retrieve the tracks meeting the conditions is:
 ```
 http://localhost:9000/collections/public.trop_storm/items.html?filter=time_start BETWEEN 1990-01-01 AND 1999-12-31 AND INTERSECTS(geom, POLYGON ((-81.4067 30.8422, -79.6862 25.3781, -81.1609 24.7731, -83.9591 30.0292, -85.2258 29.6511, -87.5892 29.9914, -87.5514 31.0123, -81.4067 30.8422)) )&limit=100
 ```
 
-- image
+- image of tracks
