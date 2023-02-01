@@ -19,7 +19,7 @@ Temporal filtering in CQL is provided using **temporal literals** and **conditio
 ```
 
 **Temporal conditions** allow time-valued properties and literals to be compared via the boolean ordering operators
-`<`,`>`,`<=`,`>=`,`=`,`<>`, and the `BETWEEN` operator:
+`<`,`>`,`<=`,`>=`,`=`,`<>`, and the `BETWEEN..AND` operator:
 ```
 start_date >= 2001-01-01
 event_time BETWEEN 2010-04-22T06:00 AND 2010-04-23T12:00
@@ -38,7 +38,7 @@ This dataset is available from [here](https://hifld-geoplatform.opendata.arcgis.
 ## Querying by Time
 
 ```
-http://localhost:9000/collections/public.trop_storm/items.html?filter=time_start between 2005-01-01 and NOW()&limit=100
+http://localhost:9000/collections/public.trop_storm/items.html?filter=time_start BETWEEN 2005-01-01 AND NOW()&limit=100
 ```
 
 - image
@@ -54,6 +54,9 @@ The spatial condition uses the `INTERSECTS` predicate to test whether the line g
 ![](pgfs-cql-temporal-poly-fla.png)
 
 The `pg_featureserv` request to retrieve the tracks meeting the conditions is:
+```
+http://localhost:9000/collections/public.trop_storm/items.html?filter=time_start BETWEEN 2005-01-01 AND NOW() AND INTERSECTS(geom, POLYGON ((-81.4067 30.8422, -79.6862 25.3781, -81.1609 24.7731, -83.9591 30.0292, -85.2258 29.6511, -87.5892 29.9914, -87.5514 31.0123, -81.4067 30.8422)) )&limit=100
+```
 ```
 http://localhost:9000/collections/public.trop_storm/items.html?filter=time_start BETWEEN 1990-01-01 AND 1999-12-31 AND INTERSECTS(geom, POLYGON ((-81.4067 30.8422, -79.6862 25.3781, -81.1609 24.7731, -83.9591 30.0292, -85.2258 29.6511, -87.5892 29.9914, -87.5514 31.0123, -81.4067 30.8422)) )&limit=100
 ```
