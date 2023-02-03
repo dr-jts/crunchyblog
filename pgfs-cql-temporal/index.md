@@ -58,7 +58,7 @@ by using a temporal condition along with a spatial condition.
 In this example, we query the storms which occurred in Florida in the 1990s.
 The temporal condition is expressed as `time_start BETWEEN 1990-01-01 AND 1999-12-31`.
 The spatial condition uses the `INTERSECTS` predicate to test whether the line geometry of a track intersects a polygon representing the (simplified) coastline of Florida.  The polygon can be provided as a geometry literal using WKT.
-(For more information about spatial filtering with CQL in `pg_featureserv` see this [blog post](https://www.crunchydata.com/blog/spatial-filters-in-pg_featureserv-with-cql).)
+For more information about spatial filtering with CQL in `pg_featureserv` see this [blog post](https://www.crunchydata.com/blog/spatial-filters-in-pg_featureserv-with-cql).
 
 ```
 POLYGON ((-81.4067 30.8422, -79.6862 25.3781, -81.1609 24.7731, -83.9591 30.0292, -85.2258 29.6511, -87.5892 29.9914, -87.5514 31.0123, -81.4067 30.8422))
@@ -66,7 +66,7 @@ POLYGON ((-81.4067 30.8422, -79.6862 25.3781, -81.1609 24.7731, -83.9591 30.0292
 
 ![](pgfs-cql-temporal-poly-fla.png)
 
-The `pg_featureserv` request to retrieve the tracks meeting the conditions is:
+Putting these conditions together, the request to retrieve the desired tracks from `pg_featureserv` is:
 ```
 http://localhost:9000/collections/public.trop_storm/items.html?filter=time_start BETWEEN 2005-01-01 AND NOW() AND INTERSECTS(geom, POLYGON ((-81.4067 30.8422, -79.6862 25.3781, -81.1609 24.7731, -83.9591 30.0292, -85.2258 29.6511, -87.5892 29.9914, -87.5514 31.0123, -81.4067 30.8422)) )&limit=100
 ```
