@@ -20,7 +20,7 @@ Temporal filtering in CQL is provided using **temporal literals** and **conditio
 
 > ***Note: - the temporal literal syntax is based on an early version of the OGC API [Filter and CQL standard](https://portal.ogc.org/files/96288).  
 > The current [draft CQL standard](https://docs.ogc.org/DRAFTS/21-065.html) has a different syntax: `DATE('1969-07-20')` and `TIMESTAMP('1969-07-20T20:17:40Z')`.  
-> A subsequenct version of `pg_featureserv` will support this syntax as well.***
+> A subsequent version of `pg_featureserv` will support this syntax as well.***
  
 **Temporal conditions** allow time-valued properties and literals to be compared via the boolean ordering operators
 `<`,`>`,`<=`,`>=`,`=`,`<>`, and the `BETWEEN..AND` operator:
@@ -42,6 +42,8 @@ This dataset is available from [here](https://hifld-geoplatform.opendata.arcgis.
 ![](pgfs-cql-temporal-trop-storm.png)
 
 ## Querying by Time
+
+
 
 ```
 http://localhost:9000/collections/public.trop_storm/items.html?filter=time_start BETWEEN 2005-01-01 AND NOW()&limit=100
