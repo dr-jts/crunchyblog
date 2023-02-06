@@ -62,9 +62,13 @@ CREATE TABLE public.trop_storm (
 The track sections can be combined into single tracks with a start and end time using the following query.
 
 * The original data represents the track sections as `MultiLineString`s with single elements.
-The element is extracted using `ST_GeometryN` so that the result of aggregating them using `ST_Collect` 
-is a `MultiLineString`, not a `GeometryCollection`. 
-* The final `ST_Multi` ensures that all tracks are stored as `MultiLineStrings`, 
+The element is extracted using 
+[`ST_GeometryN`](https://postgis.net/docs/manual-dev/ST_GeometryN.html) so that the result of aggregating them using 
+[`ST_Collect`](https://postgis.net/docs/manual-dev/ST_Collect.html) 
+is a `MultiLineString`, not a `GeometryCollection`. (An alternative is to aggregate into a GeometryCollection
+and use 
+[`ST_CollectionHomogenize`](https://postgis.net/docs/manual-dev/ST_CollectionHomogenize.html) to reduce it to a `MultiLineString`.)
+* The final [`ST_Multi`](https://postgis.net/docs/manual-dev/ST_Multi.html) ensures that all tracks are stored as `MultiLineStrings`, 
   as required by the type constraint on the `geom` column. 
 * the filter condition `time_end - time_start < '1 year'::interval` removes tracks spanning the International Date Line.
 
