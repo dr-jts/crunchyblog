@@ -39,8 +39,9 @@ We'll demonstrate temporal filters using a dataset with a strong time linkage: t
 There is a dataset of **Historical Tropical Storm Tracks** available [here](https://hifld-geoplatform.opendata.arcgis.com/datasets/geoplatform::historical-tropical-storm-tracks).
 
 The data requires some preparation.  It is stored as a set of records of line segments representing 6-hour long sections
-of storm tracks.  We want to model the data with a single record for each storm, with a line geometry showing the
-entire track and the start and end time for the track. 
+of storm tracks.  
+To provide simpler querying we will model the data using a single record for each storm, with a line geometry showing the
+entire track and attributes for the start and end time for the track. 
 
 The data is provided in Shapefile format.  
 As expected for a worldwide dataset, it is in the WGS84 geodetic coordinate system (lat/long).
