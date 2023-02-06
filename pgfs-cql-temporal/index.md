@@ -24,7 +24,7 @@ Temporal filtering in CQL is provided using **temporal literals** and **conditio
  
 **Temporal conditions** allow time-valued properties and literals to be compared 
 via the standard boolean cmparison operators
-`<`,`>`,`<=`,`>=`,`=`,`<>`, and the `BETWEEN..AND` operator:
+`<`,`>`,`<=`,`>=`,`=`,`<>` and the `BETWEEN..AND` operator:
 ```
 start_date >= 2001-01-01
 event_time BETWEEN 2010-04-22T06:00 AND 2010-04-23T12:00
