@@ -36,19 +36,25 @@ event_time BETWEEN 2010-04-22T06:00 AND 2010-04-23T12:00
 ## Publishing Historical Tropical Storm tracks
 
 We'll demonstrate temporal filters using a dataset with a strong time linkage: tracks of tropical storms (or hurricanes).
-There is a dataset of Historical Tropical Storm Tracks is available from [here](https://hifld-geoplatform.opendata.arcgis.com/datasets/geoplatform::historical-tropical-storm-tracks).
+There is a dataset of **Historical Tropical Storm Tracks** available [here](https://hifld-geoplatform.opendata.arcgis.com/datasets/geoplatform::historical-tropical-storm-tracks).
 
 The data requires some preparation.  It is stored as a set of records of line segments representing 6-hour long sections
 of storm tracks.  We want to model the data with a single record for each storm, with a line geometry showing the
 entire track and the start and end time for the track. 
 
-First, the PostGIS [`shp2pgsql`](https://postgis.net/docs/manual-3.3/using_postgis_dbmanagement.html#shp2pgsql_usage) utility can be used to load the dataset into a spatial table called `trop_storm_raw`:
+The data is provided as in Shapefile format.  
+As expected for a worldwide dataset, it is in the WGS84 geodetic coordinate system (lat/long).
+In PostGIS this common  
+[Spatial Reference System](https://postgis.net/docs/manual-dev/using_postgis_dbmanagement.html#spatial_ref_sys) 
+is assigned an identifier (SRID) of 4326.
+
+The PostGIS [`shp2pgsql`](https://postgis.net/docs/manual-3.3/using_postgis_dbmanagement.html#shp2pgsql_usage) utility can be used to load the dataset into a spatial table called `trop_storm_raw`.
 
 ```
-shp2pgsql -c -D -s 4326 -i -I -W lATIN1 "Historical Tropical Storm Tracks.shp" public.trop_storm_raw |psql -d database
+shp2pgsql -c -D -s 4326 -i -I -W lATIN1 "Historical Tropical Storm Tracks.shp" public.trop_storm_raw | psql -d database
 ```
 
-Next, create a table with the desired data structure:
+Next, create a table with the desired data model:
 ```
 CREATE TABLE public.trop_storm (
     btid int PRIMARY KEY,
