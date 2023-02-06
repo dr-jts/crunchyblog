@@ -42,7 +42,7 @@ The data requires some preparation.  It is stored as a set of records of line se
 of storm tracks.  We want to model the data with a single record for each storm, with a line geometry showing the
 entire track and the start and end time for the track. 
 
-The data is provided as in Shapefile format.  
+The data is provided in Shapefile format.  
 As expected for a worldwide dataset, it is in the WGS84 geodetic coordinate system (lat/long).
 In PostGIS this common  
 [Spatial Reference System](https://postgis.net/docs/manual-dev/using_postgis_dbmanagement.html#spatial_ref_sys) 
