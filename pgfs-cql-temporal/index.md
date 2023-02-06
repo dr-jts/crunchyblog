@@ -139,11 +139,11 @@ POLYGON ((-81.4067 30.8422, -79.6862 25.3781, -81.1609 24.7731, -83.9591 30.0292
 
 ![](pgfs-cql-temporal-poly-fla.png)
 
-Putting these conditions together, the request to retrieve the desired tracks from `pg_featureserv` is:
+Putting these conditions together in a boolean expression using `AND`, the request to retrieve the desired tracks from `pg_featureserv` is:
 
 ```
 http://localhost:9000/collections/public.trop_storm/items.html?filter=time_start > 2005-01-01 AND INTERSECTS(geom, POLYGON ((-81.4067 30.8422, -79.6862 25.3781, -81.1609 24.7731, -83.9591 30.0292, -85.2258 29.6511, -87.5892 29.9914, -87.5514 31.0123, -81.4067 30.8422)) )&limit=100
 ```
-This query produces a result with only 9 tracks:
+This query produces a result with only 9 tracks, all of which cross Florida:
 
 ![](pgfs-cql-temporal-2005-fla.png)
