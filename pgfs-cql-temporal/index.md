@@ -64,7 +64,7 @@ The options used are:
 * `-I` - create a GIST index on the geometry column (this is not strictly necessary, since this is just a temporary staging table)
 * `-W` - specifies the encoding of the input attribute data in the DBF file
 
-Next, create the table that has the desired data model:
+Next, create the table having the desired data model:
 ```
 CREATE TABLE public.trop_storm (
     btid int PRIMARY KEY,
@@ -118,7 +118,7 @@ but as per best practice we can create a spatial index on the geometry column:
 CREATE INDEX trop_storm_gix ON public.trop_storm USING GIST ( geom );
 ```
 
-Once the `trop_storm` table is created and populated, it can be published using `pg_featureserv`:
+Once the `trop_storm` table is created and populated, it can be published in `pg_featureserv`:
 
 ```
 http://localhost:9000/collections.html
