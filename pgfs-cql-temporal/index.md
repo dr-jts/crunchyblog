@@ -44,8 +44,12 @@ This dataset is available from [here](https://hifld-geoplatform.opendata.arcgis.
 ## Querying by Time
 
 That's obviously too many tracks to visualize conveniently.  A natural way to subset the data is by querying over a time range.
-
-
+Let's retrieve the storms between the start of 2005 and the end of 2009. 
+This is done by adding a `filter` parameter with a CQL expression against the dataset temporal property `time_start` 
+(storms typically do not span the start of years).
+To query values lying between a range of times it is convenient to use the `BETWEEN` operator. 
+The filter condition is `time_start BETWEEN 2005-01-01 AND 2009-12-31`.
+The full request is:
 ```
 http://localhost:9000/collections/public.trop_storm/items.html?filter=time_start BETWEEN 2005-01-01 AND 2009-12-31&limit=100
 ```
@@ -58,7 +62,7 @@ Temporal conditions can be combined with other kinds of filters. For instance, w
 by using a temporal condition along with a spatial condition.
 In this example, we query the storms which occurred in 2005 and after in Florida.
 The temporal condition is expressed as `time_start > 2005-01-01`.
-The spatial condition uses the `INTERSECTS` predicate to test whether the line geometry of a hurricane track intersects a polygon representing the (simplified) coastline of Florida.  The polygon is provided as a geometry literal using WKT.
+The spatial condition uses the `INTERSECTS` predicate to test whether the line geometry of a storm track intersects a polygon representing the (simplified) coastline of Florida.  The polygon is provided as a geometry literal using WKT.
 (For more information about spatial filtering with CQL in `pg_featureserv` see this [blog post](https://www.crunchydata.com/blog/spatial-filters-in-pg_featureserv-with-cql).)
 
 ```
