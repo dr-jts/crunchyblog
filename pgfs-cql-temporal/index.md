@@ -22,7 +22,8 @@ Temporal filtering in CQL is provided using **temporal literals** and **conditio
 > The current [draft CQL standard](https://docs.ogc.org/DRAFTS/21-065.html) has a different syntax: `DATE('1969-07-20')` and `TIMESTAMP('1969-07-20T20:17:40Z')`.  
 > A subsequent version of `pg_featureserv` will support this syntax as well.***
  
-**Temporal conditions** allow time-valued properties and literals to be compared via the boolean ordering operators
+**Temporal conditions** allow time-valued properties and literals to be compared 
+via the standard boolean cmparison operators
 `<`,`>`,`<=`,`>=`,`=`,`<>`, and the `BETWEEN..AND` operator:
 ```
 start_date >= 2001-01-01
@@ -32,10 +33,62 @@ event_time BETWEEN 2010-04-22T06:00 AND 2010-04-23T12:00
 ## Publishing Tropical Storm tracks
 
 We'll demonstrate temporal filters using a dataset with a strong time linkage: tracks of tropical storms (or hurricanes).
-This dataset is available from [here](https://hifld-geoplatform.opendata.arcgis.com/datasets/geoplatform::historical-tropical-storm-tracks)...
+There is a dataset of Historical Tropical Storm Tracks is available from [here](https://hifld-geoplatform.opendata.arcgis.com/datasets/geoplatform::historical-tropical-storm-tracks).
 
-- Preparation
-- 
+The data requires some preparation.  It is stored as a set of records of line segments representing 6-hour long sections
+of storm tracks.  We want to model the data with a single record for each storm, with a line geometry showing the
+entire track and the start and end time for the track. 
+
+First, the [`shp2pgsq`l](https://postgis.net/docs/manual-3.3/using_postgis_dbmanagement.html#shp2pgsql_usage) utility can be used to load the dataset into a table called `trop_storm_raw`:
+
+```
+shp2pgsql -c -D -s 4326 -i -I -W lATIN1 "Historical Tropical Storm Tracks.shp" public.trop_storm_raw |psql -d database
+```
+
+Next, create a table with the desired data structure:
+```
+CREATE TABLE public.trop_storm (
+    btid int PRIMARY KEY,
+    name text,
+    wind_kts numeric,
+    pressure float8,
+    basin text,
+    time_start timestamp,
+    time_end timestamp,
+    geom geometry(MultiLineString, 4326)
+);
+```
+
+The track sections can be combined into single tracks with a start and end time using the following query.
+
+* The original data represents the track sections as `MultiLineString`s with single elements.
+The element is extracted using `ST_GeometryN` so that the result of aggregating them using `ST_Collect` 
+is a `MultiLineString`, not a `GeometryCollection`. 
+* The final `ST_Multi` ensures that all tracks are stored as `MultiLineStrings`, 
+  as required by the type constraint on the `geom` column. 
+* the filter condition `time_end - time_start < '1 year'::interval` removes tracks spanning the International Date Line.
+
+```
+WITH data AS (
+ SELECT btid, name, wind_kts, pressure, basin, geom,
+    make_date(year::int, month::int, day::int) + ad_time::time AS obs_time
+ FROM trop_storm_raw ORDER BY obs_time
+),
+tracks AS (
+  SELECT btid,
+    MAX(name) AS name,
+    MAX(wind_kts) AS wind_kts,
+    MAX(pressure) AS pressure,
+    MAX(basin) AS basin,
+    MIN(obs_time) AS time_start,
+    MAX(obs_time) AS time_end,
+    ST_Multi( ST_LineMerge( ST_Collect( ST_GeometryN(geom, 1)))) AS geom
+  FROM data GROUP BY btid
+)
+INSERT INTO trop_storm
+SELECT * FROM tracks WHERE time_end - time_start < '1 year'::interval;
+```
+
 
 ![](pgfs-cql-temporal-trop-storm.png)
 
