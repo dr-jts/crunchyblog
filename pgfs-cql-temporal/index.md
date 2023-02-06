@@ -49,7 +49,7 @@ In PostGIS this common
 is assigned an identifier (SRID) of 4326.
 
 The PostGIS [`shp2pgsql`](https://postgis.net/docs/manual-3.3/using_postgis_dbmanagement.html#shp2pgsql_usage) utility can be used to load the dataset into a spatial table called `trop_storm_raw`.
-The `trop_storm_raw` table is just a temporary staging table allowing the raw data to be loaded
+The `trop_storm_raw` table is a temporary staging table allowing the raw data to be loaded
 and made available for the transformation phase of data preparation.
 
 ```
