@@ -91,6 +91,9 @@ SELECT * FROM tracks WHERE time_end - time_start < '1 year'::interval;
 
 Once the `trop_storm` table is created and populated, it can be published using `pg_featureserv`:
 
+```
+http://localhost:9000/collections.html
+```
 ![](pgfs-cql-temporal-fc-trop-storm.png)
 
 The dataset can be viewed using `pg_featureserv`'s built-in map viewer
