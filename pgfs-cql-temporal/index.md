@@ -29,8 +29,6 @@ start_date >= 2001-01-01
 event_time BETWEEN 2010-04-22T06:00 AND 2010-04-23T12:00
 ```
 
-
-
 ## Publishing Tropical Storm tracks
 
 We'll demonstrate temporal filters using a dataset with a strong time linkage: tracks of tropical storms (or hurricanes).
@@ -43,7 +41,8 @@ This dataset is available from [here](https://hifld-geoplatform.opendata.arcgis.
 
 ## Querying by Time
 
-That's obviously too many tracks to visualize conveniently.  A natural way to subset the data is by querying over a time range.
+That's a lot of storm tracks.  It would be easier to visualize a smaller number of tracks.
+A natural way to subset the data is by querying over a time range.
 Let's retrieve the storms between the start of 2005 and the end of 2009. 
 This is done by adding a `filter` parameter with a CQL expression against the dataset temporal property `time_start` 
 (storms typically do not span the start of years).
@@ -54,7 +53,7 @@ The full request is:
 http://localhost:9000/collections/public.trop_storm/items.html?filter=time_start BETWEEN 2005-01-01 AND 2009-12-31&limit=100
 ```
 
-- image
+![](pgfs-cql-temporal-2005-2009.png)
 
 ## Querying by Time and Space
 
