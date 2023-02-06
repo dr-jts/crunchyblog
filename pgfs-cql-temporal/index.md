@@ -89,6 +89,9 @@ INSERT INTO trop_storm
 SELECT * FROM tracks WHERE time_end - time_start < '1 year'::interval;
 ```
 
+With the `trop_storm` table created and populated, it can be published using `pg_featureserv`:
+
+![](pgfs-cql-temporal-fc-trop-storm.png)
 
 ![](pgfs-cql-temporal-trop-storm.png)
 
