@@ -31,7 +31,7 @@ event_time BETWEEN 2010-04-22T06:00 AND 2010-04-23T12:00
 ```
 
 > *The [draft CQL standard](https://docs.ogc.org/DRAFTS/21-065.html#_temporal_operators) provides dedicated temporal operators, such as `T_AFTER`, `T_BEFORE`, `T_DURING`, etc.  
-> A future version of `pg_featureserv` will likely provide these operators.
+> A future version of `pg_featureserv` will likely provide these operators.*
 
 ## Publishing Historical Tropical Storm tracks
 
@@ -94,6 +94,11 @@ tracks AS (
 )
 INSERT INTO trop_storm
 SELECT * FROM tracks WHERE time_end - time_start < '1 year'::interval;
+```
+This is a small dataset, and `pg_featureserv` does not require one, 
+but as per best practice we can create a spatial index on the geometry column:
+```
+CREATE INDEX trop_storm_gix ON public.trop_storm USING GIST ( geom );
 ```
 
 Once the `trop_storm` table is created and populated, it can be published using `pg_featureserv`:
