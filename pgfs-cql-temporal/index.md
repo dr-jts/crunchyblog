@@ -118,7 +118,8 @@ but as per best practice we can create a spatial index on the geometry column:
 CREATE INDEX trop_storm_gix ON public.trop_storm USING GIST ( geom );
 ```
 
-Once the `trop_storm` table is created and populated, it can be published in `pg_featureserv`:
+Once the `trop_storm` table is created and populated, it can be published in `pg_featureserv`.
+Issuing the following request in a browser shows the feature collection in the Web UI:
 
 ```
 http://localhost:9000/collections.html
@@ -126,9 +127,7 @@ http://localhost:9000/collections.html
 ![](pgfs-cql-temporal-fc-trop-storm.png)
 
 The dataset can be viewed using `pg_featureserv`'s built-in map viewer
-(note that it is probably necessary to increase the limit on the number of response features 
-to see all 567 records displayed):
-
+(note that to see all 567 records displayed it is probably necessary to increase the limit on the number of response features):
 ```
 http://localhost:9000/collections/public.trop_storm/items.html?limit=1000
 ```
