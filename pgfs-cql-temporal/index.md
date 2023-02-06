@@ -178,7 +178,7 @@ This query produces a result with only 9 tracks, all of which cross Florida:
 
 ![](pgfs-cql-temporal-2005-fla.png)
 
-Try it yourself!
+## Try it yourself!
 
 CQL temporal filtering is included in the forthcoming `pg_featureserv` Version 1.3. 
 But you can try it out now by [downloading](https://github.com/CrunchyData/pg_featureserv#download) the latest build. 
