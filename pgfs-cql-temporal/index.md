@@ -53,6 +53,8 @@ The full request is:
 http://localhost:9000/collections/public.trop_storm/items.html?filter=time_start BETWEEN 2005-01-01 AND 2009-12-31&limit=100
 ```
 
+Submitting this query produces a result with 68 tracks:
+
 ![](pgfs-cql-temporal-2005-2009.png)
 
 ## Querying by Time and Space
@@ -61,6 +63,7 @@ Temporal conditions can be combined with other kinds of filters. For instance, w
 by using a temporal condition along with a spatial condition.
 In this example, we query the storms which occurred in 2005 and after in Florida.
 The temporal condition is expressed as `time_start > 2005-01-01`.
+
 The spatial condition uses the `INTERSECTS` predicate to test whether the line geometry of a storm track intersects a polygon representing the (simplified) coastline of Florida.  The polygon is provided as a geometry literal using WKT.
 (For more information about spatial filtering with CQL in `pg_featureserv` see this [blog post](https://www.crunchydata.com/blog/spatial-filters-in-pg_featureserv-with-cql).)
 
@@ -75,5 +78,6 @@ Putting these conditions together, the request to retrieve the desired tracks fr
 ```
 http://localhost:9000/collections/public.trop_storm/items.html?filter=time_start > 2005-01-01 AND INTERSECTS(geom, POLYGON ((-81.4067 30.8422, -79.6862 25.3781, -81.1609 24.7731, -83.9591 30.0292, -85.2258 29.6511, -87.5892 29.9914, -87.5514 31.0123, -81.4067 30.8422)) )&limit=100
 ```
+This query produces a result with only 9 tracks:
 
-- image of result tracks
+![](pgfs-cql-temporal-2005-fla.png)
