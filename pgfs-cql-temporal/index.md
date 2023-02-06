@@ -49,12 +49,21 @@ In PostGIS this common
 is assigned an identifier (SRID) of 4326.
 
 The PostGIS [`shp2pgsql`](https://postgis.net/docs/manual-3.3/using_postgis_dbmanagement.html#shp2pgsql_usage) utility can be used to load the dataset into a spatial table called `trop_storm_raw`.
+The `trop_storm_raw` table is just a temporary staging table allowing the raw data to be loaded
+and made available for the transformation phase of data preparation.
 
 ```
-shp2pgsql -c -D -s 4326 -i -I -W lATIN1 "Historical Tropical Storm Tracks.shp" public.trop_storm_raw | psql -d database
+shp2pgsql -c -D -s 4326 -i -I -W LATIN1 "Historical Tropical Storm Tracks.shp" public.trop_storm_raw | psql -d database
 ```
+The options used are:
+* `-c` - create a new table
+* `-D` - use PostgreSQL dump format to load the data
+* `-s` - specify the SRID of 4326
+* `-i` - use 32-bit integers
+* `-I` - create a GIST index on the geometry column (this is not strictly necessary, since this is just a temporary staging table)
+* `-W` - specifies the encoding of the input attribute data in the DBF file
 
-Next, create a table with the desired data model:
+Next, create the table that has the desired data model:
 ```
 CREATE TABLE public.trop_storm (
     btid int PRIMARY KEY,
@@ -68,6 +77,7 @@ CREATE TABLE public.trop_storm (
 );
 ```
 
+Now the power of SQL can be used to transform the raw data into the simpler data model.
 The track sections can be combined into single tracks with a start and end time using the following query.
 
 * The original data represents the track sections as `MultiLineString`s with single elements.
