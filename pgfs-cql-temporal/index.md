@@ -18,9 +18,9 @@ Temporal filtering in CQL is provided using **temporal literals** and **conditio
 2010-04-23T01:23:45
 ```
 
-> ***Note: - the temporal literal syntax is based on an early version of the OGC API [Filter and CQL standard](https://portal.ogc.org/files/96288).  
-> The current [draft CQL standard](https://docs.ogc.org/DRAFTS/21-065.html) has a different syntax: `DATE('1969-07-20')` and `TIMESTAMP('1969-07-20T20:17:40Z')`.  
-> A subsequent version of `pg_featureserv` will support this syntax as well.***
+> *Note: - the temporal literal syntax is based on an early version of the OGC API [Filter and CQL standard](https://portal.ogc.org/files/96288).  
+> The current [draft CQL standard](https://docs.ogc.org/DRAFTS/21-065.html) has a different syntax: `DATE('1969-07-20')` and `TIMESTAMP('1969-07-20T20:17:40Z')`.  It also supports intervals:  `INTERVAL('1969-07-16', '1969-07-24')`.
+> A subsequent version of `pg_featureserv` will support this syntax as well.*
  
 **Temporal conditions** allow time-valued properties and literals to be compared 
 via the standard boolean cmparison operators
@@ -29,6 +29,9 @@ via the standard boolean cmparison operators
 start_date >= 2001-01-01
 event_time BETWEEN 2010-04-22T06:00 AND 2010-04-23T12:00
 ```
+
+> *The [draft CQL standard](https://docs.ogc.org/DRAFTS/21-065.html#_temporal_operators) provides dedicated temporal operators, such as `T_AFTER`, `T_BEFORE`, `T_DURING`, etc.  
+> A future version of `pg_featureserv` will likely provide these operators.
 
 ## Publishing Historical Tropical Storm tracks
 
