@@ -30,7 +30,7 @@ start_date >= 2001-01-01
 event_time BETWEEN 2010-04-22T06:00 AND 2010-04-23T12:00
 ```
 
-## Publishing Tropical Storm tracks
+## Publishing Historical Tropical Storm tracks
 
 We'll demonstrate temporal filters using a dataset with a strong time linkage: tracks of tropical storms (or hurricanes).
 There is a dataset of Historical Tropical Storm Tracks is available from [here](https://hifld-geoplatform.opendata.arcgis.com/datasets/geoplatform::historical-tropical-storm-tracks).
@@ -39,7 +39,7 @@ The data requires some preparation.  It is stored as a set of records of line se
 of storm tracks.  We want to model the data with a single record for each storm, with a line geometry showing the
 entire track and the start and end time for the track. 
 
-First, the [`shp2pgsq`l](https://postgis.net/docs/manual-3.3/using_postgis_dbmanagement.html#shp2pgsql_usage) utility can be used to load the dataset into a table called `trop_storm_raw`:
+First, the PostGIS [`shp2pgsql`](https://postgis.net/docs/manual-3.3/using_postgis_dbmanagement.html#shp2pgsql_usage) utility can be used to load the dataset into a spatial table called `trop_storm_raw`:
 
 ```
 shp2pgsql -c -D -s 4326 -i -I -W lATIN1 "Historical Tropical Storm Tracks.shp" public.trop_storm_raw |psql -d database
@@ -105,7 +105,7 @@ http://localhost:9000/collections/public.trop_storm/items.html?limit=1000
 ```
 ![](pgfs-cql-temporal-trop-storm.png)
 
-## Querying by Time
+## Querying by Time Range
 
 That's a lot of storm tracks.  It would be easier to visualize a smaller number of tracks.
 A natural way to subset the data is by querying over a time range.
