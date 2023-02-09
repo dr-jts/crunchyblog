@@ -66,7 +66,7 @@ The options used are:
 * `-I` - create a GIST index on the geometry column (this is not strictly necessary, since this is just a temporary staging table)
 * `-W` - specifies the encoding of the input attribute data in the DBF file
 
-Next, create the table having the desired data model:
+Next, create the table `trop_storm` with the desired data model:
 ```
 CREATE TABLE public.trop_storm (
     btid int PRIMARY KEY,
@@ -79,6 +79,22 @@ CREATE TABLE public.trop_storm (
     geom geometry(MultiLineString, 4326)
 );
 ```
+
+It's good practice to add comments to the table and columns. 
+These will be displayed in the `pg_featureserv` Web UI.
+
+```
+COMMENT ON TABLE public.trop_storm IS 'This is my spatial table';
+COMMENT ON COLUMN public.trop_storm.geom IS 'Storm track LineString';
+COMMENT ON COLUMN public.trop_storm.name IS 'Name assigned to storm';
+COMMENT ON COLUMN public.trop_storm.btid IS 'Id of storm';
+COMMENT ON COLUMN public.trop_storm.wind_kts IS 'Maximum wind speed in knots';
+COMMENT ON COLUMN public.trop_storm.pressure IS 'Minumum pressure in in millibars';
+COMMENT ON COLUMN public.trop_storm.basin IS 'Basin in which storm occured';
+COMMENT ON COLUMN public.trop_storm.time_start IS 'Timestamp of storm start';
+COMMENT ON COLUMN public.trop_storm.time_end IS 'Timestamp of storm end';
+```
+
 
 Now the power of SQL can be used to transform the raw data into the simpler data model.
 The track sections can be combined into single tracks with a start and end time using the following query.
@@ -114,25 +130,13 @@ tracks AS (
 INSERT INTO trop_storm
 SELECT * FROM tracks WHERE time_end - time_start < '1 year'::interval;
 ```
+
 This is a small dataset, and `pg_featureserv` does not require one, 
 but as per best practice we can create a spatial index on the geometry column:
 ```
 CREATE INDEX trop_storm_gix ON public.trop_storm USING GIST ( geom );
 ```
-It's nice to add comments to the table and columns, 
-for display in the `pg_featureserv` Web UI.
 
-```
-COMMENT ON TABLE public.trop_storm IS 'This is my spatial table';
-COMMENT ON COLUMN public.trop_storm.geom IS 'Storm track LineString';
-COMMENT ON COLUMN public.trop_storm.name IS 'Name assigned to storm';
-COMMENT ON COLUMN public.trop_storm.btid IS 'Id of storm';
-COMMENT ON COLUMN public.trop_storm.wind_kts IS 'Maximum wind speed in knots';
-COMMENT ON COLUMN public.trop_storm.pressure IS 'Minumum pressure in in millibars';
-COMMENT ON COLUMN public.trop_storm.basin IS 'Basin in which storm occured';
-COMMENT ON COLUMN public.trop_storm.time_start IS 'Timestamp of storm start';
-COMMENT ON COLUMN public.trop_storm.time_end IS 'Timestamp of storm end';
-```
 
 Once the `trop_storm` table is created and populated, it can be published in `pg_featureserv`.
 Issuing the following request in a browser shows the feature collection in the Web UI:
