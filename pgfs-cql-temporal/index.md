@@ -104,7 +104,7 @@ tracks AS (
   SELECT btid,
     MAX(name) AS name,
     MAX(wind_kts) AS wind_kts,
-    MAX(pressure) AS pressure,
+    MIN(pressure) AS pressure,
     MAX(basin) AS basin,
     MIN(obs_time) AS time_start,
     MAX(obs_time) AS time_end,
@@ -119,6 +119,20 @@ but as per best practice we can create a spatial index on the geometry column:
 ```
 CREATE INDEX trop_storm_gix ON public.trop_storm USING GIST ( geom );
 ```
+It's nice to add comments to the table and columns, 
+for display in the `pg_featureserv` Web UI.
+
+```
+COMMENT ON TABLE public.trop_storm IS 'This is my spatial table';
+COMMENT ON COLUMN public.trop_storm.geom IS 'Storm track LineString';
+COMMENT ON COLUMN public.trop_storm.name IS 'Name assigned to storm';
+COMMENT ON COLUMN public.trop_storm.btid IS 'Id of storm';
+COMMENT ON COLUMN public.trop_storm.wind_kts IS 'Maximum wind speed in knots';
+COMMENT ON COLUMN public.trop_storm.pressure IS 'Minumum pressure in in millibars';
+COMMENT ON COLUMN public.trop_storm.basin IS 'Basin in which storm occured';
+COMMENT ON COLUMN public.trop_storm.time_start IS 'Timestamp of storm start';
+COMMENT ON COLUMN public.trop_storm.time_end IS 'Timestamp of storm end';
+```
 
 Once the `trop_storm` table is created and populated, it can be published in `pg_featureserv`.
 Issuing the following request in a browser shows the feature collection in the Web UI:
@@ -128,12 +142,19 @@ http://localhost:9000/collections.html
 ```
 ![](pgfs-cql-temporal-fc-trop-storm.png)
 
+```
+http://localhost:9000/collections/public.trop_storm.html
+```
+![](pgfs-cql-temporal-trop-storm-metadata.png)
+
+
 The dataset can be viewed using `pg_featureserv`'s built-in map viewer
 (note that to see all 567 records displayed it is probably necessary to increase the limit on the number of response features):
 ```
 http://localhost:9000/collections/public.trop_storm/items.html?limit=1000
 ```
 ![](pgfs-cql-temporal-trop-storm.png)
+
 
 ## Querying by Time Range
 
