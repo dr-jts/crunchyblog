@@ -131,8 +131,9 @@ INSERT INTO trop_storm
 SELECT * FROM tracks WHERE time_end - time_start < '1 year'::interval;
 ```
 
-This is a small dataset, and `pg_featureserv` does not require one, 
-but as per best practice we can create a spatial index on the geometry column:
+This is a small dataset, but as per best practice we can create a spatial index on the geometry column
+(although `pg_featureserv` does not require one):
+
 ```
 CREATE INDEX trop_storm_gix ON public.trop_storm USING GIST ( geom );
 ```
