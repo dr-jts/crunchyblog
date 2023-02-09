@@ -150,7 +150,7 @@ http://localhost:9000/collections.html
 ```
 http://localhost:9000/collections/public.trop_storm.html
 ```
-![](pgfs-cql-temporal-trop-storm-metadata.png)
+![](pgfs-cql-temporal-fc-trop-storm-metadata.png)
 
 
 The dataset can be viewed using `pg_featureserv`'s built-in map viewer
