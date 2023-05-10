@@ -1,2 +1,2 @@
-# Generating SVG with PostGIS and pg-svg
+# Generating SVG with PostGIS and `pg-svg`
 
