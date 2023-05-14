@@ -31,7 +31,7 @@ To show the power of SVG and `pg-svg` for generating and styling shapes the map 
 * High points are shown at their location by triangles whose color and size indicate the height of the high point.
 * Tooltips provide more information about states and highpoints.   
 
-
+![](us-highpt.svg)
 
 For another option for database-generated maps, see this PostGIS Day 2022 [presentation](https://www.youtube.com/watch?v=5Zg8j9X2f-Y) showing how to define and render bitmap images. 
 
