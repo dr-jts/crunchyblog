@@ -45,11 +45,12 @@ The SVG output can be view in a web browser.
 
 ## How it Works
 
-Let's break the query down to see how the data is prepared and then rendered to SVG.
+Let's break the query down to see how the data is prepared and then rendered to SVG.  A dataset of US states in geodetic (WGS84, SRID = 4326) is required.  We used the Natural Earth states and provinces data from here.  It can be loaded into a table `ne.admin_1_state_prov` with the following command:
+```
+shp2pgsql -c -D -s 4326 -i -I ne_10m_admin_1_states_provinces.shp ne.admin_1_state_prov | psql
+```
 
-A dataset of US states in geodetic (WGS84, SRID = 4326) is required.  We used the Natural Earth states and provinces data from here.
-
-The SQL WITH construct allows organizing the query into simple, logical steps.  
+The SQL `WITH` construct allows organizing the query into simple, logical steps.  
 
 First, ...
 
