@@ -10,7 +10,7 @@ This post presents a way to generate maps entirely within the database, with no 
 
 PostGIS has had the function [`ST_AsSVG`](https://postgis.net/docs/manual-3.3/ST_AsSVG.html) for years.  But attempting to use it will quickly reveal that it is only a partial solution for generating an SVG image.  `ST_AsSVG` produces the [**path data**](https://svgwg.org/svg2-draft/paths.html#PathData) that specifies the outline of a shape to be rendered in SVG.  However, much more is required:
 
-* the path data must be encoded as the `d` attribute of a `path` element
+* the path data must be encoded as the `d` attribute of a `<path>` element
 * the element needs to be styled
 * Polygons with holes require multiple path elements
 * Multigeometries are represented as groups of paths
