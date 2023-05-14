@@ -4,6 +4,16 @@ One of the most powerful and informative things to do with geospatial data is to
 
 This post is about a way to generate maps entirely within the database, with no external application required.  This is done by using the SVG (Scabable Vector Graphics) format, which is a graphical format that is widely supported by web browsers and other tools.  This is facilitated by a PL/pgSQL library called pg-svg.  The library provides a set of high-level functions which make it easy to convert PostGIS data into styled SVG documents.
 
+PostGIS has the function [`ST_AsSVG`](https://postgis.net/docs/manual-3.3/ST_AsSVG.html), but an attempt to use it will quickly make you realize that it is only one part (albeit an essential one) of generating an SVG image.  `ST_AsSVG` produces the [**path data**](https://svgwg.org/svg2-draft/paths.html#PathData) that specifies the outline of a shape to be rendered in SVG.  However, much more is required:
+
+* the path data must be encoded as the `d` attribute of a `path` element
+* the element needs to be styled
+* Polygons with holes require multiple path elements
+* Multigeometries are represented as groups of paths
+* Simple shapes such as points and lines require different elements
+* The SVG image needs to be provided as an SVG `<svg>` element
+* the extent of the rendered data must be specified, along with (optionally) the size of the rendered image
+
 - discuss how SVG requires shapes, scaling, styling and optionally identifiers and CSS
 
 To demonstrate using pg-svg, we'll create a map 
