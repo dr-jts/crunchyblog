@@ -14,6 +14,16 @@ PostGIS has the function [`ST_AsSVG`](https://postgis.net/docs/manual-3.3/ST_AsS
 * The SVG image needs to be provided as an SVG `<svg>` element
 * the extent of the rendered data must be specified, along with (optionally) the size of the rendered image
 
+This all requires detailed knowledge of the SVG format, and is complex and error-prone to do manually.  
+But now the `pg-svg` library can do all this with a simple SQL API.
+
+## Example
+
+The easiest way to understand pg-svg is to see an example.  Let's create a map of the United States showing the highest point in each state.
+One of the great things about SVG is the rich options it provides for generating and styling shapes.  
+We'll show the high points with mountain-shaped symbols (triangles), sized and color-themed to indicate their height.
+We'll also provide tooltips for each map element, to provide information about each highpoint.
+
 - discuss how SVG requires shapes, scaling, styling and optionally identifiers and CSS
 
 To demonstrate using pg-svg, we'll create a map 
