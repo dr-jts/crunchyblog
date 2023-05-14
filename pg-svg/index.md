@@ -23,12 +23,13 @@ But the `pg-svg` library can do all this in a single SQL query with a simple API
 
 ## Example
 
-The easiest way to understand pg-svg is to see an example.  Let's create a map of the United States showing the highest point in each state.
-One of the great things about SVG is the rich options it provides for generating and styling shapes.  
-We'll show the high points with mountain-shaped symbols (triangles), sized and color-themed to indicate their height.
-We'll also provide tooltips for each map element, to provide information about each highpoint.
+The easiest way to understand pg-svg is to see an example.  We'll create a map of the United States showing the highest point in each state.
+To show the power of SVG and `pg-svg` for generating and styling shapes the map will have the following features:
 
-
+* All 50 states are shown, with Alaska and Hawaii transformed to better fit the map
+* States are labelled, and filled with a gradient
+* High points are shown at their location by triangles whose color and size indicate the height of the high point.
+* Tooltips provide more information about states and highpoints.   
 
 
 
