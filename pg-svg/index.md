@@ -33,7 +33,7 @@ To show the power of SVG and `pg-svg` for generating and styling shapes the map 
 * High points are shown at their location by triangles whose color and size indicate the height of the high point.
 * Tooltips provide more information about states and highpoints.   
 
-The resulting map looks like this:
+The resulting map looks like this (to see tooltips open the [raw image](https://raw.githubusercontent.com/dr-jts/crunchyblog/master/pg-svg/us-highpt.svg)):
 
 ![](us-highpt.svg)
 
