@@ -52,13 +52,20 @@ shp2pgsql -c -D -s 4326 -i -I ne_10m_admin_1_states_provinces.shp ne.admin_1_sta
 
 The SQL `WITH` construct allows organizing the query into simple, modular steps.  We'll describe each one in turn.
 
+### Select US state features
+
 First, the US state features are selected from the loaded Natural Earth boundaries table
 ```
 us_state AS (SELECT name, abbrev, postal, geom 
   FROM ne.admin_1_state_prov
   WHERE adm0_a3 = 'USA')
 ```
-Next, the geometry for states Alaska and Hawaii is translated and scaled to make the map more compact.  The scaling is done around the location of the state high point, to make it easy to apply the same transformation to the high point itself.
+
+### Make a US state map
+Next, the geometry for states Alaska and Hawaii is translated and scaled to make the map more compact.  
+This is done using PostGIS [affine transformation functions](https://postgis.net/docs/manual-3.3/reference.html#Affine_Transformation).
+The scaling is done around the location of the state high point, 
+to make it easy to apply the same transformation to the high point feature.
 ```
 ,us_map AS (SELECT name, abbrev, postal, 
     -- transform AK and HI to make them fit map
@@ -73,6 +80,7 @@ Next, the geometry for states Alaska and Hawaii is translated and scaled to make
     ELSE geom END AS geom
   FROM us_state)
 ```
+### High Points of US states
 Data for the high point in each state is provided as an inline table of values:
 ```
 ,high_pt(name, state, hgt_m, hgt_ft, lon, lat) AS (VALUES
@@ -82,6 +90,7 @@ Data for the high point in each state is provided as an inline table of values:
 ,('Britton Hill',        'FL',  105,   345,  -86.281944,30.988333)
 )
 ```
+### Prepare High Point symbols
 The next subquery does several things at once:
 * the high point `lon` and `lat` location for Alaska and Hawaii is translated to match the transformation applied to the state geometry
 * the `symHeight` attribute is computed to provide the height of the high point triangle symbol 
@@ -106,15 +115,17 @@ The next subquery does several things at once:
     END AS clr
   FROM high_pt ORDER BY lat DESC)
 ```  
-The previous queries have transformed the raw data into a form suitable for rendering.  
+### Generate SVG elements
+The previous queries transformed the raw data into a form suitable for rendering.  
 Now we get to see `pg-svg` in action!
 The next query generates the SVG text for each output image element, 
 as separate records in a result set called `shapes`.
 
-The SVG elements are generated in the order in which they should be drawn - states and labels first, 
+The SVG elements are generated in the order in which they are drawn - states and labels first, 
 with high-point symbols on top. 
 Let's break it down:
 
+### SVG for states
 The first subquery produces SVG shapes from the state geometries.
 `svgShape` produces a suitable SVG shape element for any PostGIS geometry.
 It also provides optional parameters supporting other capabilities of SVG.
@@ -124,6 +135,9 @@ Styling in SVG can be provided using properties defined in the
 [Cascaded Style Sheets (CSS)](https://developer.mozilla.org/en-US/docs/Glossary/CSS) specification.
 `pg-svg` provides a `svgStyle` function to make it easy to specify the 
 names and values of CSS styling properties.
+
+Note that the `fill` property value not a color specifier but a URL.
+This refers to an SVG gradient fill which is defined subsequently.
 ```
 ,shapes AS (
   -- State shapes
@@ -136,4 +150,33 @@ names and values of CSS styling properties.
     svg FROM us_map
 ```
 
+### SVG for state labels
 
+```
+  UNION ALL
+  -- State names
+  SELECT NULL, svgText( ST_PointOnSurface( geom ), abbrev,
+    style => svgStyle(  'fill', '#6666ff', 'text-anchor', 'middle', 'font', '0.8px sans-serif' ) )
+    svg FROM us_map
+```
+### SVG for high point symbols
+
+```
+  UNION ALL
+  -- High point triangles
+  SELECT NULL, svgPolygon( ARRAY[ lon-0.5, -lat, lon+0.5, -lat, lon, -lat-symHeight ],
+    title => name || ' ' || state || ' - ' || hgt_ft || ' ft',
+    style => svgStyle(  'stroke', '#000000',
+                        'stroke-width', 0.1::text,
+                        'fill', clr  ) )
+    svg FROM highpt_shape
+)
+```
+### Produce final SVG image
+
+```
+SELECT svgDoc( array_agg( svg ),
+    viewbox => svgViewbox( ST_Expand( ST_Extent(geom), 2)),
+    def => svgLinearGradient('state', '#8080ff', '#c0c0ff')
+  ) AS svg FROM shapes;
+```
