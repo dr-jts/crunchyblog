@@ -4,7 +4,7 @@ One of the most informative things to do with geospatial data is to visualize it
 
 - For another option for database-generated maps, see this PostGIS Day 2022 [presentation](https://www.youtube.com/watch?v=5Zg8j9X2f-Y) showing how to define and render bitmap images. 
 
-This post presents a way to generate maps entirely within the database, with no external application required.  This is done by using the SVG (Scalable Vector Graphics) format, which is a graphical format that is widely supported by web browsers and other tools.  Generating SVG can be complex, but a PL/pgSQL library called `pg-svg` makes it easy.  The library provides a set of high-level functions which make it easy to convert PostGIS data into styled SVG documents.
+This post presents a way to generate maps entirely within the database, with no external application required.  This is done by using the SVG (Scalable Vector Graphics) format, which is widely supported by web browsers and other tools.  Generating SVG can be complex, but a PL/pgSQL library called `pg-svg` makes it easy.  The library provides a set of high-level functions which make it easy to convert PostGIS data into styled SVG documents.
 
 - discuss how SVG requires shapes, scaling, styling and optionally identifiers and CSS
 
@@ -25,8 +25,8 @@ But the `pg-svg` library can do all this in a single SQL query with a simple API
 
 ## Example
 
-The easiest way to understand pg-svg is to see an example.  We'll create a map of the United States showing the highest point in each state.
-To show the power of SVG and `pg-svg` for generating and styling shapes the map will have the following features:
+The easiest way to understand `pg-svg` is to see an example.  We'll create a map of the United States showing the highest point in each state.
+To show the power of SVG and `pg-svg` for generating and styling shapes the map has the following features:
 
 * All 50 states are shown, with Alaska and Hawaii transformed to better fit the map
 * States are labelled, and filled with a gradient
@@ -188,3 +188,7 @@ SELECT svgDoc( array_agg( svg ),
     def => svgLinearGradient('state', '#8080ff', '#c0c0ff')
   ) AS svg FROM shapes;
 ```
+
+## Conclusion
+
+- You could even use it to generate charts of non-spatial data (although this would be better handled by a more task-specific API).
