@@ -91,7 +91,7 @@ Data for the highest point in each state is provided as an inline table of value
 )
 ```
 ### Prepare High Point symbols
-The next subquery does several things:
+The next query does several things:
 * translates the `lon` and `lat` location for Alaska and Hawaii high points to match the transformation applied to the state geometry
 * computes the `symHeight` attribute for the height of the high point triangle symbol 
 * assigns a fill color value to each high point based on the height
