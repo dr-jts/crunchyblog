@@ -41,20 +41,20 @@ The SQL query to generate the map is [here](https://github.com/dr-jts/pg_svg/blo
 ```
 psql -A -t -o us-highpt.svg  < us-highpt-svg.sql
 ```
-The SVG output can be view in a web browser.
+The SVG output `us-highpt.svg` can be view in any web browser.
 
 ## How it Works
 
-Let's break the query down to see how the data is prepared and then rendered to SVG.  A dataset of US states in geodetic (WGS84, SRID = 4326) is required.  We used the Natural Earth states and provinces data from here.  It can be loaded into a table `ne.admin_1_state_prov` with the following command:
+Let's break the query down to see how the data is prepared and then rendered to SVG.  A dataset of US states in geodetic coordinate system (WGS84, SRID = 4326) is required.  We used the Natural Earth states and provinces data available [here](https://www.naturalearthdata.com/downloads/10m-cultural-vectors/10m-admin-1-states-provinces/).  It is loaded into a table `ne.admin_1_state_prov` with the following command:
 ```
 shp2pgsql -c -D -s 4326 -i -I ne_10m_admin_1_states_provinces.shp ne.admin_1_state_prov | psql
 ```
 
-The SQL `WITH` construct allows organizing the query into simple, modular steps.  We'll describe each one in turn.
+The query uses the SQL `WITH` construct to organize the process into simple, modular steps.  We'll describe each one in turn.
 
 ### Select US state features
 
-First, the US state features are selected from the loaded Natural Earth boundaries table
+First, the US state features are selected from the Natural Earth boundaries table `ne.admin_1_state_prov`.
 ```
 us_state AS (SELECT name, abbrev, postal, geom 
   FROM ne.admin_1_state_prov
