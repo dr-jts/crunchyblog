@@ -83,9 +83,10 @@ Data for the high point in each state is provided as an inline table of values:
 )
 ```
 The next subquery does several things at once:
-* the high point location for Alaska and Hawaii is translated to match the transformation applied to the state geometry
+* the high point `lon` and `lat` location for Alaska and Hawaii is translated to match the transformation applied to the state geometry
+* the `symHeight` attribute is computed to provide the height of the high point triangle symbol 
 * a fill color value is assigned to each high point based on the height
-* the high points are sorted in order of latitude, so that the triangle symbols overlap correctly when rendered 
+* the `ORDER BY` sorts the high points by latitude, so that the triangle symbols overlap correctly when rendered 
 ```
 ,highpt_shape AS (SELECT name, state, hgt_ft, 
     -- translate high points to match shifted states
@@ -105,5 +106,34 @@ The next subquery does several things at once:
     END AS clr
   FROM high_pt ORDER BY lat DESC)
 ```  
+The previous queries have transformed the raw data into a form suitable for rendering.  
+Now we get to see `pg-svg` in action!
+The next query generates the SVG text for each output image element, 
+as separate records in a result set called `shapes`.
+
+The SVG elements are generated in the order in which they should be drawn - states and labels first, 
+with high-point symbols on top. 
+Let's break it down:
+
+The first subquery produces SVG shapes from the state geometries.
+`svgShape` produces a suitable SVG shape element for any PostGIS geometry.
+It also provides optional parameters supporting other capabilities of SVG.
+Here `title` specifies that the state name is displayed as a tooltip,
+and `style` specifies the styling of the shape.
+Styling in SVG can be provided using properties defined in the 
+[Cascaded Style Sheets (CSS)](https://developer.mozilla.org/en-US/docs/Glossary/CSS) specification.
+`pg-svg` provides a `svgStyle` function to make it easy to specify the 
+names and values of CSS styling properties.
+```
+,shapes AS (
+  -- State shapes
+  SELECT geom, svgShape( geom,
+    title => name,
+    style => svgStyle(  'stroke', '#ffffff',
+                        'stroke-width', 0.1::text,
+                        'fill', 'url(#state)',
+                        'stroke-linejoin', 'round' ) )
+    svg FROM us_map
+```
 
 
