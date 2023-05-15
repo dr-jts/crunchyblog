@@ -186,7 +186,7 @@ This is handled by the [`svgDoc`](https://github.com/dr-jts/pg_svg#svgdoc) funct
 
 The viewable extent of the SVG data needs to be provided by the `viewbox` parameter.
 The most common case is to display all of the rendered data.
-An easy way to determine this is to apply the PostGIS ST_Exrtent` aggregate function to the input data
+An easy way to determine this is to apply the PostGIS `ST_Exrtent` aggregate function to the input data
 (this is why we included the `geom` column as well as the `svg` text column).
 We can include a border by enlarging the extent using the `ST_Expand` function.
 The function [`svgViewBox`](https://github.com/dr-jts/pg_svg#svgviewbox) converts the PostGIS geometry for the extent into SVG format.
@@ -201,6 +201,13 @@ SELECT svgDoc( array_agg( svg ),
   ) AS svg FROM shapes;
 ```
 
+The output from `svgDoc` is a `text` value which can be used anywhere that SVG is supported.
+
 ## Conclusion
 
+We've shown how you can use the `pg-svg` SQL function library to easily generate map images directly from PostGIS data.
+SVG is a very powerful format for vector data, and there's lot more that you can do with SVG objects.  
+By applying some additional CSS and Javascript it's possible to do things like 
 - You could even use it to generate charts of non-spatial data (although this would be better handled by a more task-specific API).
+
+Let us know if you find `pg-svg` useful, or if you have any ideas for improving it! 
