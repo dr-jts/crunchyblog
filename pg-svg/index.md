@@ -73,7 +73,37 @@ Next, the geometry for states Alaska and Hawaii is translated and scaled to make
     ELSE geom END AS geom
   FROM us_state)
 ```
-
-
+Data for the high point in each state is provided as an inline table of values:
+```
+,high_pt(name, state, hgt_m, hgt_ft, lon, lat) AS (VALUES
+ ('Denali',              'AK', 6198, 20320,  -151.007222,63.069444)
+,('Mount Whitney',       'CA', 4421, 14505,  -118.292,36.578583)
+...
+,('Britton Hill',        'FL',  105,   345,  -86.281944,30.988333)
+)
+```
+The next subquery does several things at once:
+* the high point location for Alaska and Hawaii is translated to match the transformation applied to the state geometry
+* a fill color value is assigned to each high point based on the height
+* the high points are sorted in order of latitude, so that the triangle symbols overlap correctly when rendered 
+```
+,highpt_shape AS (SELECT name, state, hgt_ft, 
+    -- translate high points to match shifted states
+    CASE WHEN state = 'AK' THEN lon + 18
+      WHEN state = 'HI' THEN lon + 32
+      ELSE lon END AS lon,
+    CASE WHEN state = 'AK' THEN lat - 17
+      WHEN state = 'HI' THEN lat + 10
+      ELSE lat END AS lat,
+    (2.0 * hgt_ft) / 15000.0 + 0.5 AS symHeight,
+    CASE WHEN hgt_ft > 14000 THEN '#ffffff'
+         WHEN hgt_ft >  7000 THEN '#aaaaaa'
+         WHEN hgt_ft >  5000 THEN '#ff8800'
+         WHEN hgt_ft >  2000 THEN '#ffff44'
+         WHEN hgt_ft >  1000 THEN '#aaffaa'
+                             ELSE '#558800'
+    END AS clr
+  FROM high_pt ORDER BY lat DESC)
+```  
 
 
