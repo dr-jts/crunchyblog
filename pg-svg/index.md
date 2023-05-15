@@ -58,8 +58,21 @@ us_state AS (SELECT name, abbrev, postal, geom
   FROM ne.admin_1_state_prov
   WHERE adm0_a3 = 'USA')
 ```
-
-Next, the geometry for states Alaska and Hawaii is  
+Next, the geometry for states Alaska and Hawaii is translated and scaled to make the map more compact.  The scaling is done around the location of the state high point, to make it easy to apply the same transformation to the high point itself.
+```
+,us_map AS (SELECT name, abbrev, postal, 
+    -- transform AK and HI to make them fit map
+    CASE WHEN name = 'Alaska' THEN 
+      ST_Translate(ST_Scale(
+        ST_Intersection( ST_GeometryN(geom,1), 'SRID=4326;POLYGON ((-141 80, -141 50, -170 50, -170 80, -141 80))'),
+        'POINT(0.5 0.75)', 'POINT(-151.007222 63.069444)'::geometry), 18, -17)
+    WHEN name = 'Hawaii' THEN 
+      ST_Translate(ST_Scale(
+        ST_Intersection(geom, 'SRID=4326;POLYGON ((-161 23, -154 23, -154 18, -161 18, -161 23))'), 
+        'POINT(3 3)', 'POINT(-155.468333 19.821028)'::geometry), 32, 10)
+    ELSE geom END AS geom
+  FROM us_state)
+```
 
 
 
