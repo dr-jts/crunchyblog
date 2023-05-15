@@ -81,7 +81,7 @@ to make it easy to apply the same transformation to the high point feature.
   FROM us_state)
 ```
 ### High Points of US states
-Data for the high point in each state is provided as an inline table of values:
+Data for the highest point in each state is provided as an inline table of values:
 ```
 ,high_pt(name, state, hgt_m, hgt_ft, lon, lat) AS (VALUES
  ('Denali',              'AK', 6198, 20320,  -151.007222,63.069444)
@@ -91,11 +91,11 @@ Data for the high point in each state is provided as an inline table of values:
 )
 ```
 ### Prepare High Point symbols
-The next subquery does several things at once:
-* the high point `lon` and `lat` location for Alaska and Hawaii is translated to match the transformation applied to the state geometry
-* the `symHeight` attribute is computed to provide the height of the high point triangle symbol 
-* a fill color value is assigned to each high point based on the height
-* the `ORDER BY` sorts the high points by latitude, so that the triangle symbols overlap correctly when rendered 
+The next subquery does several things:
+* translates the `lon` and `lat` location for Alaska and Hawaii high points to match the transformation applied to the state geometry
+* computes the `symHeight` attribute for the height of the high point triangle symbol 
+* assigns a fill color value to each high point based on the height
+* uses `ORDER BY` to sort the high points by latitude, so that their symbols overlap correctly when rendered 
 ```
 ,highpt_shape AS (SELECT name, state, hgt_ft, 
     -- translate high points to match shifted states
