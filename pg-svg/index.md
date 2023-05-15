@@ -37,7 +37,7 @@ The resulting map looks like this (to see tooltips open the [raw image](https://
 
 ![](us-highpt.svg)
 
-The full SQL query is here.  It can be downloaded and run using `psql`:
+The SQL query to generate the map is [here](https://github.com/dr-jts/pg_svg/blob/master/demo/map/us-highpt-svg.sql).  It can be downloaded and run using `psql`:
 ```
 psql -A -t -o us-highpt.svg  < us-highpt-svg.sql
 ```
@@ -50,9 +50,16 @@ Let's break the query down to see how the data is prepared and then rendered to 
 shp2pgsql -c -D -s 4326 -i -I ne_10m_admin_1_states_provinces.shp ne.admin_1_state_prov | psql
 ```
 
-The SQL `WITH` construct allows organizing the query into simple, logical steps.  
+The SQL `WITH` construct allows organizing the query into simple, modular steps.  We'll describe each one in turn.
 
-First, ...
+First, the US state features are selected from the loaded Natural Earth boundaries table
+```
+us_state AS (SELECT name, abbrev, postal, geom 
+  FROM ne.admin_1_state_prov
+  WHERE adm0_a3 = 'USA')
+```
+
+Next, the geometry for states Alaska and Hawaii is  
 
 
 
