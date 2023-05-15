@@ -181,6 +181,18 @@ The title is provided for a tooltip, and the styling uses the computed `clr` att
 )
 ```
 ### Produce final SVG image
+The generated SVG elements need to be wrapped in an `<svg>` document element. 
+This is handled by the [`svgDoc`](https://github.com/dr-jts/pg_svg#svgdoc) function.
+
+The viewable extent of the SVG data needs to be provided by the `viewbox` parameter.
+The most common case is to display all of the rendered data.
+An easy way to determine this is to apply the PostGIS ST_Exrtent` aggregate function to the input data
+(this is why we included the `geom` column as well as the `svg` text column).
+We can include a border by enlarging the extent using the `ST_Expand` function.
+The function [`svgViewBox`](https://github.com/dr-jts/pg_svg#svgviewbox) converts the PostGIS geometry for the extent into SVG format.
+
+We also include a definition for an SVG [linear gradient](https://developer.mozilla.org/en-US/docs/Web/SVG/Element/linearGradient)
+to be used as the fill style for the state features.
 
 ```
 SELECT svgDoc( array_agg( svg ),
