@@ -24,8 +24,8 @@ PostGIS has had the function [`ST_AsSVG`](https://postgis.net/docs/manual-3.3/ST
 * The SVG image needs to be provided as an SVG `<svg>` element
 * the extent of the rendered data must be specified, along with (optionally) the size of the rendered image
 
-Doing this manually requires detailed knowledge of the SVG format, and is complex and error-prone.  
-But the `pg-svg` library can do all this in a single SQL query with a simple API.
+Doing all of this manually requires detailed knowledge of the SVG format, and is complex and error-prone.  
+The `pg-svg` library provides a simple API that can do this in a single SQL query.
 
 ## A map of US High Points
 
