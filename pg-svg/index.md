@@ -214,12 +214,12 @@ We've shown how the `pg-svg` SQL function library lets you easily generate map i
 This can be used as a simple ad-hoc way of visualizing spatial data.
 Or it could be embedded in a larger system to automate repetitive map generation workflows.
 
-For another option to generate maps in the database, 
-see this PostGIS Day 2022 [presentation](https://www.youtube.com/watch?v=5Zg8j9X2f-Y) showing how to define and render bitmap images using the raster functions in PostGIS. 
-
 SVG is natural fit for vector data.  The structured nature of SVG means that there's lot more that you can do with SVG images.  
 By adding some CSS and Javascript it's possible to add advanced styling, custom popups, dynamic behaviour and interaction
 with other web page elements.
+
+For another option to generate maps in the database, 
+see this PostGIS Day 2022 [presentation](https://www.youtube.com/watch?v=5Zg8j9X2f-Y) showing how to define and render bitmap images using the raster functions in PostGIS. 
 
 Although we've focussed on creating maps of geospatial data, SVG is often used for creating other kinds of graphics.
 Ror examples of using it to create geometric and mathematical designs see the `pg-svg` [`demo`](https://github.com/dr-jts/pg_svg/tree/master/demo) folder.
