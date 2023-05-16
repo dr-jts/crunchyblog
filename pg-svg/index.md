@@ -4,7 +4,7 @@
 
 PostGIS is also the most popular target for map creation technology, so there are many options to choose from.  Data can be rendered to a raster image using a web map server like [GeoServer](https://geoserver.org/) or [MapServer](https://mapserver.org/); it can be converted to GeoJSON or vector tiles and shipped to a Web browser for rendering by a library such as [OpenLayers](https://openlayers.org/), [MapLibre](https://maplibre.org/) or [Leaflet](https://leafletjs.com/); or a GIS application such as [QGIS](https://qgis.org) can connect to the database and create richly-styled maps from spatial queries.  
 
-One thing all these options have in common is that they require external tools that need to be installed, configured and maintained in a separate environment. This can introduce unwanted complexity to a geospatial data architecture.
+One thing all these options have in common is that they require external tools that need to be installed, configured and maintained in a separate environment. This can introduce unwanted complexity to a geospatial architecture.
 
 This post presents a simpler way to generate maps entirely within the database, with no external infrastructure required.  
 
