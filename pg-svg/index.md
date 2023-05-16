@@ -25,8 +25,9 @@ But the `pg-svg` library can do all this in a single SQL query with a simple API
 
 ## Example
 
-The easiest way to understand `pg-svg` is to see an example.  We'll create a map of the United States showing the highest point in each state.
-To show the power of SVG and `pg-svg` for generating and styling shapes the map has the following features:
+Here's an example that shows the power and convenience of combining PostGIS and `pg-svg` functions to generate SVG.
+We'll create a map of the United States showing the highest point in each state.
+The map has the following features:
 
 * All 50 states are shown, with Alaska and Hawaii transformed to better fit the map
 * States are labelled, and filled with a gradient
@@ -41,7 +42,7 @@ The SQL query to generate the map is [here](https://github.com/dr-jts/pg_svg/blo
 ```
 psql -A -t -o us-highpt.svg  < us-highpt-svg.sql
 ```
-The SVG output `us-highpt.svg` can be view in any web browser.
+The SVG output `us-highpt.svg` can be viewed in any web browser.
 
 ## How it Works
 
