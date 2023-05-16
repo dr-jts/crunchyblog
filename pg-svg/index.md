@@ -8,9 +8,11 @@ This post presents a simpler way to generate maps entirely within the database, 
 
 ## SVG for the win
 
-This is done by using the powerful [Scalable Vector Graphics](https://developer.mozilla.org/en-US/docs/Web/SVG) (SVG) format.  SVG is widely supported by web browsers and other tools.  Generating SVG can be complex, but the PL/pgSQL library [`pg-svg`](https://github.com/dr-jts/pg_svg) makes it easy.  The library provides a set of high-level functions which make it easy to convert PostGIS data into styled SVG documents.
+This is done by using the powerful [Scalable Vector Graphics](https://developer.mozilla.org/en-US/docs/Web/SVG) (SVG) format.  SVG is widely supported by web browsers and other tools.  
 
 - discuss how SVG requires shapes, scaling, styling and optionally identifiers and CSS
+
+Generating SVG can be complex, but the PL/pgSQL library [`pg-svg`](https://github.com/dr-jts/pg_svg) makes it easy.  The library provides a set of high-level functions which make it easy to convert PostGIS data into styled SVG documents.
 
 ## Introducing `pg-svg`
 
