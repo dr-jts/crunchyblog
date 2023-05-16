@@ -2,8 +2,6 @@
 
 One of the most informative things to do with geospatial data is to visualize it on a map.  *Comment about how PostGIS data is generally just data* There are many ways of doing this.  Data can be rendering to a raster image using a web map server like [GeoServer](https://geoserver.org/) or [MapServer](https://mapserver.org/); the data can be converted to GeoJSON or vector tiles and shipped to a Web browser for rendering by a library such as [OpenLayers](https://openlayers.org/), [MapLibre](https://maplibre.org/) or [Leaflet](https://leafletjs.com/); or a client GIS application such as [QGIS](https://qgis.org) can connect to the database and create richly-styled maps from spatial queries.  
 
-- For another option for database-generated maps, see this PostGIS Day 2022 [presentation](https://www.youtube.com/watch?v=5Zg8j9X2f-Y) showing how to define and render bitmap images. 
-
 One thing all these options have in common is that they require external tools that need to be installed and maintained in a separate environment.
 This can introduce burdensome complexity to a geospatial data architecture.
 This post presents a simpler way to generate maps entirely within the database, with no external infrastructure required.  
@@ -188,7 +186,7 @@ The title is provided for a tooltip, and the styling uses the computed `clr` att
 )
 ```
 ### Produce final SVG image
-The generated SVG elements need to be wrapped in an `<svg>` document element. 
+The generated shape elements need to be wrapped in an `<svg>` document element. 
 This is handled by the [`svgDoc`](https://github.com/dr-jts/pg_svg#svgdoc) function.
 
 The viewable extent of the SVG data needs to be provided by the `viewbox` parameter.
@@ -216,7 +214,10 @@ We've shown how the `pg-svg` SQL function library lets you easily generate map i
 This can be used as a simple ad-hoc way of visualizing spatial data.
 Or it could be embedded in a larger system to automate repetitive map generation workflows.
 
-SVG is a powerful format for vector data, and there's lot more that you can do with SVG images.  
+For another option to generate maps in the database, 
+see this PostGIS Day 2022 [presentation](https://www.youtube.com/watch?v=5Zg8j9X2f-Y) showing how to define and render bitmap images using the raster functions in PostGIS. 
+
+SVG is natural fit for vector data.  The structured nature of SVG means that there's lot more that you can do with SVG images.  
 By adding some CSS and Javascript it's possible to add advanced styling, custom popups, dynamic behaviour and interaction
 with other web page elements.
 
