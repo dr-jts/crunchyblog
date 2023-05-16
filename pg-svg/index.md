@@ -27,7 +27,7 @@ PostGIS has had the function [`ST_AsSVG`](https://postgis.net/docs/manual-3.3/ST
 Doing this manually requires detailed knowledge of the SVG format, and is complex and error-prone.  
 But the `pg-svg` library can do all this in a single SQL query with a simple API.
 
-## Example
+## A map of US High Points
 
 Here's an example that shows the power and convenience of combining PostGIS and `pg-svg` functions to generate SVG.
 We'll create a map of the United States showing the highest point in each state.
