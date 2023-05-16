@@ -75,9 +75,10 @@ us_state AS (SELECT name, abbrev, postal, geom
 
 ### Make a US state map
 Next, the map is made more compact by realigning the far-flung states of Alaska and Hawaii.   
-This is done using the PostGIS [affine transformation functions](https://postgis.net/docs/manual-3.3/reference.html#Affine_Transformation).
-The scaling is done around the location of the state high point, 
-to make it easy to apply the same transformation to the high point feature.
+This is done using PostGIS [affine transformation functions](https://postgis.net/docs/manual-3.3/reference.html#Affine_Transformation).
+The states are made more proportionate using [`ST_Scale`](https://postgis.net/docs/manual-3.3/ST_Scale.html), 
+and moved closer to the lower 48 using [`ST_Translate`](https://postgis.net/docs/manual-3.3/ST_Translate.html).
+The scaling is done around the location of the state high point, to make it easy to apply the same transformation to the high point feature.
 ```
 ,us_map AS (SELECT name, abbrev, postal, 
     -- transform AK and HI to make them fit map
