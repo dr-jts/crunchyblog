@@ -204,7 +204,7 @@ SELECT svgDoc( array_agg( svg ),
 
 The output from `svgDoc` is a `text` value which can be used anywhere that SVG is supported.
 
-## Conclusion
+## More to Explore
 
 We've shown how the `pg-svg` SQL function library lets you easily generate map images from PostGIS data right in the database.
 This can be used as a simple ad-hoc way of visualizing spatial data.
@@ -214,8 +214,8 @@ SVG is a powerful format for vector data, and there's lot more that you can do w
 By adding some CSS and Javascript it's possible to add advanced styling, custom popups, dynamic behaviour and interaction
 with other web page elements.
 
-Although we've focussed here on creating maps of geospatial data, SVG is often used for creating other kinds of graphics.
-See the `pg-svg` [`demo`](https://github.com/dr-jts/pg_svg/tree/master/demo) area for examples of creating geometric and mathematical designs.
+Although we've focussed on creating maps of geospatial data, SVG is often used for creating other kinds of graphics.
+Ror examples of using it to create geometric and mathematical designs see the `pg-svg` [`demo`](https://github.com/dr-jts/pg_svg/tree/master/demo) folder.
 You could even use `pg-svg` to generate charts of non-spatial data (although this would be better handled by a more task-specific API).
 
 Let us know if you find `pg-svg` useful, or if you have ideas for improving it! 
