@@ -1,9 +1,11 @@
 # Create Maps with PostGIS and `pg-svg`
 
-One of the most informative things to do with geospatial data is to visualize it on a map.  *Comment about how PostGIS data is generally just data* There are many ways of doing this.  Data can be rendering to a raster image using a web map server like [GeoServer](https://geoserver.org/) or [MapServer](https://mapserver.org/); the data can be converted to GeoJSON or vector tiles and shipped to a Web browser for rendering by a library such as [OpenLayers](https://openlayers.org/), [MapLibre](https://maplibre.org/) or [Leaflet](https://leafletjs.com/); or a client GIS application such as [QGIS](https://qgis.org) can connect to the database and create richly-styled maps from spatial queries.  
+PostGIS excels at storing, manipulating and analyzing geospatial data.  But at some point it's almost always desired to create a spatial data visualization - in other words, a map.  
 
-One thing all these options have in common is that they require external tools that need to be installed and maintained in a separate environment.
-This can introduce burdensome complexity to a geospatial data architecture.
+PostGIS also happens to be the most popular target for map creation technology, so there are many options to choose from.  Data can be rendering to a raster image using a web map server like [GeoServer](https://geoserver.org/) or [MapServer](https://mapserver.org/); the data can be converted to GeoJSON or vector tiles and shipped to a Web browser for rendering by a library such as [OpenLayers](https://openlayers.org/), [MapLibre](https://maplibre.org/) or [Leaflet](https://leafletjs.com/); or a GIS application such as [QGIS](https://qgis.org) can connect to the database and create richly-styled maps from spatial queries.  
+
+One thing all these options have in common is that they require external tools that need to be installed, configured and maintained in a separate environment. This can introduce unwanted complexity to a geospatial data architecture.
+
 This post presents a simpler way to generate maps entirely within the database, with no external infrastructure required.  
 
 ## SVG for the win
@@ -217,11 +219,12 @@ The output from `svgDoc` is a `text` value which can be used anywhere that SVG i
 
 We've shown how the `pg-svg` SQL function library lets you easily generate map images from PostGIS data right in the database.
 This can be used as a simple ad-hoc way of visualizing spatial data.
-Or it could be embedded in a larger system to automate repetitive map generation workflows.
+Or, it could be embedded in a larger system to automate repetitive map generation workflows.
 
-Although SVG is a natural fit for vector data, there may be situations for which bitmap (raster) images are a better fit.  
+Although SVG is a natural fit for vector data, there may be situations where producing a map as a bitmap (raster) image makes sense.  
 For a way of generating raster maps right in the database
 see this PostGIS Day 2022 [presentation](https://www.youtube.com/watch?v=5Zg8j9X2f-Y).
+This would be especially appealing where the map is displaying data stored using [PostGIS raster data](https://postgis.net/docs/manual-3.3/using_raster_dataman.html).  It would also be possible to combine vector and raster data into a hybrid SVG/image output.
 
 Although we've focussed on creating maps of geospatial data, SVG is often used for creating other kinds of graphics.
 Ror examples of using it to create geometric and mathematical designs see the `pg-svg` [`demo`](https://github.com/dr-jts/pg_svg/tree/master/demo) folder.
