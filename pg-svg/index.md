@@ -1,10 +1,14 @@
 # Creating Maps with PostGIS and `pg-svg`
 
-One of the most informative things to do with geospatial data is to visualize it on a map.  *Comment about how PostGIS data is generally just data* There are many ways of doing this.  Data can be rendering to a raster image using a map server like GeoServer or MapServer; the raw data can be shipped to a Web browser and rendered using a library such as OpenLayers or Leaflet; or a client GIS application such as QGIS can connect to the database and create richly-styled maps from the data.  
+One of the most informative things to do with geospatial data is to visualize it on a map.  *Comment about how PostGIS data is generally just data* There are many ways of doing this.  Data can be rendering to a raster image using a web map server like [GeoServer](https://geoserver.org/) or [MapServer](https://mapserver.org/); the raw data can be shipped to a Web browser and rendered using a library such as [OpenLayers](https://openlayers.org/) or [Leaflet](https://leafletjs.com/); or a client GIS application such as [QGIS](https://qgis.org) can connect to the database and create richly-styled maps from spatial queries.  
 
 - For another option for database-generated maps, see this PostGIS Day 2022 [presentation](https://www.youtube.com/watch?v=5Zg8j9X2f-Y) showing how to define and render bitmap images. 
 
-This post presents a way to generate maps entirely within the database, with no external application required.  This is done by using the SVG (Scalable Vector Graphics) format, which is widely supported by web browsers and other tools.  Generating SVG can be complex, but a PL/pgSQL library called `pg-svg` makes it easy.  The library provides a set of high-level functions which make it easy to convert PostGIS data into styled SVG documents.
+This post presents a way to generate maps entirely within the database, with no external application required.  
+
+## SVG for the win
+
+This is done by using the powerful [Scalable Vector Graphics](https://developer.mozilla.org/en-US/docs/Web/SVG) (SVG) format.  SVG is widely supported by web browsers and other tools.  Generating SVG can be complex, but the PL/pgSQL library [`pg-svg`](https://github.com/dr-jts/pg_svg) makes it easy.  The library provides a set of high-level functions which make it easy to convert PostGIS data into styled SVG documents.
 
 - discuss how SVG requires shapes, scaling, styling and optionally identifiers and CSS
 
