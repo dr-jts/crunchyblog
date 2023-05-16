@@ -6,7 +6,7 @@ PostGIS is also the most popular target for map creation technology, so there ar
 
 One thing all these options have in common is that they require external tools that need to be installed, configured and maintained in a separate environment. This can introduce unwanted complexity to a geospatial architecture.
 
-This post presents a simpler way to generate maps entirely within the database, with no external infrastructure required.  
+This post presents a simple way to generate maps entirely within the database, with no external infrastructure required.  
 
 ## SVG for the win
 
