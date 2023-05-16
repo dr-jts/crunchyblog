@@ -1,4 +1,4 @@
-# Creating Maps with PostGIS and `pg-svg`
+# Create Maps with PostGIS and `pg-svg`
 
 One of the most informative things to do with geospatial data is to visualize it on a map.  *Comment about how PostGIS data is generally just data* There are many ways of doing this.  Data can be rendering to a raster image using a web map server like [GeoServer](https://geoserver.org/) or [MapServer](https://mapserver.org/); the data can be converted to GeoJSON or vector tiles and shipped to a Web browser for rendering by a library such as [OpenLayers](https://openlayers.org/), [MapLibre](https://maplibre.org/) or [Leaflet](https://leafletjs.com/); or a client GIS application such as [QGIS](https://qgis.org) can connect to the database and create richly-styled maps from spatial queries.  
 
