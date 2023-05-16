@@ -12,6 +12,10 @@ This is done by using the powerful [Scalable Vector Graphics](https://developer.
 
 - discuss how SVG requires shapes, scaling, styling and optionally identifiers and CSS
 
+SVG is a natural fit for vector data.  It maintains all of the inherent structure of the data.  This means there is a lot that you can do with SVG images.  
+By adding some CSS and Javascript it's possible to add advanced styling, custom popups, dynamic behaviour and interaction
+with other web page elements.
+
 Generating SVG can be complex, but the PL/pgSQL library [`pg-svg`](https://github.com/dr-jts/pg_svg) makes it easy.  The library provides a set of high-level functions which make it easy to convert PostGIS data into styled SVG documents.
 
 ## Introducing `pg-svg`
@@ -216,12 +220,9 @@ We've shown how the `pg-svg` SQL function library lets you easily generate map i
 This can be used as a simple ad-hoc way of visualizing spatial data.
 Or it could be embedded in a larger system to automate repetitive map generation workflows.
 
-SVG is natural fit for vector data.  The structured nature of SVG means that there's lot more that you can do with SVG images.  
-By adding some CSS and Javascript it's possible to add advanced styling, custom popups, dynamic behaviour and interaction
-with other web page elements.
-
-For another option to generate maps in the database, 
-see this PostGIS Day 2022 [presentation](https://www.youtube.com/watch?v=5Zg8j9X2f-Y) showing how to define and render bitmap images using the raster functions in PostGIS. 
+Although SVG is a natural fit for vector data, there may be situations for which bitmap (raster) images are a better fit.  
+For a way of generating raster maps right in the database
+see this PostGIS Day 2022 [presentation](https://www.youtube.com/watch?v=5Zg8j9X2f-Y).
 
 Although we've focussed on creating maps of geospatial data, SVG is often used for creating other kinds of graphics.
 Ror examples of using it to create geometric and mathematical designs see the `pg-svg` [`demo`](https://github.com/dr-jts/pg_svg/tree/master/demo) folder.
