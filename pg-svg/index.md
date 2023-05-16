@@ -62,7 +62,7 @@ Let's break the query down to see how the data is prepared and then rendered to 
 shp2pgsql -c -D -s 4326 -i -I ne_10m_admin_1_states_provinces.shp ne.admin_1_state_prov | psql
 ```
 
-The query uses the SQL `WITH` construct to organize the process into simple, modular steps.  We'll describe each one in turn.
+The query uses the SQL `WITH` construct to organize processing into simple, modular steps.  We'll describe each one in turn.
 
 ### Select US state features
 
