@@ -1,10 +1,12 @@
 # Creating Maps with PostGIS and `pg-svg`
 
-One of the most informative things to do with geospatial data is to visualize it on a map.  *Comment about how PostGIS data is generally just data* There are many ways of doing this.  Data can be rendering to a raster image using a web map server like [GeoServer](https://geoserver.org/) or [MapServer](https://mapserver.org/); the raw data can be shipped to a Web browser and rendered using a library such as [OpenLayers](https://openlayers.org/) or [Leaflet](https://leafletjs.com/); or a client GIS application such as [QGIS](https://qgis.org) can connect to the database and create richly-styled maps from spatial queries.  
+One of the most informative things to do with geospatial data is to visualize it on a map.  *Comment about how PostGIS data is generally just data* There are many ways of doing this.  Data can be rendering to a raster image using a web map server like [GeoServer](https://geoserver.org/) or [MapServer](https://mapserver.org/); the data can be converted to GeoJSON or vector tiles and shipped to a Web browser for rendering by a library such as [OpenLayers](https://openlayers.org/), [MapLibre](https://maplibre.org/) or [Leaflet](https://leafletjs.com/); or a client GIS application such as [QGIS](https://qgis.org) can connect to the database and create richly-styled maps from spatial queries.  
 
 - For another option for database-generated maps, see this PostGIS Day 2022 [presentation](https://www.youtube.com/watch?v=5Zg8j9X2f-Y) showing how to define and render bitmap images. 
 
-This post presents a way to generate maps entirely within the database, with no external application required.  
+One thing all these options have in common is that they require external tools that need to be installed and maintained in a separate environment.
+This can introduce burdensome complexity to a geospatial data architecture.
+This post presents a simpler way to generate maps entirely within the database, with no external infrastructure required.  
 
 ## SVG for the win
 
