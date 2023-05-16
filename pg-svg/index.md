@@ -12,9 +12,8 @@ This is done by using the powerful [Scalable Vector Graphics](https://developer.
 
 - discuss how SVG requires shapes, scaling, styling and optionally identifiers and CSS
 
-SVG is a natural fit for vector data.  It maintains all of the inherent structure of the data.  This means there is a lot that you can do with SVG images.  
-By adding some CSS and Javascript it's possible to add advanced styling, custom popups, dynamic behaviour and interaction
-with other web page elements.
+SVG is a natural fit for vector data.  It maintains all of the inherent structure of the data.  This means there is a lot that you can do with SVG images.  By adding some CSS and Javascript it's possible to add advanced styling, 
+custom popups, dynamic behaviour and interaction with other web page elements.
 
 Generating SVG can be complex, but the PL/pgSQL library [`pg-svg`](https://github.com/dr-jts/pg_svg) makes it easy.  The library provides a set of high-level functions which make it easy to convert PostGIS data into styled SVG documents.
 
