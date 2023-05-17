@@ -12,7 +12,7 @@ This post presents a simple way to generate maps entirely within the database, w
 
 A great way to display vector data is to use the [Scalable Vector Graphics](https://developer.mozilla.org/en-US/docs/Web/SVG) (SVG) format.  It provides rich functionality for displaying and styling geometric shapes.
 SVG is widely supported by web browsers and other tools.  
-By adding some CSS and Javascript it's possible to add advanced styling, 
+By including CSS and Javascript it's possible to add advanced styling, 
 custom popups, dynamic behaviour and interaction with other web page elements.
 
 ## Introducing `pg-svg`
