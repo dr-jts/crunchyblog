@@ -1,6 +1,6 @@
 # Create Maps with PostGIS and `pg-svg`
 
-[PostGIS](https://postgis.net/) excels at storing, manipulating and analyzing geospatial data.  But at some point it's usually desired to utilize the integrative capabilities of the human visual cortex via a two-dimensional representation.  In other words, to see spatial data on a map.  
+[PostGIS](https://postgis.net/) excels at storing, manipulating and analyzing geospatial data.  But at some point it's usually desired to convert raw spatial data into a two-dimensional representation to utilize the integrative capabilities of the human visual cortex.  In other words, to see things on a map.  
 
 PostGIS is a very popular source for map creation technology, so there are many options to choose from.  Data can be rendered to a raster image using a web map server like [GeoServer](https://geoserver.org/) or [MapServer](https://mapserver.org/); it can be converted to GeoJSON or vector tiles and shipped to a Web browser for rendering by a library such as [OpenLayers](https://openlayers.org/), [MapLibre](https://maplibre.org/) or [Leaflet](https://leafletjs.com/); or a GIS application such as [QGIS](https://qgis.org) can connect to the database and create richly-styled maps from spatial queries.  
 
