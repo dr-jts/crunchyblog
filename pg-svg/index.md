@@ -10,29 +10,17 @@ This post presents a simple way to generate maps entirely within the database, w
 
 ## SVG for the win
 
-This is done by using the powerful [Scalable Vector Graphics](https://developer.mozilla.org/en-US/docs/Web/SVG) (SVG) format.  SVG is widely supported by web browsers and other tools.  
-
-- discuss how SVG requires shapes, scaling, styling and optionally identifiers and CSS
-
-SVG maintains all of the inherent structure of vector data.  This means there is a lot that you can do with SVG images.  By adding some CSS and Javascript it's possible to add advanced styling, 
+A great way to display vector data is to use the [Scalable Vector Graphics](https://developer.mozilla.org/en-US/docs/Web/SVG) (SVG) format.  It provides rich functionality for displaying and styling geometric shapes.
+SVG is widely supported by web browsers and other tools.  
+By adding some CSS and Javascript it's possible to add advanced styling, 
 custom popups, dynamic behaviour and interaction with other web page elements.
 
-Generating SVG can be complex, but the PL/pgSQL library [`pg-svg`](https://github.com/dr-jts/pg_svg) makes it easy.  The library provides a set of high-level functions which make it easy to convert PostGIS data into styled SVG documents.
+However, generating SVG "by hand" is difficult.  It requires detailed knowledge of the SVG format, and is complex and error-prone. 
+PostGIS has had the function [`ST_AsSVG`](https://postgis.net/docs/manual-3.3/ST_AsSVG.html) for years.  But it only produces the SVG [**path data**](https://svgwg.org/svg2-draft/paths.html#PathData) attribute value.  Much more is required to create a fully-styled SVG document.
 
 ## Introducing `pg-svg`
 
-PostGIS has had the function [`ST_AsSVG`](https://postgis.net/docs/manual-3.3/ST_AsSVG.html) for years.  But attempting to use it will quickly reveal that it is only a partial solution for generating an SVG image.  `ST_AsSVG` produces the [**path data**](https://svgwg.org/svg2-draft/paths.html#PathData) that specifies the outline of a shape to be rendered in SVG.  However, much more is required:
-
-* the path data must be encoded as the `d` attribute of a `<path>` element
-* the element needs to be styled
-* Polygons with holes require multiple path elements
-* Multigeometries are represented as groups of paths
-* Simple shapes such as points require different elements
-* The SVG image needs to be provided as an SVG `<svg>` element
-* the extent of the rendered data must be specified, along with (optionally) the size of the rendered image
-
-Doing all of this manually requires detailed knowledge of the SVG format, and is complex and error-prone.  
-The `pg-svg` library provides a simple API that can do this in a single SQL query.
+The PL/pgSQL library [`pg-svg`](https://github.com/dr-jts/pg_svg) makes it easy to convert PostGIS data into styled SVG documents.  The library provides a simple API as a set of PL/pgSQL functions which allow creating SVG in a single SQL query.
 
 ## A map of US High Points
 
