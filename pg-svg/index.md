@@ -20,12 +20,12 @@ custom popups, dynamic behaviour and interaction with other web page elements.
 Generating SVG "by hand" is difficult.  It requires detailed knowledge of the SVG format, and is complex and error-prone. 
 PostGIS has had the function [`ST_AsSVG`](https://postgis.net/docs/manual-3.3/ST_AsSVG.html) for years.  But it only produces the SVG [**path data**](https://svgwg.org/svg2-draft/paths.html#PathData) attribute value.  Much more is required to create a fully-styled SVG document.
 
-The PL/pgSQL library [`pg-svg`](https://github.com/dr-jts/pg_svg) makes it easy to convert PostGIS data into styled SVG documents.  The library provides a simple API as a set of PL/pgSQL functions which allow creating SVG in a single SQL query.
+The PL/pgSQL library [`pg-svg`](https://github.com/dr-jts/pg_svg) solves this problem!  It makes it easy to convert PostGIS data into styled SVG documents.  The library provides a simple API as a set of PL/pgSQL functions which allow creating an SVG document in a single SQL query.
 
 ## A map of US High Points
 
-Here's an example that shows the power and convenience of combining PostGIS and `pg-svg` functions to generate SVG.
-We'll create a map of the United States showing the highest point in each state.
+The best way to understand how `pg-svg` works is to see an example.
+We'll create an SVG map of the United States showing the highest point in each state.
 The map has the following features:
 
 * All 50 states are shown, with Alaska and Hawaii transformed to better fit the map
