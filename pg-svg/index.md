@@ -15,10 +15,10 @@ SVG is widely supported by web browsers and other tools.
 By adding some CSS and Javascript it's possible to add advanced styling, 
 custom popups, dynamic behaviour and interaction with other web page elements.
 
-However, generating SVG "by hand" is difficult.  It requires detailed knowledge of the SVG format, and is complex and error-prone. 
-PostGIS has had the function [`ST_AsSVG`](https://postgis.net/docs/manual-3.3/ST_AsSVG.html) for years.  But it only produces the SVG [**path data**](https://svgwg.org/svg2-draft/paths.html#PathData) attribute value.  Much more is required to create a fully-styled SVG document.
-
 ## Introducing `pg-svg`
+
+Generating SVG "by hand" is difficult.  It requires detailed knowledge of the SVG format, and is complex and error-prone. 
+PostGIS has had the function [`ST_AsSVG`](https://postgis.net/docs/manual-3.3/ST_AsSVG.html) for years.  But it only produces the SVG [**path data**](https://svgwg.org/svg2-draft/paths.html#PathData) attribute value.  Much more is required to create a fully-styled SVG document.
 
 The PL/pgSQL library [`pg-svg`](https://github.com/dr-jts/pg_svg) makes it easy to convert PostGIS data into styled SVG documents.  The library provides a simple API as a set of PL/pgSQL functions which allow creating SVG in a single SQL query.
 
