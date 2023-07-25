@@ -6,6 +6,9 @@ Prior art
 - GRASS
 - pprepair
 
+- how does this compare to PostGIS Topology?
+
+
 ## Coverage Operations
 
 ### Validation
