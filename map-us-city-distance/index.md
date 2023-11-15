@@ -10,7 +10,7 @@ Next is to obtain locations for the cities displayed on the map.
 Here the data is sourced from [Wikipedia](https://en.wikipedia.org/wiki/List_of_United_States_cities_by_population), and provided as in-query data.  
 Of course, points could also be sourced from any desired table.
 
-![](us-city-distance.svg]
+![](us-city-distance.svg)
 
 
 
