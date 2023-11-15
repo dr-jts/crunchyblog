@@ -1,4 +1,4 @@
-# Using PostGIS and pg-svg to create a distance map for US Cities
+# Using PostGIS and pg-svg to create a Distance map
 
 As a declarative language with powerful set-processing capabilities, SQL is an ideal language for generating graphical images
 (which often involve many nearly-similar elements).
