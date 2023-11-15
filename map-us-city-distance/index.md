@@ -2,7 +2,7 @@
 
 As a declarative language with powerful set-processing capabilities, SQL is an ideal language for generating graphical images
 (which often involve many nearly-similar elements).
-When combined with the geospatial processing capabilities of PostGIS and the SVG output enabled by pg_svg, 
+When combined with the geospatial processing capabilities of [PostGIS](https://postgis.net/) and the [Scalable Vector Graphics](https://developer.mozilla.org/en-US/docs/Web/SVG) (SVG) output enabled by [`pg-svg`](https://github.com/dr-jts/pg_svg), 
 it makes for an easy way to generate interesting map visualizations.
 
 For example, here's how to create a map showing distances from US cities, with some interesting visual effects.
