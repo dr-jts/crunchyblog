@@ -34,6 +34,11 @@ PostGIS recently added functions to help support processing simple polygonal cov
 
 
 
+ST_CoverageInvalidEdges
+
+ST_CoverageSimplify
+
+
 ## More functions to come
 
 ST_LineMergeWin
