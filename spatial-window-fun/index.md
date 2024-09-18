@@ -20,8 +20,11 @@ Clustering
 
 Clustering based on spatial proximity or relationship is an obvious application of Tobler's First Law.
 Window functions are an ideal interface for clustering algorithms, since
-clustering requires scanning an entire set of spatial features, and then returning a
+clustering requires scanning an entire set of spatial features and returning a
 cluster id for each feature in the set.
+
+
+
 Recently Paul Ramsey wrote some blog posts about PostGIS window functions for clustering:
 
 * ST_ClusterDBSCAN ...
