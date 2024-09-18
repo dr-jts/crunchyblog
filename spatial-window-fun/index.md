@@ -26,7 +26,11 @@ Recently Paul Ramsey wrote some blog posts about PostGIS window functions for cl
 
 * ST_ClusterDBSCAN ...
 
+![ST_ClusterDBSCAN](st_clusterdbscan.png)
+
 * ST_ClusterKMeans ...
+
+![ST_ClusterKMeans](st_clusterkmeans.png)
 
 ## Polygonal Coverage Processing
 
