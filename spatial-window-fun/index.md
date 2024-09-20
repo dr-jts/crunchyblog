@@ -18,14 +18,12 @@ with an easy-to-use interface.
 
 Clustering
 
-Clustering based on spatial proximity or relationship is an obvious application of Tobler's First Law.
+Clustering spatial features based on spatial proximity or relationship is an obvious application of Tobler's First Law.
 Window functions are an ideal interface for clustering algorithms, since
-clustering requires scanning an entire set of spatial features and returning a
-cluster id for each feature in the set.
+clustering operates over an entire set of spatial features, and a convenient way to
+present the computed clusters is by returning a cluster id for each feature in the set.
 
-
-
-Recently Paul Ramsey wrote some blog posts about PostGIS window functions for clustering:
+Paul Ramsey wrote some recent blog posts about PostGIS window functions for clustering:
 
 * ST_ClusterDBSCAN ...
 
@@ -37,9 +35,14 @@ Recently Paul Ramsey wrote some blog posts about PostGIS window functions for cl
 
 ## Polygonal Coverage Processing
 
-PostGIS recently added functions to help support processing simple polygonal coverages.  
+PostGIS recently added functions to process simple polygonal coverages.  
+The key aspect of coverages is that they are defined by the implicit 
+coverage relationship between adjacent polygons.
+This means that coverage operations need to operate on an entire set of polygons.
+If the operation returns a value for each polygon in the input, 
+a window function is the natural way to express this.
 
-
+Here's two different  
 
 ST_CoverageInvalidEdges
 
